@@ -1,0 +1,40 @@
+.nav-links-hidden ul li ul li a {
+  width: 100%;
+}
+
+.nav-links-hidden ul li {
+  cursor: pointer;
+  padding: 20px 0 20px 20px;
+}
+
+.nav-links-hidden {
+  transform: translateX(-100%);
+  opacity: 0;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.nav-links-hidden.active {
+  transform: translateX(0);
+  opacity: 1;
+}
+.nav-links ul li:hover {
+  color: gray;
+  font-weight: bold;
+}
+
+.nav-links-hidden ul li:not(.hidden-shop-li-1):hover,
+.nav-links ul li ul li:hover {
+  color: #fff;
+  background-color: #2f2f2f;
+  transition: var(--co-transition);
+}
+
+.dropdown li {
+  text-transform: capitalize;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.fa-xmark {
+  position: absolute;
+}

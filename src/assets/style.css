@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* built-in proberties */
+  font-family: "Satoshi", sans-serif;
+  background-color: white;
+
+  /* custom  proberties */
+  --co-transition: all 0.3s ease-in-out;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Style the entire scrollbar */
+::-webkit-scrollbar {
+  width: 12px; /* Width of the scrollbar */
+  height: 12px; /* Height for horizontal scrollbar */
+}
+/* Style the scrollbar track (background) */
+::-webkit-scrollbar-track {
+  background: #e0e0e0;
+  border-radius: 10px;
+}
+/* Style the scrollbar handle */
+::-webkit-scrollbar-thumb {
+  background-color: #202020;
+  border-radius: 25px;
+  border: 3px solid #f0f0f0;
+}
+/* Style the scrollbar thumb when hovered */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #202020;
+}

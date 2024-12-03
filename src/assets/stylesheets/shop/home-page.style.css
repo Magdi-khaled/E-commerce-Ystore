@@ -1,0 +1,135 @@
+.preview {
+  background-color: rgb(242 240 241);
+  min-height: 42rem;
+}
+
+.results div p:first-child {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+:deep(.goto-shop) {
+  width: 50%;
+}
+:deep(.na-img img) {
+  width: 310px;
+  height: 270px;
+}
+.styles-imgs div img {
+  border-radius: 25px;
+  width: 100%;
+  height: 16rem;
+  box-shadow: 1px 1px 3px #b7b7b7;
+  opacity: 0.9;
+}
+
+.swiper-cards {
+  position: relative;
+}
+
+.swiper-cards::after,
+.swiper-cards::before {
+  content: "";
+  position: absolute;
+  top: 0%;
+  width: 65px;
+  height: 100%;
+  background-color: rgb(196, 196, 196);
+  opacity: 0.8;
+  filter: blur(35px);
+}
+
+.swiper-cards::after {
+  left: 0%;
+}
+
+.swiper-cards::before {
+  right: 0%;
+}
+
+:deep(.swiper-button-prev),
+:deep(.swiper-button-next) {
+  position: absolute;
+  top: 40%;
+  width: 1.5%;
+  height: 23%;
+  font-weight: bold;
+  padding: 10px;
+  display: flex;
+  border-radius: 5px;
+  align-items: center;
+  --swiper-navigation-size: medium;
+  background-color: rgba(180, 180, 180, 0.37);
+}
+
+:deep(.swiper-button-prev) {
+  left: 5px;
+}
+
+:deep(.swiper-button-next) {
+  right: 5px;
+}
+
+:deep(.swiper-button-prev)::after {
+  content: "\f0d9";
+}
+
+:deep(.swiper-button-next)::after {
+  content: "\f0da";
+}
+
+:deep(.swiper-button-prev)::after,
+:deep(.swiper-button-next)::after {
+  font-family: "Font Awesome 5 Pro";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  width: 100%;
+  color: #252525;
+  border-radius: 25%;
+  font-weight: bold;
+}
+
+.card-content p {
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+:deep(.feedback h1) {
+  text-align: start;
+}
+
+@media (max-width: 696px) {
+  :deep(.na-img img) {
+    width: 260px;
+    height: 260px;
+  }
+}
+@media (max-width: 496px) {
+  :deep(.feedback h1) {
+    font-size: 1.5rem;
+  }
+
+  .card-content p {
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+@media (max-width: 810px) {
+  .preview .preview-txt {
+    letter-spacing: -0.06em;
+  }
+
+  :deep(.swiper-button-prev),
+  :deep(.swiper-button-next) {
+    padding: 10px;
+  }
+}
