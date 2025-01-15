@@ -1,27 +1,26 @@
 <template>
     <div class="footer w-full mt-40 bg-[#f0eeed]">
-        <div class="footer-header bg-black w-11/12 m-auto rounded-3xl relative px-8
-        sm:px-16 py-8 flex flex-wrap items-center justify-between ">
+        <div class="footer-header bg-black w-11/12 m-auto rounded-md relative px-4
+        sm:px-16 py-4 sm:py-8 flex flex-wrap items-center justify-between ">
             <div class="w-full md:w-5/12">
-                <h1 class=" text-white font-sans font-bold text-3xl lg:text-4xl uppercase">
+                <h1 class=" text-white font-sans font-bold text-xl sm:text-3xl lg:text-4xl uppercase">
                     stay upto date about
                     our latest offers
                 </h1>
             </div>
             <div class="w-full md:w-5/12">
-                <div class="flex justify-center md:justify-end relative mb-5  mt-5 md:mt-0">
-                    <div class="pointer-events-none absolute z-10 left-3 top-1 lg:top-3 flex items-center">
-                        <span class="text-gray-600 text-md md:text-xl">
-                            <i class="fa-duotone fa-solid fa-envelopes"></i>
-                        </span>
-                    </div>
-                    <input v-model="email"
-                        class="relative rounded-3xl outline-none py-2 lg:py-3 pl-12 w-full text-black font-bold placeholder:text-sm "
-                        placeholder="Enter your email address">
+                <div class="flex justify-end relative mb-5 mt-5 md:mt-0">
+                    <label for="uptodate-email" class="w-full">
+                        <input v-model="emailupto" id="uptodate-email" type="email" class="rounded-md py-2
+                        sm:py-3 pl-8 w-full text-black font-medium  text-sm sm:text-md "
+                            placeholder="Enter your email address...">
+                        <i
+                            class="fa-solid fa-at absolute z-30 left-2 top-[30%] sm:top-[25%] text-md sm:text-xl text-gray-500"></i>
+                    </label>
                 </div>
                 <div class="flex justify-center md:justify-end">
-                    <button
-                        class="capitalize bg-white text-black w-full py-3 font-bold hover:text-white hover:bg-[#2f2f2f] rounded-3xl">
+                    <button class="capitalize bg-white text-black w-full py-2 font-medium hover:text-white
+                        hover:bg-[#2f2f2f] rounded-md transition duration-300">
                         subscribe <span class="lowercase">to</span> newsletter
                     </button>
                 </div>
@@ -33,7 +32,7 @@
             <!-- first column -->
             <div class="footer-content-1 w-full sm:w-4/12 flex flex-col gap-5">
                 <div class="mb-2">
-                    <img src="../assets/images/logo/shop-co-logo.png" alt="SHOP.CO">
+                    <img loading="lazy" src="../assets/images/logo/shop-co-logo.png" alt="SHOP.CO">
                 </div>
                 <div class="w-full sm:w-8/12 text-sm text-gray-600 mb-2 md:mb-6">
                     <p>
@@ -43,19 +42,19 @@
                 <!-- Social Media Links -->
                 <div class="flex justify-between w-4/12 gap-1">
                     <router-link to="" title="Twitter-X-link">
-                        <i class="fa-brands fa-twitter rounded-full border-2 border-gray-500 bg-white p-1"></i>
+                        <i class="fa-brands fa-twitter text-white bg-black rounded-md border-2 border-gray-500 p-1"></i>
                     </router-link>
                     <router-link to="" title="Facebook-link">
                         <i
-                            class="fa-brands fa-facebook-f rounded-full border-2 border-gray-500 py-1 px-2 bg-white bg-black">
+                            class="fa-brands fa-facebook-f text-white bg-black rounded-md border-2 border-gray-500 px-2 py-1">
                         </i>
                     </router-link>
                     <router-link to="" title="Instgram-link">
                         <i
-                            class="fa-brands fa-instagram rounded-full border-2 border-gray-600 border-gray-500 bg-white  px-2 py-1"></i>
+                            class="fa-brands fa-instagram text-white bg-black rounded-md border-2 border-gray-500 px-2 py-1"></i>
                     </router-link>
                     <router-link to="" title="GitHub-link">
-                        <i class="fa-brands fa-github rounded-full border-2 border-gray-500 bg-white p-1"></i>
+                        <i class="fa-brands fa-github text-white bg-black rounded-md border-2 border-gray-500 p-1"></i>
                     </router-link>
                 </div>
             </div>
@@ -70,7 +69,7 @@
                             <router-link to="">about</router-link>
                         </li>
                         <li>
-                            <router-link to="">features</router-link>
+                            <router-link to="/shop.co/user/profile">features</router-link>
                         </li>
                         <li>
                             <router-link to="">works</router-link>
@@ -87,7 +86,7 @@
                             <router-link to="">custom support</router-link>
                         </li>
                         <li>
-                            <router-link to="">delivery details</router-link>
+                            <router-link to="/shop.co/user/orders">delivery details</router-link>
                         </li>
                         <li>
                             <router-link to="">terms & conditions</router-link>
@@ -101,16 +100,16 @@
                     <h1 class="uppercase">faq</h1>
                     <ul class="list-none flex flex-col gap-3">
                         <li>
-                            <router-link to="">account</router-link>
+                            <router-link to="/shop.co/user/profile">account</router-link>
                         </li>
                         <li>
-                            <router-link to="">manage deliveries</router-link>
+                            <router-link to="/shop.co/user/notifications">manage deliveries</router-link>
                         </li>
                         <li>
-                            <router-link to="">orders</router-link>
+                            <router-link to="/shop.co/user/orders">orders</router-link>
                         </li>
                         <li>
-                            <router-link to="">payments</router-link>
+                            <router-link to="/shop.co/user/payments">payments</router-link>
                         </li>
                     </ul>
                 </div>
@@ -138,25 +137,25 @@
         <div class="mx-8 md:mx-16 pt-3 pb-8 flex flex-wrap justify-between">
             <div class="w-full sm:w-4/12 text-gray-500 text-sm">
                 <p>
-                    Shop.co © 2002-2023, All rights reserved
+                    Shop.co © 2002-2024, All rights reserved
                 </p>
             </div>
             <div class="w-8/12 sm:w-5/12">
                 <ul class="flex justify-end">
                     <li>
-                        <img src="../assets/images/payment-methods/visa.png" alt="visa">
+                        <img loading="lazy" src="../assets/images/payment-methods/visa.png" alt="visa">
                     </li>
                     <li>
-                        <img src="../assets/images/payment-methods/credit-card.png" alt="credit-card">
+                        <img loading="lazy" src="../assets/images/payment-methods/credit-card.png" alt="credit-card">
                     </li>
                     <li>
-                        <img src="../assets/images/payment-methods/PayPal.png" alt="paypal">
+                        <img loading="lazy" src="../assets/images/payment-methods/PayPal.png" alt="paypal">
                     </li>
                     <li>
-                        <img src="../assets/images/payment-methods/IphonePay.png" alt="applePay">
+                        <img loading="lazy" src="../assets/images/payment-methods/IphonePay.png" alt="applePay">
                     </li>
                     <li>
-                        <img src="../assets/images/payment-methods/Gpay.png" alt="Gpay">
+                        <img loading="lazy" src="../assets/images/payment-methods/Gpay.png" alt="Gpay">
                     </li>
                 </ul>
             </div>
@@ -169,7 +168,7 @@ export default {
     name: 'baseFooter',
     data() {
         return {
-            email: '',
+            emailupto: '',
         }
     },
 }

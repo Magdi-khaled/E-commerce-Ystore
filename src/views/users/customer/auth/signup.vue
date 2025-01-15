@@ -1,47 +1,49 @@
 <template>
-    <div class="login w-full h-screen flex items-center justify-between">
-        <div class="w-10/12 md:w-7/12 lg:w-5/12 rounded-xl m-auto pl-6 sm:pl-20 bg-white 
-            lg:bg-none shadow-md lg:shadow-none shadow-gray-300 lg:shadow-none ">
-            <div class="flex items-center gap-2 pt-12 lg:pt-0">
-                <img src="../../../../assets/images/logo/shop-co-logo.png" alt="shop.co">
-                <i class="fa-solid fa-shop text-xl"></i>
+    <div class="login w-full h-fit flex items-center justify-center sm:justify-between mt-[8%] sm:mt[10%] lg:mt-0">
+        <div class="w-11/12 md:w-9/12 lg:w-5/12 rounded-xl m-auto px-6 bg-white 
+            lg:bg-none shadow-md lg:shadow-none shadow-gray-300 lg:shadow-none pt-8">
+            <div class="flex items-center gap-2">
+                <router-link to="/shop.co.seller/home" class="flex items-center gap-2 ">
+                    <img src="../../../../assets/images/logo/shop-co-logo.png" alt="shop.co">
+                    <i class="fa-solid fa-shop text-xl"></i>
+                </router-link>
             </div>
             <div class="my-4">
                 <p class="mt-1 text-sm sm:text-md font-bold text-gray-500 capitalize">
-                    sign up <span class="lowercase">and</span> buy all you need
-                    <i class="fa-solid fa-cart-shopping"></i>...
+                    become a seller on shop.co <span class="lowercase">and</span> view your products for sell
+                    <i class="fa-duotone fa-solid fa-money-bill-wave pl-1"></i> ...
                 </p>
             </div>
 
-            <div class="inputs my-4 font-bold font-sans capitalize flex flex-wrap">
+            <form class="inputs my-4 font-bold font-sans capitalize flex flex-wrap" @submit.prevent="register">
 
-                <div class="w-11/12 sm:w-full flex flex-wrap gap-2">
-                    <div class="w-full sm:w-5/12">
+                <div class="w-full flex flex-wrap justify-between">
+                    <div class="w-full sm:w-[49%]">
                         <h1 class="text-sm sm:text-md whitespace-nowrap">first name <span class="text-red-600">*</span>
                         </h1>
-                        <input v-model="firstname" placeholder="Enter first name" class="outline-none w-full my-1 p-2 sm:p-3 border-2
-                    focus:border-black font-normal rounded-xl">
+                        <input v-model="firstname" placeholder="Enter first name"
+                            class="outline-none bg-gray-100 w-full my-1 p-2 sm:p-3 border-2 font-light rounded-md text-sm sm:text-md">
                     </div>
-                    <div class="w-full sm:w-5/12 flex-wrap ">
+                    <div class="w-full sm:w-[49%] mt-2 sm:mt-0">
                         <h1 class="text-sm sm:text-md whitespace-nowrap">last name <span class="text-red-600">*</span>
                         </h1>
-                        <input v-model="lastname" placeholder="Enter last name" class="outline-none w-full my-1 p-2 sm:p-3 border-2
-                    focus:border-black font-normal rounded-xl">
+                        <input v-model="lastname" placeholder="Enter last name"
+                            class="outline-none bg-gray-100 w-full my-1 p-2 sm:p-3 border-2 font-light rounded-md text-sm sm:text-md">
                     </div>
                 </div>
 
-                <div class="w-11/12 sm:w-full flex flex-wrap gap-2">
-                    <div class="w-full sm:w-5/12">
+                <div class="w-full flex flex-wrap justify-between">
+                    <div class="w-full sm:w-[49%]">
                         <h1 class="text-sm sm:text-md whitespace-nowrap">phone <span class="text-red-600">*</span></h1>
-                        <input v-model="phone" placeholder="Enter your phone number" class="outline-none w-full my-1 p-2 sm:p-3 border-2
-                    focus:border-black font-normal rounded-xl">
+
+                        <input v-model="phone" placeholder="Enter phone number"
+                            class="outline-none bg-gray-100 w-full my-1 p-2 sm:p-3 border-2 font-light rounded-md text-sm sm:text-md">
                     </div>
-                    <div class="w-full sm:w-5/12 relative">
+                    <div class="w-full sm:w-[49%] mt-2 sm:mt-0">
                         <h1 class="text-sm sm:text-md whitespace-nowrap">country <span class="text-red-600">*</span>
                         </h1>
-                        <i class="fa-solid fa-arrow-down-a-z font-normal absolute right-4 top-10 "></i>
-                        <select id="country" class="appearance-none outline-none w-full my-1 p-2 sm:p-3 border-2
-                        focus:border-black font-normal rounded-xl capitalize">
+                        <select id="country" class="outline-none bg-gray-100 w-full my-1 p-2 sm:p-3 border-2
+                            font-light rounded-md text-sm sm:text-md capitalize font-normal">
                             <option value="" disabled selected>choose country</option>
                             <option class="capitalize font-normal hover:bg-gray-200" value="Egypt">egypt</option>
                             <option class="capitalize font-normal hover:bg-gray-200" value="KSA">KSA</option>
@@ -50,39 +52,54 @@
                     </div>
                 </div>
 
-                <div class="w-11/12 sm:w-full">
-                    <h1 class="text-sm sm:text-md whitespace-nowrap">email <span class="text-red-600">*</span></h1>
-                    <input v-model="email" placeholder="Enter your mail address" class="email outline-none my-1 p-2 sm:p-3 border-2
-                    focus:border-black font-normal rounded-xl">
+                <div class="w-full flex flex-wrap justify-between">
+                    <div class="w-full sm:w-[49%]">
+                        <h1 class="text-sm sm:text-md whitespace-nowrap">email <span class="text-red-600">*</span>
+                        </h1>
+                        <input type="email" v-model="email" placeholder="Enter your mail address"
+                            class="outline-none bg-gray-100 w-full my-1 p-2 sm:p-3 border-2 font-light rounded-md text-sm sm:text-md">
+
+                    </div>
+                    <div class="w-full sm:w-[49%] mt-2 sm:mt-0">
+                        <h1 class="text-sm sm:text-md whitespace-nowrap">Location/address (optional)
+                            <i class="fa-solid fa-circle-exclamation pl-1 cursor-pointer"
+                                title="write your shop address if you have a real shop (onsite)"></i>
+                        </h1>
+                        <input type="text" v-model="location" placeholder="Enter shop location"
+                            class="outline-none bg-gray-100 w-full my-1 p-2 sm:p-3 border-2 font-light rounded-md text-sm sm:text-md">
+                    </div>
                 </div>
 
-                <div class="w-11/12 sm:w-full flex flex-wrap gap-2">
-                    <div class="w-full sm:w-5/12">
+                <div class="w-full flex flex-wrap justify-between">
+                    <div class="w-full sm:w-[49%]">
                         <h1 class="text-sm sm:text-md whitespace-nowrap">password <span class="text-red-600">*</span>
                         </h1>
-                        <input type="password" v-model="password" placeholder="Enter password" class="outline-none w-full my-1 p-2 sm:p-3 border-2 
-                    focus:border-black font-normal rounded-xl">
+                        <input type="password" v-model="password" placeholder="Enter password"
+                            class="outline-none bg-gray-100 w-full my-1 p-2 sm:p-3 border-2 font-light rounded-md text-sm sm:text-md">
                     </div>
-                    <div class="w-full sm:w-5/12">
+                    <div class="w-full sm:w-[49%] mt-2 sm:mt-0">
                         <h1 class="text-sm sm:text-md whitespace-nowrap">confirm password <span
                                 class="text-red-600">*</span></h1>
-                        <input type="password" v-model="confirmPassword" placeholder="Enter password" class="outline-none w-full my-1 p-2 sm:p-3 border-2 
-                    focus:border-black font-normal rounded-xl">
+                        <input type="password" v-model="confirmPassword" placeholder="repeat password"
+                            class="outline-none bg-gray-100 w-full my-1 p-2 sm:p-3 border-2 font-light rounded-md text-sm sm:text-md">
                     </div>
                 </div>
-            </div>
-
-            <div class="signup-btn w-11/12 sm:w-full my-4">
-                <baseButton>
-                    sign up
-                </baseButton>
-            </div>
+                <div class="signup-btn w-full">
+                    <baseButton :disabled="!isValidForm" type="submit">
+                        register
+                    </baseButton>
+                </div>
+            </form>
         </div>
-        <div class=" w-6/12 h-screen bg-gray-400 hidden lg:flex items-center justify-center">
-            <img class="w-10/12 m-auto" src="../../../../assets/images/shop/login-4.png" alt="">
+        <div
+            class="border-l-[3px] border-l-[#263238] w-6/12 h-screen bg-gray-500 hidden lg:flex items-center justify-center">
+            <!-- class="border-l-[3px] border-l-[#263238] w-6/12 h-screen bg-gray-500 hidden lg:flex items-center justify-center"> -->
+            <img class="w-10/12 m-auto"
+                src="../../../../assets/images/shop/login-4.png" alt="">
         </div>
     </div>
 </template>
+
 <script>
 import baseButton from '../../../../components/baseButton.vue'
 export default {
@@ -92,13 +109,15 @@ export default {
             firstname: '',
             lastname: '',
             country: '',
-            address: '',
             phone: '',
             email: '',
+            location: '',
             password: '',
             confirmPassword: '',
+            isValidForm: false
         }
-    }
+    },
+    methods: { register() { } }
 }
 </script>
 <style scoped>
@@ -108,7 +127,7 @@ export default {
 
 .email,
 .signup-btn button {
-    width: 84.5%;
+    width: 100%;
 }
 
 @media (max-width:641px) {

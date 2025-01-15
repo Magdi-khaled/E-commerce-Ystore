@@ -1,6 +1,9 @@
 .preview {
-  background-color: rgb(242 240 241);
-  min-height: 42rem;
+  background-color: #37474ff2;
+  background-image: url("../../images/shop/preview/fashion shop-pana.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
 .results div p:first-child {
@@ -8,19 +11,20 @@
     "Lucida Sans", Arial, sans-serif;
 }
 
-:deep(.goto-shop) {
-  width: 50%;
-}
-:deep(.na-img img) {
-  width: 310px;
-  height: 270px;
-}
 .styles-imgs div img {
-  border-radius: 25px;
+  background-color: #a6a6a679;
+  border: 1px solid #a6a6a679;
+  border-radius: 15px;
   width: 100%;
-  height: 16rem;
-  box-shadow: 1px 1px 3px #b7b7b7;
-  opacity: 0.9;
+  box-shadow: 2px 2px gray;
+  opacity: 0.92;
+}
+
+.styles-imgs div img:hover {
+  cursor: pointer;
+  transform: scale(1.009);
+  transition: all 0.2s ease;
+  transition-delay: 0.1s;
 }
 
 .swiper-cards {
@@ -93,20 +97,51 @@
 
 .card-content p {
   display: -webkit-box;
-  -webkit-line-clamp: 5;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-:deep(.feedback h1) {
-  text-align: start;
+/* Product */
+.product {
+  cursor: pointer;
+  width: 21%;
+  height: 100%;
+  border-bottom-right-radius: 16px;
+  box-shadow: 1px 1px gray;
+}
+:deep(.product img) {
+  box-shadow: 1px 0px rgb(174, 173, 173);
+  border-radius: 0;
+}
+:deep(.product .detail) {
+  /* box-shadow: 1px 1px red; */
+  border-radius: 0;
 }
 
+@media (max-width: 889px) {
+  .product {
+    width: 23%;
+  }
+}
+
+@media (max-width: 772px) {
+  .product {
+    width: 48%;
+  }
+}
+
+@media (max-width: 572px) {
+  .product {
+    width: 48%;
+  }
+}
+/* end product */
 @media (max-width: 696px) {
   :deep(.na-img img) {
     width: 260px;
-    height: 260px;
+    height: 240px;
   }
 }
 @media (max-width: 496px) {

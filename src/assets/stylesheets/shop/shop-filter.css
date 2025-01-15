@@ -1,0 +1,94 @@
+.noUi-target {
+  height: 7px;
+  background-color: rgb(255, 255, 255);
+  border: 2px solid rgba(160, 160, 160, 0.6);
+}
+
+:deep(.noUi-connect) {
+  background: #000;
+}
+
+:deep(.noUi-handle) {
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  border: 4px solid black;
+}
+
+:deep(.noUi-horizontal .noUi-handle) {
+  right: -4px;
+  top: -7px;
+  color: #000;
+  border-radius: 50%;
+  background-color: #000;
+}
+:deep(.noUi-touch-area) {
+  background-color: white;
+  border-radius: 50%;
+}
+
+.priceRange,
+.dressStyle,
+.styling {
+  display: block;
+  transition: all 0.5s ease-in-out;
+}
+
+.priceRange.active,
+.colors.active,
+.sizing.active,
+.styling.active,
+.dressStyle.active {
+  display: none;
+}
+
+.colors input[value=""]:first-child {
+  position: relative;
+  background: conic-gradient(
+    rgb(223, 22, 22),
+    yellow,
+    green,
+    rgb(153, 88, 190),
+    rgba(0, 0, 0, 0.538)
+  );
+}
+
+/* .colors input[value=""]:first-child::before {
+  content: "";
+  position: absolute;
+  background-color: black;
+  border-radius: 15px;
+  width: 4px;
+  height: 100%;
+  transform: rotateZ(-45deg);
+  left: 43%;
+  border: 1px solid rgba(0, 0, 0, 0.497);
+} */
+
+.fa-check {
+  color: #fff;
+  left: -11%;
+  bottom: -12%;
+}
+
+:deep(.noUi-horizontal .noUi-tooltip) {
+  background-color: transparent;
+  border: none;
+  top: 90%;
+}
+
+@media (max-width: 761px) {
+  .filter {
+    position: absolute;
+    z-index: 30;
+    background: white;
+    width: 100%;
+    left: 0;
+    border-radius: 70px;
+    padding: 15px;
+    border: 2px solid gray;
+    padding-top: 20px;
+    scroll-behavior: unset;
+    top: 8%;
+  }
+}

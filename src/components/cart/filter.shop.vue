@@ -1,227 +1,245 @@
 <template>
-    <div class="filter hidden md:block w-3/12 bg-white h-fit border-2 rounded-xl p-6"
-        :style="(showFilter && !hideFitler) ? FilterStyle : {}">
-        <div class="filter-header flex justify-between pb-4 text-xl md:text-2xl">
-            <h1 class="capitalize font-sans font-bold">filters</h1>
-            <button v-if="hideFitler" class="rounded-full text-gray-500" disabled>
-                <img src="../../assets/images/icons/filter.png" alt="filter-icon">
-            </button>
-            <button v-else @click="$emit('closeFilter')">
-                <i class="fa-sharp fa-solid fa-xmark text-2xl"></i>
+    <div class="filter hidden md:block w-3/12 bg-white h-fit rounded-md"
+        :style="showFilter && !hideFitler ? FilterStyle : {}">
+        <div v-if="!hideFitler" class="filter-header flex justify-between pb-4 text-xl md:text-2xl">
+            <h1 class="capitalize font-bold">filters</h1>
+            <button @click="$emit('closeFilter')">
+                <i class="fa-solid fa-xmark text-2xl hover:text-gray-500"></i>
             </button>
         </div>
-        <hr>
-        <div v-for="item in clothes" class="clothes mt-4 text-gray-500">
-            <div class="flex flex-wrap justify-between items-center">
-                <button @click="item.show = !item.show" :class="{ 'text-black': item.show }"
-                    class="capitalize font-bold flex justify-between w-full outline-none">
-                    {{ item.type }}
-                    <i class="fa-regular fa-chevron-right"></i>
-                </button>
-                <div v-if="item.show" class="pl-4 text-black w-full">
-                    <ul v-for="item in item.looks">
-                        <input type="radio" v-model="clothesType" :value="item" :id="item">
-                        <label :for="item" class="text-md font-bold capitalize pl-2">{{ item }}</label>
-                    </ul>
-                </div>
-            </div>
+        <hr v-if="!hideFitler" />
+        <div class="hidden">{{ allv }}</div>
+        <div class="my-2">
+            <label for="all-f" class="pl-2 px-40 flex items-center cursor-pointer capitalize text-sm">
+                <input type="checkbox" id="all-f" @click="allT = 'all fashion'"
+                    class="appearance-none fa-duotone fa-solid fa-check text-gray-400 text-xs w-[16px] h-[15px] border-2 border-gray-400 rounded-sm cursor-pointer"
+                    :class="{ 'bg-gray-700 text-white border-none pl-[2px]': allT === 'all fashion' }" />
+                <p class="whitespace-nowrap font-normal">all fashion</p>
+            </label>
         </div>
-        <hr class="my-4">
+        <!-- clothes -->
+        <div v-for="cothItem in clothes" class="clothes mt-4 text-gray-600 text-sm">
+            <button @click="cothItem.show = !cothItem.show" :class="{ 'text-blue-500': cothItem.show }"
+                class="capitalize flex justify-start items-center gap-2">
+                <i v-if="cothItem.show" class="fa-duotone fa-solid fa-minus text-sm text-blue-600"></i>
+                <i v-else class="fa-duotone fa-solid fa-plus text-sm text-gray-900"></i>
+                {{ cothItem.name }}
+            </button>
+            <!-- <template v-if="cothItem.show || drop1(cothItem)"> -->
+            <template v-if="handleSelectedFilter() && cothItem.show">
+                <label :for="cothItem.label" class="pl-5 py-1 w-[55%] flex items-center cursor-pointer capitalize">
+                    <input type="checkbox" :value="cothItem.label" :id="cothItem.label" @click="allT = cothItem.label"
+                        class="appearance-none fa-duotone fa-solid fa-check text-gray-400 text-[12px] w-[15px] h-[14px] border-2 border-gray-400 rounded-sm cursor-pointer"
+                        :class="{
+                            'bg-gray-700 text-white border-none px-[2px] pt-[1px]':
+                                allT === cothItem.label,
+                        }" />
+                    <p class="whitespace-nowrap">{{ cothItem.label }}</p>
+                </label>
+
+                <template v-if="cothItem.categories">
+                    <div v-for="item in cothItem.categories"
+                        class="pl-3 py-1 flex flex-wrap justify-between items-center">
+                        <button v-if="item.categories" @click="item.show = !item.show"
+                            :class="{ 'text-blue-500': item.show }"
+                            class="capitalize flex justify-start items-center gap-2">
+                            <i v-if="item.show" class="fa-duotone fa-solid fa-minus text-sm text-blue-600"></i>
+                            <i v-else class="fa-duotone fa-solid fa-plus text-sm text-gray-900"></i>
+                            {{ item.name }}
+                        </button>
+                        <label v-else class="pl-2 w-6/12 flex items-center cursor-pointer capitalize">
+                            <input type="checkbox" v-model="clothesType" :value="item.name" :id="item.name" class="appearance-none fa-duotone fa-solid fa-check text-gray-400 text-xs 
+                                w-[15px] h-[15px] border-2 border-gray-400 rounded-sm cursor-pointer" :class="{
+                                    'bg-gray-700 text-white border-none pl-[2px]':
+                                        clothesType.includes(item.name),
+                                }" />
+                            <span class="whitespace-nowrap">{{ item.name }}</span>
+                        </label>
+                        <div v-if="item.show && item.categories" class="pl-12 text-black w-full">
+                            <hr class="my-1" />
+                            <ul v-for="itemn in item.categories" :key="itemn">
+                                <label class="w-full flex items-center cursor-pointer">
+                                    <input type="checkbox" v-model="clothesType" :value="itemn.name" :id="itemn"
+                                        class="appearance-none fa-duotone fa-solid fa-check text-gray-400 text-xs w-[15px] h-[15px] border-2 border-gray-400 rounded-sm cursor-pointer"
+                                        :class="{
+                                            'bg-gray-700 text-white border-none pl-[2px]':
+                                                clothesType.includes(itemn.name),
+                                        }" />
+                                    <span class="whitespace-nowrap">{{ itemn.name }}</span>
+                                </label>
+                            </ul>
+                        </div>
+                    </div>
+                </template>
+            </template>
+        </div>
+        <hr class="my-4" />
+        <!-- pricing -->
         <div>
-            <h1 class="capitalize font-bold py-4 text-md md:text-xl flex justify-between w-full outline-none">
+            <button @click="pricing = !pricing"
+                class="capitalize mb-8 font-bold p-2 text-md flex justify-between items-center w-full rounded-sm bg-gray-100">
                 price
-                <button @click="pricing = !pricing">
-                    <i v-if="!pricing" class="fa-sharp-duotone fa-regular fa-angle-up text-md"></i>
-                    <i v-else class="fa-regular fa-chevron-down text-md"></i>
-                </button>
-            </h1>
-            <div :class="{ active: pricing }" class="priceRange mb-12">
+                <i v-if="pricing" class="fa-regular fa-chevron-up text-md text-gray-700 font-bold"></i>
+                <i v-else class="fa-regular fa-chevron-down text-md text-gray-700 font-bold"></i>
+            </button>
+
+            <div :class="{ active: !pricing }" class="priceRange mb-12 px-2">
                 <!-- Slider Container -->
-                <div ref="slider" class="my-2 "></div>
+                <div ref="slider" class="my-2"></div>
             </div>
         </div>
-        <hr class="my-4">
+        <!-- colouring -->
         <div>
-            <h1 class="capitalize font-bold py-4 text-md md:text-xl flex justify-between w-full outline-none">
-                colors
-                <button @click="coloring = !coloring">
-                    <i v-if="!coloring" class="fa-sharp-duotone fa-regular fa-angle-up text-md"></i>
-                    <i v-else class="fa-regular fa-chevron-down text-md"></i>
-                </button>
-            </h1>
-            <div :class="{ active: coloring }" class="colors w-full mb-4 flex flex-wrap">
+            <button @click="coloring = !coloring"
+                class="capitalize mb-8 font-bold p-2 text-md flex justify-between items-center w-full rounded-sm bg-gray-100">
+                colour
+                <i v-if="coloring" class="fa-regular fa-chevron-up text-md text-gray-700 font-bold"></i>
+                <i v-else class="fa-regular fa-chevron-down text-md text-gray-700 font-bold"></i>
+            </button>
+
+            <div :class="{ active: !coloring }" class="colors w-full mb-4">
                 <label v-for="colorItem in colorList" class="relative">
                     <input type="radio" v-model="color" :value="colorItem.color"
-                        class="appearance-none w-7 lg:w-10 h-7 lg:h-10 m-1 border-2 border-gray-400 cursor-pointer rounded-full "
-                        :class="{ 'outline outline-2 outline-black': color == colorItem.color }"
-                        :style="{ 'background-color': `#${colorItem.value}` }">
-                    <i v-if="color" class="fa-solid fa-check text-white absolute z-30 py-3 px-4 text-2xl"
-                        :class="{ 'hidden': color != colorItem.color }"></i>
+                        class="appearance-none w-6 h-6 m-1 border-2 border-gray-400 cursor-pointer rounded-sm" :class="{
+                            'outline outline-2 outline-black': color == colorItem.color,
+                        }" :style="{ 'background-color': `#${colorItem.value}` }" />
+                    <i v-if="color" class="fa-solid fa-check text-gray-700 absolute py-2 px-3 text-lg"
+                        :class="{ hidden: color != colorItem.color }"></i>
                 </label>
                 <p class="font-bold capitalize">
-                    ( <i class="fa-regular fa-palette"></i> ) selected color:
-                    <span :style="{ 'color': `#${selectedColor.value}` }">
-                        {{ selectedColor.color }}</span>
-                    <span class="text-gray-400" v-if="!color">none </span>
+                    ( <i class="fa-regular fa-palette"></i> ) :
+                    <span v-if="color" :style="{ color: `#${selectedColor.value}` }" class="text-sm">
+                        [{{ selectedColor.color }}]</span>
+                    <span class="text-gray-400 font-normal" v-if="!color">[ all ]</span>
                 </p>
             </div>
         </div>
-        <hr class="my-4">
+        <!-- size -->
         <div>
-            <h1 class="capitalize font-bold py-4 text-md md:text-xl flex justify-between w-full outline-none">
+            <button @click="sizing = !sizing"
+                class="capitalize mb-8 font-bold p-2 text-md flex justify-between items-center w-full rounded-sm bg-gray-100">
                 size
-                <button @click="sizing = !sizing">
-                    <i v-if="!sizing" class="fa-sharp-duotone fa-regular fa-angle-up text-md"></i>
-                    <i v-else class="fa-regular fa-chevron-down text-md"></i>
-                </button>
-            </h1>
-            <div :class="{ active: sizing }" class="sizing flex flex-wrap ">
-                <div v-for="sizeType in sizeList">
-                    <input type="checkbox" :id="sizeType" class="p-2 m-1 rounded-md font-bold border-2"
-                        v-model="sizchoosenArr" :value="sizeType"
-                        :class="{ 'outline outline-2 outline-black': selectedSize == sizeType }">
-                    <label :for="sizeType" class="font-bold capitalize">{{ sizeType }}</label>
-                </div>
-                <p class="mt-2 w-full font-bold capitalize">
-                    ( <i class="fa-solid fa-text-size text-gray-400"></i> ) selected sizes:
-                <div v-if="sizchoosenArr.length">
-                    <ul v-for="size in sizchoosenArr" :key="size" class="flex w-full">
-                        <li class="w-5/12"><i class="fa-solid fa-minus"></i> {{ size }}</li>
-                    </ul>
-                </div>
-                <span v-else class="text-gray-400">none </span>
-                </p>
-            </div>
-        </div>
-        <hr class="my-4">
-        <div>
-            <h1 class="capitalize font-bold py-4 text-md md:text-xl flex justify-between w-full outline-none">
-                dress style
-                <button @click="styling = !styling">
-                    <i v-if="!styling" class="fa-sharp-duotone fa-regular fa-angle-up text-md"></i>
-                    <i v-else class="fa-regular fa-chevron-down text-md"></i>
-                </button>
-            </h1>
-            <div :class="{ active: styling }" v-for="item in styles" class="styling mt-4 text-gray-500">
-                <div class="flex flex-wrap justify-between items-center">
-                    <button @click="item.show = !item.show" :class="{ 'text-black': item.show }"
-                        class="capitalize font-bold flex justify-between w-full outline-none">
-                        {{ item.type }}
-                        <i class="fa-regular fa-chevron-right"></i>
-                    </button>
-                    <div v-if="item.show" class="pl-4 text-black w-full">
-                        <ul v-for="item in item.looks">
-                            <input type="radio" v-model="clothesType" :value="item" :id="item">
-                            <label :for="item" class="text-md font-bold capitalize pl-2">{{ item }}</label>
-                        </ul>
-                    </div>
+                <i v-if="sizing" class="fa-regular fa-chevron-up text-md text-gray-700 font-bold"></i>
+                <i v-else class="fa-regular fa-chevron-down text-md text-gray-700 font-bold"></i>
+            </button>
+
+            <div :class="{ active: !sizing }" class="sizing px-8">
+                <div class="colors grid grid-cols-2 gap-1 mb-4 px-6 md:px-0">
+                    <label v-for="item in sizeList" :key="item" class="w-full flex items-center cursor-pointer">
+                        <input type="checkbox" v-model="selectedSize" :value="item.key" :id="item.key"
+                            class="appearance-none fa-duotone fa-solid fa-check text-gray-400 text-xs w-[15px] h-[15px] border-2 border-gray-400 rounded-sm cursor-pointer"
+                            :class="{
+                                'border-none bg-gray-700 text-white pl-[2px]':
+                                    selectedSize.includes(item.key) || item.key === 'All Size',
+                            }" />
+                        <span class="pl-2 whitespace-nowrap">{{ item.key }}</span>
+                    </label>
                 </div>
             </div>
         </div>
-        <hr class="my-4">
+        <!-- apply button -->
+        <hr class="my-4" />
         <div>
-            <baseButton @click="applyFilters">
+            <baseButton @click="applyFilters" class="w-full">
                 apply filters
             </baseButton>
         </div>
     </div>
 </template>
 <script>
-import baseButton from '../../components/baseButton.vue';
-import noUiSlider from 'nouislider';
-import { ref, onMounted, onBeforeUnmount } from 'vue';
+import baseButton from "../../components/baseButton.vue";
+import categories from "../../shop.categories.data.json";
+import noUiSlider from "nouislider";
+import { ref, onMounted, onBeforeUnmount } from "vue";
 
 export default {
-    name: 'filterShopComponent',
+    name: "filterShopComponent",
     props: {
         showFilter: {
             type: Boolean,
-            required: true
-        }
+            required: true,
+        },
     },
     components: { baseButton },
     data() {
         return {
-            color: '',
-            clothesType: '',
-            selectedSize: null,
-            sizchoosenArr: [],
-            clothes: [
-                { type: 't-shirts', looks: ['polo', 'oversize'], show: false },
-                { type: 'shorts', looks: ['jeans', 'likra'], show: false },
-                { type: 'shirts', looks: ['striped', 'formal'], show: false },
-                { type: 'hoodies', looks: ['paints', 'no-paints'], show: false },
-                { type: 'jeans', looks: ['slimfit', 'boy friend', 'chino', 'pants'], show: false },
-            ],
-            colorList: [
-                { color: '', value: '', },
-                { color: 'green', value: '00C12B', },
-                { color: 'red', value: 'F50606', },
-                { color: 'yellow', value: 'F5DD06', },
-                { color: 'orange', value: 'F57906', },
-                { color: 'babyblue', value: '06CAF5', },
-                { color: 'blue', value: '063AF5', },
-                { color: 'purple', value: '7D06F5', },
-                { color: 'pink', value: 'F506A4', },
-                { color: 'white', value: 'c8c8c8', },
-                { color: 'black', value: '000000', }
-            ],
-            sizeList: ['xX-small', 'x-small', 'small', 'medium', 'large', 'x-large', 'xX-large', '3X-large', '4X-large'],
-            styles: [
-                { type: 'casual', looks: ['c-men', 'c-women'], show: false },
-                { type: 'formal', looks: ['f-men', 'f-women'], show: false },
-                { type: 'party', looks: ['p-men', 'p-women'], show: false },
-                { type: 'gym', looks: ['g-men', 'g-women'], show: false },
-            ],
-            FilterStyle: {
-                display: 'block',
-                position: "fixed",
-                marginTop: "5.5rem",
-                zIndex: "30",
-                background: "white",
-                width: "100%",
-                left: "0",
-                top: "0",
-                borderRadius: "20px",
-                height: "calc(100vh - 5rem)",
-                overflowY: "auto"
-            }
-        }
+            allT: sessionStorage.getItem('allT'),
+            pricing: true,
+            coloring: true,
+            sizing: true,
+            styling: false,
+            FiltersOn: false,
+            check: true,
+            color: "",
+            clothesType: [],
+            selectedSize: [],
+            clothes: categories.categories,
+            colorList: categories.colorList,
+            sizeList: categories.sizeList,
+            FilterStyle: categories.filterStyle,
+        };
     },
-    created() { },
+    befmounted() {
+        sessionStorage.setItem('allT', 'all fashion')
+    },
+    watch: {
+        allT(newValue, oldValue) {
+            console.log('Value changed from', oldValue, 'to', newValue);
+
+            // Define a mapping between `allT` values and route names
+            const routeMapping = {
+                "all fashion": "shop",
+                "all women's fashion": "women-fashion",
+                "all men's fashion": "men-fashion",
+                "all bags & luggage": "bags-luggage",
+                "all shoes": "shoes-fashion",
+                "all sport wear": "sport-wear",
+                "all girls fashion": "girls-wear",
+                "all boys fashion": "boys-wear",
+            };
+
+            const routeName = routeMapping[newValue];
+            if (routeName) {
+                this.$router.push({ name: routeName }).then(() => {
+                    window.location.reload();
+                }).catch((err) => {
+                    console.error("Navigation error:", err);
+                });
+            }
+        },
+    },
     computed: {
         colortype() {
             return this.colorList.find((v) => this.color == v.color);
         },
         selectedColor() {
-            var selectedColor = '';
+            var selectedColor = "";
             this.colorList.forEach((v) => {
                 if (this.color === v.color) {
                     selectedColor = v;
                 }
             });
             return selectedColor;
-        }
+        },
+        allv() {
+            sessionStorage.setItem('allT', this.allT);
+            return this.allT;
+        },
     },
     setup() {
-        const pricing = ref(false);
-        const coloring = ref(false);
-        const sizing = ref(false);
-        const styling = ref(false);
-        const FiltersOn = ref(false);
         const hideFitler = ref(window.innerWidth > 766);
         const slider = ref(null);
-        const priceRange = ref([850, 2400]);
+        const priceRange = ref([520, 2400]);
 
         const updateShow = () => {
             hideFitler.value = window.innerWidth > 766;
-
-        }
+        };
         onBeforeUnmount(() => {
-            addEventListener('resize', updateShow);
-        })
+            addEventListener("resize", updateShow);
+        });
+
         onMounted(() => {
-            addEventListener('resize', updateShow);
+            addEventListener("resize", updateShow);
             noUiSlider.create(slider.value, {
                 start: priceRange.value,
                 connect: true,
@@ -232,106 +250,37 @@ export default {
                 step: 10,
                 tooltips: [true, true],
                 format: {
-                    to: (value) => `<h1 class='font-bold'>$  ${Math.round(value)} </h1> `,
+                    to: (value) => `<h1 class='font-bold text-sm'>
+                        <span class='text-gray-600 text-xs'>EGP</span> ${Math.round(
+                        value
+                    )} </h1> `,
                     from: (value) => Number(value),
                 },
             });
-            slider.value.noUiSlider.on('update', (values) => {
+            slider.value.noUiSlider.on("update", (values) => {
                 priceRange.value = values.map(Number);
             });
+            // ///////
+            const handleStorageChange = (event) => {
+                if (event.key === 'allT') {
+                    this.allT = event.newValue;
+                }
+            };
+            window.addEventListener('storage', handleStorageChange);
         });
-        return { pricing, coloring, sizing, styling, priceRange, slider, FiltersOn, hideFitler };
+        return { priceRange, slider, hideFitler };
     },
     methods: {
-        applyFilters() { this.FiltersOn = true; },
-    }
+        applyFilters() {
+            this.FiltersOn = true;
+        },
+        async handleSelectedFilter() {
+            const it = await this.clothes.find(v => v.label == this.allT);
+            return it.show = true;
+        }
+    },
 };
 </script>
 <style scoped>
-.noUi-target {
-    height: 8px;
-    background-color: rgb(227, 227, 227);
-    border: none;
-}
-
-:deep(.noUi-connect) {
-    background: #000;
-}
-
-:deep(.noUi-handle) {
-    cursor: pointer;
-    width: 20px;
-    height: 20px;
-    border: none;
-    border-radius: 50%;
-    background-color: #000;
-    box-shadow: none;
-}
-
-:deep(.noUi-horizontal .noUi-handle) {
-    right: -4px;
-    top: -7px;
-    color: #000;
-    background-color: #000;
-}
-
-:deep(.noUi-handle:before, .noUi-handle:after) {
-    color: #000;
-    background: black;
-}
-
-.priceRange,
-.dressStyle,
-.styling {
-    display: block;
-    transition: all 0.5s ease-in-out;
-}
-
-.priceRange.active,
-.colors.active,
-.sizing.active,
-.styling.active,
-.dressStyle.active {
-    display: none;
-}
-
-.colors input[value='']:first-child {
-    position: relative;
-}
-
-.colors input[value='']:first-child::before {
-    content: "";
-    position: absolute;
-    background-color: red;
-    width: 5px;
-    height: 100%;
-    transform: rotateZ(-45deg);
-    left: 43%;
-    border: 1px solid rgba(0, 0, 0, 0.497);
-}
-
-.fa-check {
-    left: -4%;
-    bottom: 4%;
-}
-
-:deep(.noUi-horizontal .noUi-tooltip) {
-    background-color: transparent;
-    border: none;
-    top: 90%;
-}
-
-@media (max-width:656px) {
-    .filter {
-        position: absolute;
-        z-index: 30;
-        background: white;
-        width: 100%;
-        left: 0;
-        border-radius: 70px;
-        padding-top: 20px;
-        scroll-behavior: unset;
-        top: 8%;
-    }
-}
+@import url("../../assets/stylesheets/shop/shop-filter.css");
 </style>

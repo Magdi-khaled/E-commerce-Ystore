@@ -1,0 +1,53 @@
+
+[
+  {
+    "type": "men's fashion",
+    "looks": [
+      {
+        "t-shirts": ["polo", "oversize", "carow"]
+      },
+      {
+        "jackets": ["bumb", "oversize", "carow"]
+      },
+      "oversize",
+      "carow"
+    ],
+    "categ-look": ["polo", "oversize", "carow"],
+    "show": false
+  },
+  {
+    "type": "women's fashion",
+    "looks": ["t-shirts", "oversize", "carow"],
+    "categ-look": ["polo", "oversize", "carow"],
+    "show": false
+  },
+  {
+    "type": "kids's wear",
+    "looks": ["polo", "oversize", "carow"],
+    "show": false
+  },
+  {
+    "type": "sport's wear",
+    "looks": ["polo", "oversize", "carow"],
+    "show": false
+  },
+  {
+    "type": "shoes",
+    "looks": ["polo", "oversize", "carow"],
+    "show": false
+  },
+  {
+    "type": "watches",
+    "looks": ["polo", "oversize", "carow"],
+    "show": false
+  },
+  { "type": "t-shirts", "looks": ["polo", "oversize", "carow"], "show": false },
+  { "type": "shorts", "looks": ["jeans", "likra"], "show": false },
+  { "type": "shirts", "looks": ["striped", "formal"], "show": false },
+  { "type": "hoodies", "looks": ["paints", "no-paints"], "show": false },
+  {
+    "type": "jeans",
+    "looks": ["slimfit", "boy friend", "chino", "pants"],
+    "show": false
+  }
+]

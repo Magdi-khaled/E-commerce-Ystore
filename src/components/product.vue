@@ -1,34 +1,28 @@
 <template>
-    <img :src="product.src" alt="product"
-        class="transition duration-500 ease-in-out rounded-2xl  shadow-md shadow-gray-300">
-    
-    <div>
-        <p class="product-title">{{ product.title }}</p>
-        <div class="product-rate">
-            <div class="stars-rate flex items-center">
-                <div v-for="item in Math.floor(product.rate)">
-                    <i class="fa-solid fa-star text-[#FFD43B]"></i>
+    <div class="h-48 sm:h-52 md:h-56 transition duration-300">
+        <img :src="product.src" alt="product" loading="lazy"
+            class="h-[100%] rounded-[20px] border-[0.1px] border-gray-400">
+        <!-- class="h-[100%] rounded-lg border-[1.5px] border-gray-200 shadow-sm"> -->
+    </div>
+
+    <div class="detail px-2 py-2 flex flex-col justify-between">
+        <p class="product-title font-medium text-sm sm:text-md h-5 tracking-tight">{{ product.title }}</p>
+        <!-- product-price -->
+        <div
+            class="product-price text-sm sm:text-md font-sans flex pt-1 gap-1 sm:gap-2 tracking-normal whitespace-nowrap">
+            <p class="font-medium">
+                <span class="text-xs text-gray-700">EGP </span>
+                {{ calcSale(product.price, product.sale) }}
+            </p>
+
+            <div v-if="product.sale != 0.0" class="flex items-center">
+                <div class="relative flex items-center whitespace-nowrap font-medium">
+                    <p class="text-gray-500"> {{ product.price }} </p>
+                    <span class="w-full h-[1px] sm:h-[1.8px] bg-gray-700 absolute top-[50%]"></span>
                 </div>
-                <i v-if="isHalf(product.rate)" class="fa-duotone fa-solid fa-star-half"
-                    style="--fa-primary-color: #FFD43B; --fa-secondary-color: #cdcdcd"></i>
-                <div v-for="item in clacStars(product.rate)">
-                    <i class="fa-duotone fa-solid fa-star empty-star"></i>
-                </div>
-                <p class="pl-1 font-semibold">
-                    {{ product.rate }}<span class="text-gray-400">/5</span>
-                </p>
-            </div>
-            <!-- product-price -->
-            <div class="product-price text-md sm:text-xl">
-                <p>${{ calcSale(product.price, product.sale) }}</p>
-                <div v-if="product.sale != 0.0" class="product-price-discount">
-                    <div class="flex relative">
-                        <p class="text-gray-400 ">
-                            ${{ product.price }}</p>
-                        <span class="w-full border-2 border-gray-500 rounded-full absolute left-0 top-3"></span>
-                    </div>
-                    <span class="sale">-{{ product.sale * 100 }}%</span>
-                </div>
+                <span class="text-xs font-sans font-semibold text-green-600 pl-2 whitespace-nowrap">
+                    {{ product.sale * 100 }}% OFF
+                </span>
             </div>
         </div>
     </div>
@@ -49,7 +43,7 @@ export default {
         },
         clacStars(rate) {
             return 5 - Math.ceil(rate);
-        }
+        },
     }
 }
 </script>
@@ -61,9 +55,6 @@ img {
 
 .product-title {
     text-transform: capitalize;
-    font-weight: bold;
-    padding-top: 15px;
-    padding-bottom: 5px;
 }
 
 .empty-star {
@@ -75,17 +66,12 @@ img {
     padding: 2px;
 }
 
-.product-price {
-    display: flex;
-    gap: 10px;
-}
-
-.product-price p:not(.product-price-discount) {
-    font-weight: bold;
-}
-
-.product-price .product-price-discount {
-    display: flex;
+p {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .product-price .product-price-discount .sale {
@@ -98,14 +84,5 @@ img {
     padding: 0px 2px;
     margin-left: 10px;
     border-radius: 35px;
-}
-
-@media (max-width:656px) {
-    .product-price p:not(.product-price-discount) {
-        font-weight: bold;
-        font-size: 100%;
-    }
-
-
 }
 </style>
