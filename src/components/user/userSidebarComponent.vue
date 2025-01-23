@@ -1,5 +1,7 @@
 <template>
-    <div class="h-fit hidden lg:block bg-white font-bold mt-8 mb-20 pl-8 md:pl-16">
+
+    <div class="font-bold pl-12 pt-6">
+        <!-- <div class="h-fit hidden lg:block bg-white font-bold mt-8 mb-20 pl-8 md:pl-16"> -->
         <h1 class="text-lg"> Hala {{ user.name.split(' ')[0] }}!</h1>
         <p class="text-gray-500 text-sm"> magdikhaled23s@gmail.com</p>
         <hr class="my-4 w-11/12 bg-black">
@@ -7,8 +9,8 @@
         <div class="text-lg features">
             <button v-for="(item, index) in buttons" :key="index" @click="updateClicked(index)"
                 @mouseover="hoverIndex = index" @mouseleave="hoverIndex = null"
-                :class="{ 'underline text-gray-900': clicked === index }" class="w-full text-start p-2 text-md text-gray-400 
-                hover:text-black capitalize transition duration-150 relative flex items-center font-medium">
+                :class="{ 'underline text-gray-900': clicked === index }" class="w-full text-start p-2 pl-0 text-md text-gray-400 
+                hover:text-black capitalize transition duration-150 relative flex items-center font-normal">
                 <i :class="`${item.icon} text-black border-2 border-gray-500 p-[4px] 
                 rounded-sm w-[30px] text-center`"></i>
                 <span class="pl-4 ">{{ item.label }}</span>

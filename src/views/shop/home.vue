@@ -179,7 +179,8 @@
                         products for sell.
                     </p>
                 </div>
-                <baseButton class="w-full sm:w-8/12 ml-0 sm:ml-8 text-md mt-32 sm:mt-16 rounded-sm">
+                <baseButton @click="this.$router.push({ name: 'seller-dashboard' })"
+                    class="w-full sm:w-8/12 ml-0 sm:ml-8 text-md mt-32 sm:mt-16 rounded-sm">
                     join Shop.Co sellers now <i class="fa-light fa-users pl-2"></i>
                 </baseButton>
             </div>

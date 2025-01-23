@@ -3,8 +3,11 @@
     <userNavbar v-if="tuser == 'customer'"></userNavbar>
     <baseNavbar v-else></baseNavbar>
     <div class="h-full w-full flex border-t-2">
-        <userSidebarComponent class="w-3/12" v-model="clicked" :clicked="clicked">
-        </userSidebarComponent>
+
+        <div class="w-3/12 hidden lg:block bg-gray-50 border-r border-gray-500">
+            <userSidebarComponent v-model="clicked" :clicked="clicked">
+            </userSidebarComponent>
+        </div>
         <div class="w-full lg:w-9/12 h-fit pb-12 bg-[#f2f2f2]">
             <div class="p-6 md:p-12">
                 <h1 class="font-bold  text-3xl capitalize">payment cards</h1>
@@ -45,7 +48,7 @@ import userAddPaymentCardModal from '../../../../components/user/userAddPaymentC
 import profileFooter from '../../../../components/profileFooter.vue';
 export default {
     components: {
-        baseNavbar, userNavbar,baseButton, userSidebarComponent, userPaymentComponent, userAddPaymentCardModal, profileFooter
+        baseNavbar, userNavbar, baseButton, userSidebarComponent, userPaymentComponent, userAddPaymentCardModal, profileFooter
     },
     data() {
         return {

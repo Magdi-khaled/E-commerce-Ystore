@@ -90,37 +90,16 @@ const router = createRouter({
                 requiredAuth: true
             },
         },
-        // seller
-        {
-            path: "/shop.co.seller/login",
-            name: "seller-login",
-            component: () => import("../../views/users/admin/auth/login.vue"),
-        },
-        {
-            path: "/shop.co.seller/become-seller",
-            name: "seller-signup",
-            component: () => import("../../views/users/admin/auth/signup.vue"),
-        },
-        {
-            path: "/shop.co.seller/dashboard",
-            name: "seller-dashboard",
-            component: () => import("../../views/users/customer/profile/user.security-sittings.vue"),
-            meta: {
-                requiresTransition: true,
-                requiredAuth: true
-            },
-        },
     ]
 })
 
 export function routerCustomerGuard(to, from, next) {
-    const isAuthenticated = localStorage.getItem("token");
-
-    if (to.matched.some((record) => record.meta.requiresAuth)) {
+    if (to.meta.requiredAuth) {
+        const isAuthenticated = localStorage.getItem("token");
         if (isAuthenticated) {
-            next({ name: 'customer-login' });
-        } else {
             next();
+        } else {
+            next({ name: 'customer-login' });
         }
     } else {
         next();

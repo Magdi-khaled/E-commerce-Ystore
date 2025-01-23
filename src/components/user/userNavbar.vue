@@ -155,28 +155,30 @@
         <ul
             class="shop-categ relative z-10 flex flex-wrap capitalize text-sm sm:text-[16px] font-medium whitespace-nowrap">
             <li class="hover:bg-gray-200 text-center py-1">
-                <router-link class="px-4 sm:px-10 md:px-16 py-1" :to="{ name: 'shop.co-home' }">home</router-link>
+                <router-link class="px-4 sm:px-10 md:px-14 py-1" :to="{ name: 'shop.co-home' }">home</router-link>
             </li>
             <li class="hover:bg-gray-200 text-center py-1">
-                <router-link class="px-4 sm:px-10 md:px-16 py-1" :to="{ name: 'men-fashion' }">men's
+                <router-link class="px-4 sm:px-10 md:px-14 py-1" :to="{ name: 'men-fashion' }">men's
                     fashion</router-link>
             </li>
             <li class="hover:bg-gray-200 text-center py-1">
-                <router-link class="px-4 sm:px-10 md:px-16 py-1" :to="{ name: 'women-fashion' }">women's
+                <router-link class="px-4 sm:px-10 md:px-14 py-1" :to="{ name: 'women-fashion' }">women's
                     fashion</router-link>
             </li>
             <li class="hover:bg-gray-200 text-center py-1">
-                <router-link class="px-4 sm:px-10 md:px-16 py-1" :to="{ name: 'kids-wear' }">kids's
-                    fashion</router-link>
+                <router-link class="px-4 sm:px-10 md:px-14 py-1" :to="{ name: 'boys-wear' }">boys wear</router-link>
             </li>
             <li class="hover:bg-gray-200 text-center py-1">
-                <router-link class="px-4 sm:px-10 md:px-16 py-1" :to="{ name: 'sport-wear' }">sports</router-link>
+                <router-link class="px-4 sm:px-10 md:px-14 py-1" :to="{ name: 'girls-wear' }">girls wear</router-link>
             </li>
             <li class="hover:bg-gray-200 text-center py-1">
-                <router-link class="px-4 sm:px-10 md:px-16 py-1" :to="{ name: 'shoes-fashion' }">shoes</router-link>
+                <router-link class="px-4 sm:px-10 md:px-14 py-1" :to="{ name: 'sport-wear' }">sports</router-link>
             </li>
             <li class="hover:bg-gray-200 text-center py-1">
-                <router-link class="px-4 sm:px-10 md:px-16 py-1" :to="{ name: 'watches' }">watches</router-link>
+                <router-link class="px-4 sm:px-10 md:px-14 py-1" :to="{ name: 'shoes-fashion' }">shoes</router-link>
+            </li>
+            <li class="hover:bg-gray-200 text-center py-1">
+                <router-link class="px-4 sm:px-10 md:px-14 py-1" :to="{ name: 'watches' }">watches</router-link>
             </li>
         </ul>
     </div>

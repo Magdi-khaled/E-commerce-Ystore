@@ -1,9 +1,11 @@
 <template>
     <userNavbar v-if="tuser == 'customer'"></userNavbar>
     <baseNavbar v-else></baseNavbar>
-    <div class="h-full w-full flex border-t-2">
-        <userSidebarComponent class="w-3/12" v-model="clicked" :clicked="clicked">
-        </userSidebarComponent>
+    <div class="h-full w-full flex">
+        <div class="w-3/12 hidden lg:block bg-gray-50 border-r border-gray-500">
+            <userSidebarComponent v-model="clicked" :clicked="clicked">
+            </userSidebarComponent>
+        </div>
         <div class="w-full lg:w-9/12 h-fit pb-12 bg-[#f2f2f2]">
             <div class="p-6 md:p-12">
                 <userInfoComponent :user="user"></userInfoComponent>

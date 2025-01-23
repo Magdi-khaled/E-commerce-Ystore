@@ -753,8 +753,16 @@
     ],
     "sizeList": [
         {
-            "key": "4XL",
-            "value": "4X Large"
+            "key": "6XL",
+            "value": "6X Large"
+        },
+        {
+            "key": "XL",
+            "value": "X Large"
+        },
+        {
+            "key": "5XL",
+            "value": "5X Large"
         },
         {
             "key": "L",
@@ -769,16 +777,16 @@
             "value": "Medium"
         },
         {
-            "key": "XXL",
-            "value": "2X Large"
+            "key": "4XL",
+            "value": "4X Large"
         },
         {
             "key": "S",
             "value": "Small"
         },
         {
-            "key": "XL",
-            "value": "X Large"
+            "key": "XXL",
+            "value": "2X Large"
         },
         {
             "key": "XS",
@@ -791,7 +799,7 @@
     ],
     "colorList": [
         {
-            "color": "",
+            "color": "all",
             "value": ""
         },
         {

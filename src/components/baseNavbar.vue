@@ -9,12 +9,12 @@
         </p>
     </div> -->
     <!-- NAVIGATION -->
-    <div class="flex flex-row items-center justify-between px-4 md:px-6 lg:px-14 py-3">
+    <div class="flex flex-row items-center justify-between px-4 md:px-6 lg:px-14 py-2">
         <button @click="hiddenNav = !hiddenNav" v-if="!showNav" class="pr-5 hover:text-gray-500 text-xl">
             <i class="fa-solid fa-bars"></i>
         </button>
         <!-- LOGO SHOP.CO -->
-        <div class="w-[25%] md:w-2/12 lg:w-[14%]">
+        <div class="w-[25%] md:w-2/12 lg:w-[10%]">
             <router-link to="/shop.co/home">
                 <!-- <img src="../assets/images/logo/shop-co-logo.png" alt="SHOP.CO"> -->
                 <img class="w-[100%]" src="../assets/images/logo/shop-co-logo2.jpg" alt="SHOP.CO">
@@ -25,14 +25,16 @@
             <ul class="list-none flex gap-5 text-sm sm:text-md">
                 <li class="relative cursor-pointer py-4">
                     <router-link to="/shop.co/home" class="whitespace-nowrap capitalize">
-                        <i class="fa-sharp fa-regular fa-house"></i> home
+                        <i
+                            class="fa-sharp fa-regular fa-house border-[2px] rounded-md border-black p-1 text-sm sm:text-[15px]"></i>
+                        home
                     </router-link>
                 </li>
                 <!-- <li class="relative cursor-pointer py-4"> -->
                 <li @mouseover="dropDown = true" @mouseleave="dropDown = false"
                     class="whitespace-nowrap relative cursor-pointer py-4">
                     <router-link to="/shop.co/shop" class="whitespace-nowrap capitalize">
-                        <i class="fa-regular fa-shop"></i> Shop
+                        <i class="fa-sharp fa-regular fa-store border-[2px] rounded-md border-black p-1"></i> store
                     </router-link>
                     <i class="fa-regular fa-chevron-down text-xs"></i>
                     <ul v-if="dropDown"
@@ -76,99 +78,13 @@
                 </li>
                 <li class="py-4">
                     <router-link to="#" class="whitespace-nowrap capitalize">
-                        <i class="fa-regular fa-shirt"></i> brands
+                        <i class="fa-solid fa-scarf border-[2px] rounded-md border-black p-1"></i> brands
                     </router-link>
                 </li>
                 <li class="py-4">
                     <router-link to="#" class="whitespace-nowrap capitalize">
-                        <i class="fa-sharp fa-light fa-circle-question"></i> about us
+                        <i class="fa-light fa-book-open-reader border-[2px] rounded-md border-black p-1"></i> about us
                     </router-link>
-                </li>
-            </ul>
-        </div>
-        <!-- hidden navbar -->
-        <div :class="[`nav-links-hidden overflow-y-scroll border-r-4 border-r-gray-600 
-            bg-white pt-12 fixed z-20 left-0 top-0 h-full w-full sm:w-8/12 md:w-6/12 p-4`, { active: hiddenNav }]">
-            <div class="flex gap-4  mb-5">
-                <button @click="hiddenNav = false" class="px-4 hover:text-gray-500 text-2xl">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
-                <img src="../assets/images/logo/shop-co-logo.png" alt="shop.co">
-            </div>
-            <ul lass="list-none W-6/12">
-                <!-- :class="{ 'hover:bg-white': hDropDown, 'hover:text-white': !hDropDown }" -->
-                <li class="hover:bg-[#2f2f2f] hover:font-medium hover:text-white capitalize">
-                    <router-link :to="{ name: 'shop.co-home' }"><i class="fa-solid fa-house w-1/12"></i>
-                        home</router-link>
-                </li>
-                <hr>
-                <li @click="hDropDown = !hDropDown"
-                    class="hover:font-medium whitespace-nowrap cursor-pointer capitalize">
-                    <router-link :to="{ name: 'shop' }">
-                        <i class="fa-solid fa-shop w-1/12"></i> Shop
-                    </router-link>
-                    <i class="fa-regular fa-chevron-down text-xs font-bold"></i>
-                </li>
-                <ul v-if="hDropDown" class="dropdown text-black bg-white rounded-sm border-2 ml-4">
-                    <li class="px-3 py-2 rounded-t-sm">
-                        <router-link class="py-2" :to="{ name: 'men-fashion' }">men's fashion</router-link>
-                    </li>
-                    <hr>
-                    <li class="px-3 py-2">
-                        <router-link class="py-2" :to="{ name: 'women-fashion' }">women's fashion</router-link>
-                    </li>
-                    <hr>
-                    <li class="px-3 py-2">
-                        <router-link class="py-2" :to="{ name: 'boys-wear' }">boys wear</router-link>
-                    </li>
-                    <hr>
-                    <li class="px-3 py-2">
-                        <router-link class="py-2" :to="{ name: 'girls-wear' }">girls wear</router-link>
-                    </li>
-                    <hr>
-                    <li class="px-3 py-2">
-                        <router-link class="py-2" :to="{ name: 'sport-wear' }">sport wear</router-link>
-                    </li>
-                    <hr>
-                    <li class="px-3 py-2">
-                        <router-link class="py-2" :to="{ name: 'bags-luggage' }">bags & luggage</router-link>
-                    </li>
-                    <hr>
-                    <li class="px-3 py-2">
-                        <router-link class="py-2" :to="{ name: 'shoes-fashion' }">shoes</router-link>
-                    </li>
-                    <hr>
-                    <li class="px-3 py-2">
-                        <router-link class="py-2" :to="{ name: 'watches' }">watches</router-link>
-                    </li>
-                    <hr>
-                    <li class="px-3 py-2  rounded-b-sm">
-                        <router-link class="py-2" :to="{ name: 'formal-wear' }">formal</router-link>
-                    </li>
-                </ul>
-                <hr>
-                <li class="hover:bg-[#2f2f2f] hover:font-medium hover:text-white capitalize">
-                    <router-link to="#"><i class="fa-solid fa-badge-percent w-1/12"></i> OnSale</router-link>
-                </li>
-                <hr>
-                <li class="hover:bg-[#2f2f2f] hover:font-medium hover:text-white capitalize">
-                    <router-link to="#"><i class="fa-solid fa-clothes-hanger w-1/12"></i> brands</router-link>
-                </li>
-                <hr>
-                <li class="hover:bg-[#2f2f2f] hover:font-medium hover:text-white capitalize">
-                    <router-link to="#"><i class="fa-brands fa-blogger-b w-1/12"></i> blogs</router-link>
-                </li>
-                <hr>
-                <li class="hover:bg-[#2f2f2f] hover:font-medium hover:text-white capitalize">
-                    <router-link to="#"><i class="fa-solid fa-square-question w-1/12"></i> about us</router-link>
-                </li>
-                <hr>
-                <li class="hover:bg-[#2f2f2f] hover:font-medium hover:text-white capitalize">
-                    <router-link to="#"><i class="fa-solid fa-phone-volume w-1/12"></i> Support</router-link>
-                </li>
-                <hr>
-                <li class="hover:bg-[#2f2f2f] hover:font-medium hover:text-white uppercase">
-                    <router-link to="#"><i class="fa-solid fa-message-question w-1/12"></i> faq</router-link>
                 </li>
             </ul>
         </div>
@@ -176,7 +92,7 @@
         <div class="w-7/12 md:w-8/12 lg:w-[50%] flex flex-row">
             <!-- SEARCH-BAR -->
             <div v-if="!searchIcon" class="w-full lg:w-10/12 relative search-bar">
-                <label for="searchText" class="flex w-11/12 md:w-full bg-[#f2f2f2] rounded-md py-[8px] px-4">
+                <label for="searchText" class="flex w-11/12 md:w-full bg-[#f2f2f2] rounded-md py-[7px] px-4">
                     <i class="fa-regular fa-magnifying-glass text-lg md:text-xl text-gray-400 pr-2"></i>
                     <input name="searchText" v-model="searchText" @change="handleSearchResult" type="text"
                         placeholder="What are you looking for?" class="w-full bg-[#f2f2f2] outline-none">
@@ -212,6 +128,94 @@
             </div>
         </div>
     </div>
+
+    <!-- hidden navbar -->
+    <div :class="[`nav-links-hidden overflow-y-scroll border-r-4 border-r-gray-600 
+            bg-white pt-12 fixed z-20 left-0 top-0 h-full w-full sm:w-8/12 md:w-6/12 p-4`, { active: hiddenNav }]">
+        <div class="flex gap-4  mb-5">
+            <button @click="hiddenNav = false" class="px-4 hover:text-gray-500 text-2xl">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <img src="../assets/images/logo/shop-co-logo.png" alt="shop.co">
+        </div>
+        <ul lass="list-none W-6/12">
+            <!-- :class="{ 'hover:bg-white': hDropDown, 'hover:text-white': !hDropDown }" -->
+            <li class="hover:bg-[#2f2f2f] hover:font-medium hover:text-white capitalize">
+                <router-link :to="{ name: 'shop.co-home' }"><i class="fa-solid fa-house w-1/12"></i>
+                    home</router-link>
+            </li>
+            <hr>
+            <li @click="hDropDown = !hDropDown" class="hover:font-medium whitespace-nowrap cursor-pointer capitalize">
+                <router-link :to="{ name: 'shop' }">
+                    <i class="fa-solid fa-shop w-1/12"></i> store
+                </router-link>
+                <i class="fa-regular fa-chevron-down text-xs font-bold"></i>
+            </li>
+            <ul v-if="hDropDown" class="dropdown text-black bg-white rounded-sm border-2 ml-4">
+                <li class="px-3 py-2 rounded-t-sm">
+                    <router-link class="py-2" :to="{ name: 'men-fashion' }">men's fashion</router-link>
+                </li>
+                <hr>
+                <li class="px-3 py-2">
+                    <router-link class="py-2" :to="{ name: 'women-fashion' }">women's fashion</router-link>
+                </li>
+                <hr>
+                <li class="px-3 py-2">
+                    <router-link class="py-2" :to="{ name: 'boys-wear' }">boys wear</router-link>
+                </li>
+                <hr>
+                <li class="px-3 py-2">
+                    <router-link class="py-2" :to="{ name: 'girls-wear' }">girls wear</router-link>
+                </li>
+                <hr>
+                <li class="px-3 py-2">
+                    <router-link class="py-2" :to="{ name: 'sport-wear' }">sport wear</router-link>
+                </li>
+                <hr>
+                <li class="px-3 py-2">
+                    <router-link class="py-2" :to="{ name: 'bags-luggage' }">bags & luggage</router-link>
+                </li>
+                <hr>
+                <li class="px-3 py-2">
+                    <router-link class="py-2" :to="{ name: 'shoes-fashion' }">shoes</router-link>
+                </li>
+                <hr>
+                <li class="px-3 py-2">
+                    <router-link class="py-2" :to="{ name: 'watches' }">watches</router-link>
+                </li>
+                <hr>
+                <li class="px-3 py-2  rounded-b-sm">
+                    <router-link class="py-2" :to="{ name: 'formal-wear' }">formal</router-link>
+                </li>
+            </ul>
+            <hr>
+            <li class="hover:bg-[#2f2f2f] hover:font-medium hover:text-white capitalize">
+                <router-link to="#"><i class="fa-solid fa-badge-percent w-1/12"></i> OnSale</router-link>
+            </li>
+            <hr>
+            <li class="hover:bg-[#2f2f2f] hover:font-medium hover:text-white capitalize">
+                <router-link to="#"><i class="fa-solid fa-clothes-hanger w-1/12"></i> brands</router-link>
+            </li>
+            <hr>
+            <li class="hover:bg-[#2f2f2f] hover:font-medium hover:text-white capitalize">
+                <router-link to="#"><i class="fa-brands fa-blogger-b w-1/12"></i> blogs</router-link>
+            </li>
+            <hr>
+            <li class="hover:bg-[#2f2f2f] hover:font-medium hover:text-white capitalize">
+                <router-link to="#"><i class="fa-solid fa-square-question w-1/12"></i> about us</router-link>
+            </li>
+            <hr>
+            <li class="hover:bg-[#2f2f2f] hover:font-medium hover:text-white capitalize">
+                <router-link to="#"><i class="fa-solid fa-phone-volume w-1/12"></i> Support</router-link>
+            </li>
+            <hr>
+            <li class="hover:bg-[#2f2f2f] hover:font-medium hover:text-white uppercase">
+                <router-link to="#"><i class="fa-solid fa-message-question w-1/12"></i> faq</router-link>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Small Search  -->
     <div v-if="searchIcon" class="w-full px-4 relative search-bar">
         <label for="" class="relative">
             <input name="searchText" v-model="searchText" @change="handleSearchResult" type="text"

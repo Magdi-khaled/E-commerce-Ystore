@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import userRouter, { routerCustomerGuard } from "./user-router/router";
+import adminRouter, { routerSellerrGuard } from "./admin-router/router";
 import shopRouter from "./shop-router/router";
 import notFound from '../components/notFound.vue';
 
@@ -7,6 +8,7 @@ const router = createRouter({
     history: createWebHistory(),
     routes: [
         ...shopRouter.options.routes,
+        ...adminRouter.options.routes,
         ...userRouter.options.routes,
         {
             path: '/:catchAll(.*)',
@@ -24,18 +26,12 @@ const router = createRouter({
                 resolve({ top: 0 });
             }, 150);
         });
-        // if (to.hash) {
-        //     return {
-        //         el: to.hash,
-        //         behavior: 'smooth',
-        //     };
-        // }
-        // return { top: 0 };
     },
 });
 
 // router Guards
 router.beforeEach(routerCustomerGuard);
+router.beforeEach(routerSellerrGuard);
 
 // loading spinner transition
 router.beforeEach((to, from, next) => {

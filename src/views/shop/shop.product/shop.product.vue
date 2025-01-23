@@ -21,7 +21,7 @@
                 <div class="w-[80%] md:w-[90%] h-auto p-0 sm:p-1">
                     <div class="relative overflow-hidden w-full h-auto rounded-md cursor-zoom-in" @mousemove="zoomLens"
                         @mouseleave="hideLens">
-                        <img ref="mainImage" class="w-full h-auto max-h-[520px]" :src="selectedImg"
+                        <img ref="mainImage" class="w-full h-[520px]" :src="selectedImg"
                             alt="Main Product Image" />
                         <div ref="lens" class="absolute rounded-full bg-transparent border-2 border-gray-500"
                             :style="lensStyles"></div>
@@ -79,8 +79,8 @@
                     <p class="capitalize text-gray-600">select color</p>
                     <div class="colors mt-3 flex">
                         <label v-for="item in product.providedColors" class="relative">
-                            <input name="selectedColor" type="radio" v-model="color" :value="item.value" class="appearance-none w-8 
-                        h-8 mr-3 border-2 border-gray-400 cursor-pointer rounded-sm"
+                            <input name="selectedColor" type="radio" v-model="color" :value="item.value" class="appearance-none w-6 sm:w-8 
+                        h-6 sm:h-8 mr-3 border-2 border-gray-400 cursor-pointer rounded-sm"
                                 :class="{ 'outline outline-2 outline-[#000]': color == item.value }"
                                 :style="{ 'background-color': `#${item.value}` }">
                             <i v-if="color" class="fa-solid fa-check text-gray-300 absolute z-30 py-3 px-4 text-2xl"
@@ -97,8 +97,8 @@
                             class="flex items-center cursor-pointer">
                             <input type="radio" v-model="size" :value="item" :id="item" class="appearance-none hidden">
                             <span
-                                class="px-3 py-2 mr-1 border-2 bg-gray-100 text-gray-500 whitespace-nowrap capitalize font-bold transition-all"
-                                :class="{ 'text-gray-700 border-gray-500': size === item }">
+                                class="px-2 md:px-2 py-1 md:py-1 mr-1 border-2 bg-gray-100 text-gray-600 whitespace-nowrap capitalize font-bold transition-all"
+                                :class="{ 'text-red-400 border-gray-500': size === item }">
                                 {{ item }}
                             </span>
                         </label>

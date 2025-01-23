@@ -179,8 +179,7 @@ export default {
             FilterStyle: categories.filterStyle,
         };
     },
-    befmounted() {
-        sessionStorage.setItem('allT', 'all fashion')
+    created() {
     },
     watch: {
         allT(newValue, oldValue) {
