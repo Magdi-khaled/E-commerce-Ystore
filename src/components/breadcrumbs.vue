@@ -14,7 +14,7 @@
 <script>
 
 export default {
-    name: 'breadcrumbs',
+    name: 'Breadcrumbs',
     data() {
         return {
             breadcrumbList: []
@@ -37,21 +37,6 @@ export default {
             this.breadcrumbList = this.$route.meta.breadcrumb;
         }
     }
-    // setup() {
-    //     const route = useRoute();
-
-    //     const breadcrumbs = computed(() => {
-    //         console.log(route);
-    //         return route.matched.map((match) => ({
-    //             label: match.meta.breadcrumb,
-    //             path: match.path,
-    //         }));
-    //     });
-
-    //     return {
-    //         breadcrumbs,
-    //     };
-    // },
 }
 </script>
 <style scoped></style>

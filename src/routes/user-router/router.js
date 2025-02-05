@@ -5,89 +5,88 @@ const router = createRouter({
     routes: [
         {
             path: "/shop.co/login",
-            name: "customer-login",
-            component: () => import("../../views/users/customer/auth/login.vue"),
+            name: "User-Login",
+            component: () => import("../../views/users/customer/auth/Login.vue"),
         },
         {
             path: "/shop.co/signup",
-            name: "customer-signup",
-            component: () => import("../../views/users/customer/auth/signup.vue"),
+            name: "User-Signup",
+            component: () => import("../../views/users/customer/auth/Signup.vue"),
         },
         {
             path: "/shop.co/user/forget-password",
-            name: "customer-forget-password",
-            component: () => import("../../views/users/customer/auth/forget-password.vue"),
+            name: "User-ForgetPassword",
+            component: () => import("../../views/users/customer/auth/ForgetPassword.vue"),
         },
         {
             path: '/shop.co/user/shopping-cart',
-            name: 'user-cart',
-            component: () => import('../../views/users/customer/shop/user.cart.vue'),
+            name: 'User-Cart',
+            component: () => import('../../views/users/customer/shop/Cart.vue'),
             meta: {
-                requiresTransition: true,
-                breadcrumb: 'shopping-cart'
+                requiresTransition: true
             },
         },
         {
             path: "/shop.co/user/profile",
-            name: "user-profile",
-            component: () => import("../../views/users/customer/profile/user.profile.vue"),
+            name: "User-Profile",
+            component: () => import("../../views/users/customer/profile/UserProfile.vue"),
             meta: {
                 requiresTransition: true,
-                requiredAuth: true
+                // requiredAuth: true
             },
         },
         {
             path: "/shop.co/user/qr-code",
-            name: "user-qr-code",
-            component: () => import("../../views/users/customer/profile/user.qrcode.vue"),
+            name: "User-Qrcode",
+            component: () => import("../../views/users/customer/profile/UserQrcode.vue"),
             meta: {
                 requiresTransition: true,
-                requiredAuth: true
+                //  requiredAuth: true
             },
         },
         {
             path: "/shop.co/user/orders",
-            name: "user-orders",
-            component: () => import("../../views/users/customer/profile/user.orders.vue"),
+            name: "User-Orders",
+            component: () => import("../../views/users/customer/profile/UserOrders.vue"),
             meta: {
                 requiresTransition: true,
-                requiredAuth: true
+                //  requiredAuth: true
             },
         },
         {
             path: "/shop.co/user/returns",
-            name: "user-returns",
-            component: () => import("../../views/users/customer/profile/user.returns.vue"),
+            name: "User-Returns",
+            component: () => import("../../views/users/customer/profile/UserReturns.vue"),
             meta: {
                 requiresTransition: true,
-                requiredAuth: true
+                //  requiredAuth: true
             },
         },
         {
             path: "/shop.co/user/payments",
-            name: "user-payments",
-            component: () => import("../../views/users/customer/profile/user.payments.vue"),
+            name: "User-Payments",
+            component: () => import("../../views/users/customer/profile/UserPayments.vue"),
             meta: {
                 requiresTransition: true,
-                requiredAuth: true
+                //  requiredAuth: true
             },
         },
         {
             path: "/shop.co/user/notifications",
-            name: "user-notifications",
-            component: () => import("../../views/users/customer/profile/user.notify-history.vue"),
+            name: "User-Notifications",
+            component: () => import("../../views/users/customer/profile/UserNotifyHistory.vue"),
             meta: {
                 requiresTransition: true,
-                requiredAuth: true
+                //  requiredAuth: true
             },
         },
         {
             path: "/shop.co/user/security-sittings",
-            name: "user-security-sittings",
-            component: () => import("../../views/users/customer/profile/user.security-sittings.vue"),
+            name: "User-SecuritySittings",
+            component: () => import("../../views/users/customer/profile/UserSecuritySittings.vue"),
             meta: {
                 requiresTransition: true,
-                requiredAuth: true
+                //  requiredAuth: true
             },
         },
     ]
@@ -99,7 +98,7 @@ export function routerCustomerGuard(to, from, next) {
         if (isAuthenticated) {
             next();
         } else {
-            next({ name: 'customer-login' });
+            next({ name: 'User-Login' });
         }
     } else {
         next();

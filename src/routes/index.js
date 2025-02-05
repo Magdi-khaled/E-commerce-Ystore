@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import userRouter, { routerCustomerGuard } from "./user-router/router";
 import adminRouter, { routerSellerrGuard } from "./admin-router/router";
 import shopRouter from "./shop-router/router";
-import notFound from '../components/notFound.vue';
+import NotFound from '../components/NotFound.vue';
 
 const router = createRouter({
     history: createWebHistory(),
@@ -16,7 +16,7 @@ const router = createRouter({
             meta: {
                 title: 'Shop.co | Page NotFound 404',
             },
-            component: notFound
+            component: NotFound
         },
     ],
     scrollBehavior(to, from, savedPosition) {

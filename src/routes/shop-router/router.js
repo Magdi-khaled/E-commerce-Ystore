@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import data from '../../data.json'
+import data from '../../assets/db/data.json'
 const router = createRouter({
     history: createWebHistory(),
     routes: [
@@ -9,8 +9,8 @@ const router = createRouter({
         },
         {
             path: '/shop.co/home',
-            name: 'shop.co-home',
-            component: () => import('../../views/shop/home.vue'),
+            name: 'Home',
+            component: () => import('../../views/shop/Home.vue'),
             meta: {
                 breadcrumb: [
                     { name: 'home', link: '/shop.co/home' },
@@ -19,8 +19,8 @@ const router = createRouter({
         },
         {
             path: "/shop.co/shop",
-            name: "shop",
-            component: () => import("../../views/shop/shop.vue"),
+            name: "Shop",
+            component: () => import("../../views/shop/Shop.vue"),
             meta: {
                 breadcrumb: [
                     { name: 'home', link: '/shop.co/home' },
@@ -31,7 +31,7 @@ const router = createRouter({
         {
             path: "/shop.co/shop/fashion/men-wear",
             name: "men-fashion",
-            component: () => import("../../views/shop/shop.vue"),
+            component: () => import("../../views/shop/Shop.vue"),
             meta: {
                 breadcrumb: [
                     { name: 'home', link: '/shop.co/home' },
@@ -43,7 +43,7 @@ const router = createRouter({
         {
             path: "/shop.co/shop/fashion/women-wear",
             name: "women-fashion",
-            component: () => import("../../views/shop/shop.vue"),
+            component: () => import("../../views/shop/Shop.vue"),
             meta: {
                 breadcrumb: [
                     { name: 'home', link: '/shop.co/home' },
@@ -55,7 +55,7 @@ const router = createRouter({
         {
             path: "/shop.co/shop/sport-wear",
             name: "sport-wear",
-            component: () => import("../../views/shop/shop.vue"),
+            component: () => import("../../views/shop/Shop.vue"),
             meta: {
                 breadcrumb: [
                     { name: 'home', link: '/shop.co/home' },
@@ -67,7 +67,7 @@ const router = createRouter({
         {
             path: "/shop.co/shop/girls-wear",
             name: "girls-wear",
-            component: () => import("../../views/shop/shop.vue"),
+            component: () => import("../../views/shop/Shop.vue"),
             meta: {
                 breadcrumb: [
                     { name: 'home', link: '/shop.co/home' },
@@ -79,7 +79,7 @@ const router = createRouter({
         {
             path: "/shop.co/shop/boys-wear",
             name: "boys-wear",
-            component: () => import("../../views/shop/shop.vue"),
+            component: () => import("../../views/shop/Shop.vue"),
             meta: {
                 breadcrumb: [
                     { name: 'home', link: '/shop.co/home' },
@@ -91,7 +91,7 @@ const router = createRouter({
         {
             path: "/shop.co/shop/bags-luggage",
             name: "bags-luggage",
-            component: () => import("../../views/shop/shop.vue"),
+            component: () => import("../../views/shop/Shop.vue"),
             meta: {
                 breadcrumb: [
                     { name: 'home', link: '/shop.co/home' },
@@ -103,7 +103,7 @@ const router = createRouter({
         {
             path: "/shop.co/shop/formal",
             name: "formal-wear",
-            component: () => import("../../views/shop/shop.vue"),
+            component: () => import("../../views/shop/Shop.vue"),
             meta: {
                 breadcrumb: [
                     { name: 'home', link: '/shop.co/home' },
@@ -113,46 +113,44 @@ const router = createRouter({
             },
         },
         {
-            path: "/shop.co/shop/shoes-waer",
+            path: "/shop.co/shop/shoes-wear", // Fixed the typo
             name: "shoes-fashion",
-            component: () => import("../../views/shop/shop.vue"),
+            component: () => import("../../views/shop/Shop.vue"),
             meta: {
                 breadcrumb: [
                     { name: 'home', link: '/shop.co/home' },
                     { name: 'shop', link: '/shop.co/shop' },
-                    { name: 'shoes', link: '/shop.co/shop/shoes' },
+                    { name: 'shoes', link: '/shop.co/shop/shoes-wear' },
                 ]
             },
         },
         {
-            path: "/shop.co/shop/watches",
-            name: "watches",
-            component: () => import("../../views/shop/shop.vue"),
+            path: "/shop.co/shop/accessories", // Fixed the typo
+            name: "accessories",
+            component: () => import("../../views/shop/Shop.vue"),
             meta: {
                 breadcrumb: [
                     { name: 'home', link: '/shop.co/home' },
                     { name: 'shop', link: '/shop.co/shop' },
-                    { name: 'watches', link: '/shop.co/shop/watches' },
+                    { name: 'shoes', link: '/shop.co/shop/accessories' },
                 ]
             },
         },
         {
             path: "/shop.co/shop/product/:id",
-            name: "shop-product",
-            component: () => import("../../views/shop/shop.product/shop.product.vue"),
-            props: true,
-            meta: {
-                breadcrumb: [
-                    { name: 'home', link: '/shop.co/home' },
-                    { name: 'shop', link: '/shop.co/shop' },
-                    { name: 'product' },
-                ]
-            },
+            name: "Product",
+            component: () => import("../../views/shop/shop.product/Product.vue"),
+            breadcrumb: [
+                { name: 'home', link: '/shop.co/home' },
+                { name: 'shop', link: '/shop.co/shop' },
+                { name: 'product', link: '/shop.co/shop/product/:id' },
+            ],
             beforeEnter: (to, from, next) => {
-                if (data.find(v => v._id === parseInt(to.params.id))) {
+
+                const productExists = data.find(v => v._id === parseInt(to.params.id));
+                if (productExists) {
                     setTimeout(() => {
                         window.scrollTo({ top: 0, behavior: 'smooth' });
-                        resolve({ top: 0 });
                     }, 150);
                     next();
                 }

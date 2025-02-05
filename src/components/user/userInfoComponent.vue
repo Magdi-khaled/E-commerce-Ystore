@@ -52,20 +52,20 @@
                 </div>
             </form>
             <div class="w-full text-end">
-                <baseButton class="w-7/12 sm:w-5/12 md:w-3/12 px-8 py-4 mt-4 rounded-md whitespace-nowrap" disabled
+                <BaseButton class="w-7/12 sm:w-5/12 md:w-3/12 px-8 py-4 mt-4 rounded-md whitespace-nowrap" disabled
                     :class="{ 'disabled': disabled }" @click="disabled = true">
                     update profile
-                </baseButton>
+                </BaseButton>
             </div>
         </div>
     </div>
 </template>
 <script>
 
-import baseButton from '../baseButton.vue';
+import BaseButton from '../baseButton.vue';
 export default {
-    name: 'userInfoComponent',
-    components: { baseButton },
+    name: 'UserInfoComponent',
+    components: { BaseButton },
     props: ['user'],
     data() {
         return {

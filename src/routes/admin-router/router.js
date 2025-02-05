@@ -1,40 +1,45 @@
 import { createRouter, createWebHistory } from "vue-router";
-
+import data from '../../assets/db/data.json'
 const router = createRouter({
     history: createWebHistory(),
     routes: [
         {
             path: "/shop.co.trade/login",
-            name: "seller-login",
-            component: () => import("../../views/users/admin/auth/login.vue"),
+            name: "AD-Login",
+            component: () => import("../../views/users/admin/auth/Login.vue"),
         },
         {
             path: "/shop.co.trade/register",
-            name: "seller-signup",
-            component: () => import("../../views/users/admin/auth/signup.vue"),
+            name: "AD-Signup",
+            component: () => import("../../views/users/admin/auth/Signup.vue"),
+        },
+        {
+            path: "/shop.co.trade/foget-password",
+            name: "AD-ForgetPassword",
+            component: () => import("../../views/users/admin/auth/ForgetPassword.vue"),
         },
         {
             path: "/shop.co.trade/seller/dashboard",
-            name: "seller-dashboard",
-            component: () => import("../../views/users/admin/services/dashboard/dashboard.vue"),
+            name: "AD-Dashboard",
+            component: () => import("../../views/users/admin/services/dashboard/Dashboard.vue"),
             meta: {
                 // requiredAuth: true
             },
         },
         {
             path: "/shop.co.trade/seller/:shopName/:shopId",
-            name: "seller-shop",
+            name: "AD-Shop",
             props: true,
-            component: () => import("../../views/users/admin/services/dashboard/dashboard.vue"),
+            component: () => import("../../views/users/admin/services/profile/ShopInfo.vue"),
             meta: {
                 // requiredAuth: true
             },
         },
         {
-            path: "/shop.co.trade/seller/store",
-            name: "seller-store",
+            path: "/shop.co.trade/seller/inventory",
+            name: "AD-Inventory",
             props: true,
-            component: () => import("../../views/users/admin/services/dashboard/dashboard.vue"),
+            component: () => import("../../views/users/admin/services/product-services/Inventory.vue"),
             meta: {
                 requiresTransition: true
                 // requiredAuth: true
@@ -42,57 +47,56 @@ const router = createRouter({
         },
         {
             path: "/shop.co.trade/seller/inbox",
-            name: "seller-inbox",
+            name: "AD-Inbox",
             props: true,
-            component: () => import("../../views/users/admin/services/dashboard/dashboard.vue"),
+            component: () => import("../../views/users/admin/services/dashboard/Dashboard.vue"),
             meta: {
                 // requiredAuth: true
             },
         },
         {
             path: "/shop.co.trade/seller/ads-manager",
-            name: "ads-manager",
+            name: "AD-adsManager",
             props: true,
-            component: () => import("../../views/users/admin/services/dashboard/dashboard.vue"),
+            component: () => import("../../views/users/admin/services/dashboard/Dashboard.vue"),
             meta: {
                 // requiredAuth: true
             },
         },
         {
             path: "/shop.co.trade/seller/faqs",
-            name: "seller-faqs",
+            name: "AD-Faqs",
             props: true,
-            component: () => import("../../views/users/admin/services/dashboard/dashboard.vue"),
+            component: () => import("../../views/users/admin/services/dashboard/Dashboard.vue"),
             meta: {
                 // requiredAuth: true
             },
         },
         {
             path: "/shop.co.trade/seller/services/add-product",
-            name: "add-product",
-            component: () => import("../../views/users/admin/services/product-services/add-product.vue"),
+            name: "Add-Product",
+            component: () => import("../../views/users/admin/services/product-services/AddProduct.vue"),
             meta: {
                 // requiredAuth: true
             },
         },
         {
-            path: "/shop.co.trade/seller/services/update-product/:id",
-            name: "update-product",
-            props: true,
-            component: () => import("../../views/users/admin/services/product-services/update-product.vue"),
-            meta: {
-                // requiredAuth: true
+            path: "/shop.co.trade/inventory/edit-product/:id",
+            name: "Edit-Product",
+            component: () => import("../../views/users/admin/services/product-services/Edit-Product.vue"),
+            beforeEnter: (to, from, next) => {
+                const productExists = data.find(v => v._id === parseInt(to.params.id));
+                if (productExists) {
+                    setTimeout(() => {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }, 150);
+                    next();
+                }
+                else {
+                    next('/shop.co/404-not-found');
+                }
             },
-        },
-        {
-            path: "/shop.co.trade/seller/services/delete-product/:id",
-            name: "delete-product",
-            props: true,
-            component: () => import("../../views/users/admin/services/product-services/delete-product.vue"),
-            meta: {
-                // requiredAuth: true
-            },
-        },
+        }
     ]
 })
 

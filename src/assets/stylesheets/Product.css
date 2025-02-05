@@ -1,0 +1,110 @@
+.lens {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border: 2px solid rgb(0, 0, 0);
+  background-repeat: no-repeat;
+  background-position: center;
+  pointer-events: none;
+  display: none;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+}
+
+.product-price {
+  display: flex;
+  gap: 10px;
+}
+
+.product-price p:not(.product-price-discount) {
+  font-weight: bold;
+}
+
+.product-price .product-price-discount {
+  display: flex;
+}
+
+.product-price .product-price-discount .sale {
+  display: flex;
+  align-items: center;
+  color: #ff3333;
+  font-weight: bold;
+  background-color: rgba(255, 0, 0, 0.148);
+  padding: 0px 12px;
+  margin-left: 10px;
+  border-radius: 35px;
+}
+
+.colors input[value=""]:first-child {
+  position: relative;
+}
+
+.colors input[value=""]:first-child::before {
+  content: "";
+  position: absolute;
+  background-color: red;
+  width: 5px;
+  height: 100%;
+  transform: rotateZ(-45deg);
+  left: 43%;
+  border: 1px solid rgba(0, 0, 0, 0.497);
+}
+
+.show-more {
+  border-radius: 50%;
+  border-top: 5px solid rgb(190, 190, 190);
+  animation-name: showmoreAnimate;
+  animation-duration: 0.6s;
+  animation-direction: normal;
+  animation-iteration-count: infinite;
+}
+
+@keyframes showmoreAnimate {
+  0% {
+    transform: rotateZ(0deg);
+  }
+
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+
+.fa-check {
+  right: 3%;
+  bottom: -14%;
+}
+
+:deep(.addToCart-btn) {
+  padding: 12px 0;
+  border-radius: 0;
+}
+
+.review-btn,
+.review-edit,
+:deep(.submit-review) {
+  padding: 8px 20px;
+}
+
+@media (max-width: 625px) {
+  .fa-check {
+    right: -3%;
+    bottom: -25%;
+  }
+}
+
+@media (max-width: 656px) {
+  .product-price p:not(.product-price-discount) {
+    font-weight: bold;
+    font-size: 100%;
+  }
+
+  .lensStyles {
+    width: 100px;
+    height: 100px;
+  }
+
+  :deep(.addToCart-btn) {
+    padding: 10px 0;
+    border-radius: 0;
+  }
+}

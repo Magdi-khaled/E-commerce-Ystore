@@ -1,7 +1,7 @@
 import axios from "axios";
-import data from '../../../../data.json'
+import data from '../../../../assets/db/data.json'
 export const actions = {
-    async fetchProducts({ commit }, page) {
+    async fetchProducts({ commit }) {
         try {
             // const token = localStorage.getItem('token');
             // console.log(token);

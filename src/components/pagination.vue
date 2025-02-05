@@ -30,7 +30,7 @@
 </template>
 <script>
 export default {
-    name: 'pagination',
+    name: 'Pagination',
     props: {
         currentPage: {
             type: Number,

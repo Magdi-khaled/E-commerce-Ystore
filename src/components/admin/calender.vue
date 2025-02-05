@@ -2,11 +2,14 @@
     <div class="calendar text-gray-800">
         <div class="header relative">
             <button @click="prevMonth">◀</button>
-            <h2 class="font-medium text-md cursor-pointer" @click="showMonths = !showMonths">{{ months[month] }}</h2>
-            <h2 class="font-medium text-md cursor-pointer" @click="showYears = !showYears">{{ year }} </h2>
+            <h2 class="font-medium text-md cursor-pointer" @click="showMonths = !showMonths, showYears = false">{{
+                months[month] }}</h2>
+            <h2 class="font-medium text-md cursor-pointer" @click="showYears = !showYears, showMonths = false">{{ year
+                }}
+            </h2>
 
             <div v-if="showMonths"
-                class="years absolute z-10 top-[94%] left-[10%] w-32 h-48 overflow-y-auto bg-white border-2 border-gray-300 rounded-md shadow-md">
+                class="years absolute z-10 top-[94%] left-[10%] w-32 h-48 overflow-y-auto bg-white border-2 border-gray-300 rounded shadow-md">
                 <div v-for="(index, imonth) in months" :key="imonth" @click="this.month = imonth, showMonths = false"
                     class="cursor-pointer">
                     {{ months[imonth] }}
@@ -14,7 +17,7 @@
                 </div>
             </div>
             <div v-if="showYears"
-                class="years absolute z-10 top-[94%] right-[5%] w-32 h-48 overflow-y-auto bg-white border-2 border-gray-300 rounded-md shadow-md">
+                class="years absolute z-10 top-[94%] right-[5%] w-32 h-48 overflow-y-auto bg-white border-2 border-gray-300 rounded shadow-md">
                 <div v-for="iyear in years" :key="iyear" @click="this.year = iyear, showYears = false"
                     class="cursor-pointer">
                     {{ iyear }}
@@ -36,13 +39,13 @@
             </div>
         </div>
         <div class="w-full text-start mt-2" @click="getToday">
-            <baseButton class="rounded-sm w-5/12 py-[6px] text-sm">Today</baseButton>
+            <BaseButton class="rounded w-5/12 py-[6px] text-sm">Today</BaseButton>
         </div>
     </div>
 </template>
 
 <script>
-import baseButton from '../baseButton.vue';
+import BaseButton from '../BaseButton.vue';
 export default {
     name: 'Calendar',
     props: {
@@ -51,7 +54,7 @@ export default {
             default: true
         }
     },
-    components: { baseButton },
+    components: { BaseButton },
     data() {
         return {
             showYears: false,

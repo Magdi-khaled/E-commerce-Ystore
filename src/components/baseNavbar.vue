@@ -9,22 +9,21 @@
         </p>
     </div> -->
     <!-- NAVIGATION -->
-    <div class="flex flex-row items-center justify-between px-4 md:px-6 lg:px-14 py-2">
+    <nav class="flex flex-row items-center justify-between px-4 md:px-6 lg:px-14 py-2">
         <button @click="hiddenNav = !hiddenNav" v-if="!showNav" class="pr-5 hover:text-gray-500 text-xl">
             <i class="fa-solid fa-bars"></i>
         </button>
         <!-- LOGO SHOP.CO -->
-        <div class="w-[25%] md:w-2/12 lg:w-[10%]">
-            <router-link to="/shop.co/home">
-                <!-- <img src="../assets/images/logo/shop-co-logo.png" alt="SHOP.CO"> -->
-                <img class="w-[100%]" src="../assets/images/logo/shop-co-logo2.jpg" alt="SHOP.CO">
+        <div class="w-[25%] md:w-[20%] lg:w-[10%]">
+            <router-link :to="{ name: 'Home' }">
+                <img class="w-[100%]" src="../assets/images/logo/logo.webp" alt="SHOP.CO">
             </router-link>
         </div>
         <!-- NAV-LINKS -->
         <div v-if="showNav" class="nav-links w-[30%]">
             <ul class="list-none flex gap-5 text-sm sm:text-md">
                 <li class="relative cursor-pointer py-4">
-                    <router-link to="/shop.co/home" class="whitespace-nowrap capitalize">
+                    <router-link :to="{ name: 'Home' }" class="whitespace-nowrap capitalize">
                         <i
                             class="fa-sharp fa-regular fa-house border-[2px] rounded-md border-black p-1 text-sm sm:text-[15px]"></i>
                         home
@@ -110,12 +109,12 @@
                 <button @click="cartOn = true" class="w-4/12 pr-4 text-center hover:opacity-70" title="cart">
                     <i class="fa-solid fa-cart-shopping text-md sm:text-xl"></i>
                 </button>
-                <cart-shop :showCart="cartOn" @closeCart="cartOn = false"></cart-shop>
+                <NavigatedCart :showCart="cartOn" @closeCart="cartOn = false" />
                 <!-- sign in -->
                 <router-link v-if="!userToken" :to="'/shop.co/login'">
                     <!-- <i class="fa-duotone fa-solid fa-user text-black border-2 p-2 rounded-md"></i> -->
-                    <baseButton class="py-[5px] px-[6px] whitespace-nowrap rounded-sm text-sm sm:text-md">sign in
-                    </baseButton>
+                    <BaseButton class="py-[5px] px-[6px] whitespace-nowrap rounded-sm text-sm sm:text-md">sign in
+                    </BaseButton>
                 </router-link>
                 <div v-else class="flex w-7/12 items-center justify-end">
                     <router-link to="/shop.co/user/profile" class="pl-2 hover:opacity-70" title="profile">
@@ -127,93 +126,99 @@
                 </div>
             </div>
         </div>
-    </div>
+    </nav>
 
     <!-- hidden navbar -->
-    <div :class="[`nav-links-hidden overflow-y-scroll border-r-4 border-r-gray-600 
-            bg-white pt-12 fixed z-20 left-0 top-0 h-full w-full sm:w-8/12 md:w-6/12 p-4`, { active: hiddenNav }]">
-        <div class="flex gap-4  mb-5">
-            <button @click="hiddenNav = false" class="px-4 hover:text-gray-500 text-2xl">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-            <img src="../assets/images/logo/shop-co-logo.png" alt="shop.co">
-        </div>
-        <ul lass="list-none W-6/12">
-            <!-- :class="{ 'hover:bg-white': hDropDown, 'hover:text-white': !hDropDown }" -->
-            <li class="hover:bg-[#2f2f2f] hover:font-medium hover:text-white capitalize">
-                <router-link :to="{ name: 'shop.co-home' }"><i class="fa-solid fa-house w-1/12"></i>
-                    home</router-link>
-            </li>
+    <Teleport to='body'>
+        <nav :class="[`nav-links-hidden overflow-y-scroll border-r-4 border-r-gray-600 
+            bg-white pt-4 fixed z-20 left-0 top-0 h-full w-full sm:w-8/12 md:w-6/12 p-4`, { active: hiddenNav }]">
+            <div class="flex gap-6 mb-2">
+                <button @click="hiddenNav = false" class="px-2 hover:text-gray-500 text-xl">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div class="w-4/12">
+                    <img class="w-[80%]" src="../assets/images/logo/logo.webp" alt="shop.co">
+                </div>
+            </div>
             <hr>
-            <li @click="hDropDown = !hDropDown" class="hover:font-medium whitespace-nowrap cursor-pointer capitalize">
-                <router-link :to="{ name: 'shop' }">
-                    <i class="fa-solid fa-shop w-1/12"></i> store
-                </router-link>
-                <i class="fa-regular fa-chevron-down text-xs font-bold"></i>
-            </li>
-            <ul v-if="hDropDown" class="dropdown text-black bg-white rounded-sm border-2 ml-4">
-                <li class="px-3 py-2 rounded-t-sm">
-                    <router-link class="py-2" :to="{ name: 'men-fashion' }">men's fashion</router-link>
+            <ul lass="list-none W-6/12">
+                <!-- :class="{ 'hover:bg-white': hDropDown, 'hover:text-white': !hDropDown }" -->
+                <li class="hover:bg-[#2f2f2f] hover:font-medium hover:text-white capitalize">
+                    <router-link :to="{ name: 'Home' }"><i class="fa-solid fa-house w-1/12"></i>
+                        home</router-link>
                 </li>
                 <hr>
-                <li class="px-3 py-2">
-                    <router-link class="py-2" :to="{ name: 'women-fashion' }">women's fashion</router-link>
+                <li @click="hDropDown = !hDropDown"
+                    class="hover:font-medium whitespace-nowrap cursor-pointer capitalize">
+                    <router-link :to="{ name: 'shop' }">
+                        <i class="fa-solid fa-shop w-1/12"></i> store
+                    </router-link>
+                    <i class="fa-regular fa-chevron-down text-xs font-bold"></i>
+                </li>
+                <ul v-if="hDropDown" class="dropdown text-black bg-white rounded-sm border-2 ml-4">
+                    <li class="px-3 py-2 rounded-t-sm">
+                        <router-link class="py-2" :to="{ name: 'men-fashion' }">men's fashion</router-link>
+                    </li>
+                    <hr>
+                    <li class="px-3 py-2">
+                        <router-link class="py-2" :to="{ name: 'women-fashion' }">women's fashion</router-link>
+                    </li>
+                    <hr>
+                    <li class="px-3 py-2">
+                        <router-link class="py-2" :to="{ name: 'boys-wear' }">boys wear</router-link>
+                    </li>
+                    <hr>
+                    <li class="px-3 py-2">
+                        <router-link class="py-2" :to="{ name: 'girls-wear' }">girls wear</router-link>
+                    </li>
+                    <hr>
+                    <li class="px-3 py-2">
+                        <router-link class="py-2" :to="{ name: 'sport-wear' }">sport wear</router-link>
+                    </li>
+                    <hr>
+                    <li class="px-3 py-2">
+                        <router-link class="py-2" :to="{ name: 'bags-luggage' }">bags & luggage</router-link>
+                    </li>
+                    <hr>
+                    <li class="px-3 py-2">
+                        <router-link class="py-2" :to="{ name: 'shoes-fashion' }">shoes</router-link>
+                    </li>
+                    <hr>
+                    <li class="px-3 py-2">
+                        <router-link class="py-2" :to="{ name: 'watches' }">watches</router-link>
+                    </li>
+                    <hr>
+                    <li class="px-3 py-2  rounded-b-sm">
+                        <router-link class="py-2" :to="{ name: 'formal-wear' }">formal</router-link>
+                    </li>
+                </ul>
+                <hr>
+                <li class="hover:bg-[#2f2f2f] hover:font-medium hover:text-white capitalize">
+                    <router-link to="#"><i class="fa-solid fa-badge-percent w-1/12"></i> OnSale</router-link>
                 </li>
                 <hr>
-                <li class="px-3 py-2">
-                    <router-link class="py-2" :to="{ name: 'boys-wear' }">boys wear</router-link>
+                <li class="hover:bg-[#2f2f2f] hover:font-medium hover:text-white capitalize">
+                    <router-link to="#"><i class="fa-solid fa-clothes-hanger w-1/12"></i> brands</router-link>
                 </li>
                 <hr>
-                <li class="px-3 py-2">
-                    <router-link class="py-2" :to="{ name: 'girls-wear' }">girls wear</router-link>
+                <li class="hover:bg-[#2f2f2f] hover:font-medium hover:text-white capitalize">
+                    <router-link to="#"><i class="fa-brands fa-blogger-b w-1/12"></i> blogs</router-link>
                 </li>
                 <hr>
-                <li class="px-3 py-2">
-                    <router-link class="py-2" :to="{ name: 'sport-wear' }">sport wear</router-link>
+                <li class="hover:bg-[#2f2f2f] hover:font-medium hover:text-white capitalize">
+                    <router-link to="#"><i class="fa-solid fa-square-question w-1/12"></i> about us</router-link>
                 </li>
                 <hr>
-                <li class="px-3 py-2">
-                    <router-link class="py-2" :to="{ name: 'bags-luggage' }">bags & luggage</router-link>
+                <li class="hover:bg-[#2f2f2f] hover:font-medium hover:text-white capitalize">
+                    <router-link to="#"><i class="fa-solid fa-phone-volume w-1/12"></i> Support</router-link>
                 </li>
                 <hr>
-                <li class="px-3 py-2">
-                    <router-link class="py-2" :to="{ name: 'shoes-fashion' }">shoes</router-link>
-                </li>
-                <hr>
-                <li class="px-3 py-2">
-                    <router-link class="py-2" :to="{ name: 'watches' }">watches</router-link>
-                </li>
-                <hr>
-                <li class="px-3 py-2  rounded-b-sm">
-                    <router-link class="py-2" :to="{ name: 'formal-wear' }">formal</router-link>
+                <li class="hover:bg-[#2f2f2f] hover:font-medium hover:text-white uppercase">
+                    <router-link to="#"><i class="fa-solid fa-message-question w-1/12"></i> faq</router-link>
                 </li>
             </ul>
-            <hr>
-            <li class="hover:bg-[#2f2f2f] hover:font-medium hover:text-white capitalize">
-                <router-link to="#"><i class="fa-solid fa-badge-percent w-1/12"></i> OnSale</router-link>
-            </li>
-            <hr>
-            <li class="hover:bg-[#2f2f2f] hover:font-medium hover:text-white capitalize">
-                <router-link to="#"><i class="fa-solid fa-clothes-hanger w-1/12"></i> brands</router-link>
-            </li>
-            <hr>
-            <li class="hover:bg-[#2f2f2f] hover:font-medium hover:text-white capitalize">
-                <router-link to="#"><i class="fa-brands fa-blogger-b w-1/12"></i> blogs</router-link>
-            </li>
-            <hr>
-            <li class="hover:bg-[#2f2f2f] hover:font-medium hover:text-white capitalize">
-                <router-link to="#"><i class="fa-solid fa-square-question w-1/12"></i> about us</router-link>
-            </li>
-            <hr>
-            <li class="hover:bg-[#2f2f2f] hover:font-medium hover:text-white capitalize">
-                <router-link to="#"><i class="fa-solid fa-phone-volume w-1/12"></i> Support</router-link>
-            </li>
-            <hr>
-            <li class="hover:bg-[#2f2f2f] hover:font-medium hover:text-white uppercase">
-                <router-link to="#"><i class="fa-solid fa-message-question w-1/12"></i> faq</router-link>
-            </li>
-        </ul>
-    </div>
+        </nav>
+    </Teleport>
 
     <!-- Small Search  -->
     <div v-if="searchIcon" class="w-full px-4 relative search-bar">
@@ -235,12 +240,12 @@
 
 <script>
 import { ref, onMounted, onBeforeUnmount } from 'vue';
-import cartShop from '../components/cart/cart.shop.vue';
-import baseButton from '../components/baseButton.vue';
+import NavigatedCart from '../components/cart/NavigatedCart.vue';
+import BaseButton from '../components/BaseButton.vue';
 import { mapActions } from 'vuex';
 export default {
-    name: 'navbar',
-    components: { cartShop, baseButton },
+    name: 'BaseNavbar',
+    components: { NavigatedCart, BaseButton },
     data() {
         return {
             dropDown: false,

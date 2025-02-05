@@ -18,13 +18,13 @@
   width: 100%;
   box-shadow: 2px 2px gray;
   opacity: 0.92;
+  cursor: pointer;
+  transition: all 0.25s ease;
 }
 
 .styles-imgs div img:hover {
-  cursor: pointer;
+  opacity: 1;
   transform: scale(1.009);
-  transition: all 0.2s ease;
-  transition-delay: 0.1s;
 }
 
 .swiper-cards {
@@ -106,15 +106,27 @@
 /* Product */
 .product {
   cursor: pointer;
+  width: 19.2%;
+  height: 100%;
+  transition: all 0.25s ease-in;
+  /* cursor: pointer;
   width: 21%;
   height: 100%;
   border-bottom-right-radius: 16px;
-  box-shadow: 1px 1px gray;
+  box-shadow: 1px 1px gray; */
 }
 :deep(.product img) {
-  box-shadow: 1px 0px rgb(174, 173, 173);
-  border-radius: 0;
+  opacity: 0.88;
+  box-shadow: 0.6px 0px 0.2px rgb(144, 144, 144);
+  transition: all 0.2s ease-in;
+  /* box-shadow: 1px 0px rgb(174, 173, 173);
+  border-radius: 0; */
 }
+
+:deep(.product img):hover {
+  opacity: 1;
+}
+
 :deep(.product .detail) {
   /* box-shadow: 1px 1px red; */
   border-radius: 0;

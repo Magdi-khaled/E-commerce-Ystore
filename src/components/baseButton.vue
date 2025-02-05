@@ -1,12 +1,12 @@
 <template>
-    <button class="py-3 bg-black text-white font-medium capitalize rounded-md border-2 border-black
+    <button class="py-3 bg-black text-white font-medium capitalize rounded border-2 border-black
             hover:bg-gray-200 hover:text-black transition duration-300 ease-in-out ">
         <slot />
     </button>
 </template>
 <script>
 export default {
-    name: 'baseButton',
+    name: 'BaseButton',
     props: {
         disabled: {
             type: Boolean,

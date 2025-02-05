@@ -1,5 +1,5 @@
 <template>
-    <div class="footer w-full mt-40 bg-[#f0eeed]">
+    <footer class="footer w-full mt-32 bg-[#f0eeed]">
         <div class="footer-header bg-black w-11/12 m-auto rounded-md relative px-4
         sm:px-16 py-4 sm:py-8 flex flex-wrap items-center justify-between ">
             <div class="w-full md:w-5/12">
@@ -32,7 +32,7 @@
             <!-- first column -->
             <div class="footer-content-1 w-full sm:w-4/12 flex flex-col gap-5">
                 <div class="mb-2">
-                    <img loading="lazy" src="../assets/images/logo/shop-co-logo.png" alt="SHOP.CO">
+                    <img loading="lazy" src="../assets/images/logo/footer-logo.webp" alt="SHOP.CO">
                 </div>
                 <div class="w-full sm:w-8/12 text-sm text-gray-600 mb-2 md:mb-6">
                     <p>
@@ -143,29 +143,29 @@
             <div class="w-8/12 sm:w-5/12">
                 <ul class="flex justify-end">
                     <li>
-                        <img loading="lazy" src="../assets/images/payment-methods/visa.png" alt="visa">
+                        <img loading="lazy" src="../assets/images/payment-methods/visa.webp" alt="visa">
                     </li>
                     <li>
-                        <img loading="lazy" src="../assets/images/payment-methods/credit-card.png" alt="credit-card">
+                        <img loading="lazy" src="../assets/images/payment-methods/credit-card.webp" alt="credit-card">
                     </li>
                     <li>
-                        <img loading="lazy" src="../assets/images/payment-methods/PayPal.png" alt="paypal">
+                        <img loading="lazy" src="../assets/images/payment-methods/PayPal.webp" alt="paypal">
                     </li>
                     <li>
-                        <img loading="lazy" src="../assets/images/payment-methods/IphonePay.png" alt="applePay">
+                        <img loading="lazy" src="../assets/images/payment-methods/IphonePay.webp" alt="applePay">
                     </li>
                     <li>
-                        <img loading="lazy" src="../assets/images/payment-methods/Gpay.png" alt="Gpay">
+                        <img loading="lazy" src="../assets/images/payment-methods/Gpay.webp" alt="Gpay">
                     </li>
                 </ul>
             </div>
         </div>
-    </div>
+    </footer>
 </template>
 
 <script>
 export default {
-    name: 'baseFooter',
+    name: 'BaseFooter',
     data() {
         return {
             emailupto: '',

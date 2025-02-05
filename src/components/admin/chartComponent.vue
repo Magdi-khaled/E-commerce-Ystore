@@ -1,46 +1,5 @@
-<!-- <template>
-    <div>
-        <Bar id="my-chart-id" :options="chartOptions" :data="chartData" />
-    </div>
-</template>
-<script>
-import { Bar } from 'vue-chartjs'
-import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
-
-ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
-export default {
-    components: {
-        Bar
-    },
-    name: 'chartComponent',
-    data() {
-        return {
-            chartData: {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July',
-                    'August', 'September', 'October', 'November', 'December'],
-                datasets: [{ data: [1000, 3250, 1500, 2250, 1760, 3250, 1500, 2250, 1760, 3250, 2500, 4250, 5760,] }]
-            },
-            chartOptions: {
-                responsive: true
-            }
-        }
-    }
-}
-</script>
-<style scoped></style> -->
-
 <template>
     <div class="line-chart">
-        <!-- <div class="mb-4 flex gap-4">
-            <label class="block">
-                Start Date:
-                <input type="date" v-model="startDate" @change="updateChartData" />
-            </label>
-            <label class="block">
-                End Date:
-                <input type="date" v-model="endDate" @change="updateChartData" />
-            </label>
-        </div> -->
         <Line class="text-black border-2 border-gray-300 p-2 shadow-sm" id="range-chart" :data="chartData"
             :options="chartOptions" />
     </div>
@@ -50,6 +9,7 @@ export default {
 import { Line } from "vue-chartjs";
 import {
     Chart as ChartJS,
+    Filler,
     Title,
     Tooltip,
     Legend,
@@ -59,18 +19,19 @@ import {
     LinearScale,
 } from "chart.js";
 
-ChartJS.register(Title, Tooltip, Legend, LineElement, PointElement, CategoryScale, LinearScale);
+ChartJS.register(Title, Tooltip, Legend, LineElement, PointElement, CategoryScale, LinearScale, Filler);
 
 export default {
+    name:'ChartComponent',
     components: { Line },
     props: {
         startDate: {
             type: String,
-            default: "2024-11-23" | new Date().toISOString().split("T")[0], // Default to today
+            default: new Date().toISOString().split("T")[0], // Default to today
         },
         endDate: {
             type: String,
-            default: "2025-01-10" | new Date().toISOString().split("T")[0], // Default to today
+            default: new Date().toISOString().split("T")[0], // Default to today
         },
     },
     data() {
@@ -81,12 +42,12 @@ export default {
                 datasets: [
                     {
                         label: "Product Sales",
-                        data: [1000, 3250, 1500, 2250, 1760, 3250, 4250, 2250, 2760, 3250, 2500, 4250, 3760],
-                        borderColor: "#000",
-                        backgroundColor: "#9f9f9f",
-                        fill: true,
-                        tension: 0.4,
-                        pointRadius: 4,
+                        data: [1000, 1250, 1900, 2100, 2260, 3150, 3750, 3250, 2760, 3250, 2800, 4250, 3760],
+                        borderColor: "#000000",
+                        backgroundColor: "#ff0000",
+                        fill: false,
+                        tension: 0.0,
+                        pointRadius: 0,
                     },
                 ],
             },
