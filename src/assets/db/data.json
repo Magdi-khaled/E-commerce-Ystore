@@ -43,26 +43,29 @@
     "category": "women's fashion",
     "rating": {
       "count": 0,
-      "avg": 0.0
+      "avg": 0
     },
     "feedbacks": [
       {
         "id": 1,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 2,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 3.5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 3,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 4,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
@@ -122,21 +125,24 @@
     "feedbacks": [
       {
         "id": 1,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 2,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 3,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
@@ -153,7 +159,7 @@
       "/assets/shop/product14.webp"
     ],
     "title": "checkered shirt",
-    "rate": 3.0,
+    "rate": 3,
     "price": 180,
     "sale": 0,
     "providedColors": [
@@ -196,21 +202,24 @@
     "feedbacks": [
       {
         "id": 1,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 2,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 3,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
@@ -227,7 +236,7 @@
       "/assets/shop/product14.webp"
     ],
     "title": "sleeve striped t-shirt",
-    "rate": 4.0,
+    "rate": 4,
     "price": 130,
     "sale": 30,
     "providedColors": [
@@ -270,21 +279,24 @@
     "feedbacks": [
       {
         "id": 1,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 2,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 3,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
@@ -344,21 +356,24 @@
     "feedbacks": [
       {
         "id": 1,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 2,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 3,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
@@ -375,7 +390,7 @@
       "/assets/shop/product14.webp"
     ],
     "title": "checkered shirt",
-    "rate": 3.0,
+    "rate": 3,
     "price": 180,
     "sale": 0,
     "providedColors": [
@@ -418,21 +433,24 @@
     "feedbacks": [
       {
         "id": 1,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 2,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 3,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
@@ -449,7 +467,7 @@
       "/assets/shop/product14.webp"
     ],
     "title": "sleeve striped t-shirt",
-    "rate": 4.0,
+    "rate": 4,
     "price": 130,
     "sale": 30,
     "providedColors": [
@@ -492,21 +510,24 @@
     "feedbacks": [
       {
         "id": 1,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 2,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 3,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
@@ -523,7 +544,7 @@
       "/assets/shop/product14.webp"
     ],
     "title": "checkered shirt",
-    "rate": 3.0,
+    "rate": 3,
     "price": 180,
     "sale": 0,
     "providedColors": [
@@ -566,21 +587,24 @@
     "feedbacks": [
       {
         "id": 1,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 2,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 3,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
@@ -597,7 +621,7 @@
       "/assets/shop/product14.webp"
     ],
     "title": "sleeve striped t-shirt",
-    "rate": 4.0,
+    "rate": 4,
     "price": 130,
     "sale": 30,
     "providedColors": [
@@ -640,49 +664,56 @@
     "feedbacks": [
       {
         "id": 1,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 2,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 3,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 4,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 5,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 6,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 7,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
@@ -699,7 +730,7 @@
       "/assets/shop/product14.webp"
     ],
     "title": "sleeve striped t-shirt",
-    "rate": 4.0,
+    "rate": 4,
     "price": 130,
     "sale": 40,
     "providedColors": [
@@ -742,21 +773,24 @@
     "feedbacks": [
       {
         "id": 1,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 2,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 3,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
@@ -773,7 +807,7 @@
       "/assets/shop/product14.webp"
     ],
     "title": "sleeve striped t-shirt",
-    "rate": 4.0,
+    "rate": 4,
     "price": 130,
     "sale": 0,
     "providedColors": [
@@ -816,21 +850,24 @@
     "feedbacks": [
       {
         "id": 1,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 2,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 3,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
@@ -847,7 +884,7 @@
       "/assets/shop/product14.webp"
     ],
     "title": "sleeve striped t-shirt",
-    "rate": 4.0,
+    "rate": 4,
     "price": 130,
     "sale": 0,
     "providedColors": [
@@ -890,21 +927,24 @@
     "feedbacks": [
       {
         "id": 1,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 2,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 3,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
@@ -964,21 +1004,24 @@
     "feedbacks": [
       {
         "id": 1,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 2,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 3,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
@@ -995,7 +1038,7 @@
       "/assets/shop/product14.webp"
     ],
     "title": "checkered shirt",
-    "rate": 3.0,
+    "rate": 3,
     "price": 180,
     "sale": 0,
     "providedColors": [
@@ -1038,21 +1081,24 @@
     "feedbacks": [
       {
         "id": 1,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 2,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 3,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
@@ -1069,7 +1115,7 @@
       "/assets/shop/product14.webp"
     ],
     "title": "utility Jacket",
-    "rate": 4.0,
+    "rate": 4,
     "price": 130,
     "sale": 15,
     "providedColors": [
@@ -1101,7 +1147,6 @@
       "XL"
     ],
     "details": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius assumenda quisquam ipsa ullam, fugit dicta distinctio dolore inventore quod, temporibus ea vel porro illum reiciendis. Hic quasi voluptatibus necessitatibus culpa Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius assumenda quisquam ipsa ullam, fugit dicta distinctio dolore inventore quod, temporibus ea vel porro illum reiciendis. Hic quasi voluptatibus necessitatibus culpa?",
-    "material": "Cotton",
     "material": "cotton",
     "for": "female",
     "quantity": 12,
@@ -1113,21 +1158,24 @@
     "feedbacks": [
       {
         "id": 1,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 2,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 3,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
@@ -1144,7 +1192,7 @@
       "/assets/shop/product14.webp"
     ],
     "title": "checkered shirt",
-    "rate": 3.0,
+    "rate": 3,
     "price": 180,
     "sale": 0,
     "providedColors": [
@@ -1187,21 +1235,24 @@
     "feedbacks": [
       {
         "id": 1,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 2,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 3,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
@@ -1218,7 +1269,7 @@
       "/assets/shop/product14.webp"
     ],
     "title": "sleeve striped t-shirt",
-    "rate": 4.0,
+    "rate": 4,
     "price": 130,
     "sale": 0,
     "providedColors": [
@@ -1261,49 +1312,56 @@
     "feedbacks": [
       {
         "id": 1,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 2,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 3,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 4,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 5,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 6,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 7,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
@@ -1320,7 +1378,7 @@
       "/assets/shop/product14.webp"
     ],
     "title": "sleeve striped t-shirt",
-    "rate": 4.0,
+    "rate": 4,
     "price": 130,
     "sale": 25,
     "providedColors": [
@@ -1363,21 +1421,24 @@
     "feedbacks": [
       {
         "id": 1,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 2,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 3,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
@@ -1394,7 +1455,7 @@
       "/assets/shop/product14.webp"
     ],
     "title": "sleeve striped t-shirt",
-    "rate": 4.0,
+    "rate": 4,
     "price": 130,
     "sale": 0,
     "providedColors": [
@@ -1437,21 +1498,24 @@
     "feedbacks": [
       {
         "id": 1,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 2,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 3,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
@@ -1468,7 +1532,7 @@
       "/assets/shop/product14.webp"
     ],
     "title": "sleeve striped t-shirt",
-    "rate": 4.0,
+    "rate": 4,
     "price": 130,
     "sale": 0,
     "providedColors": [
@@ -1511,21 +1575,24 @@
     "feedbacks": [
       {
         "id": 1,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 2,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 3,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
@@ -1542,7 +1609,7 @@
       "/assets/shop/product14.webp"
     ],
     "title": "sleeve striped t-shirt",
-    "rate": 4.0,
+    "rate": 4,
     "price": 130,
     "sale": 0.3,
     "providedColors": [
@@ -1585,25 +1652,699 @@
     "feedbacks": [
       {
         "id": 1,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 2,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       },
       {
         "id": 3,
-        "name": "John Doe","title":"Amazing!",
+        "name": "John Doe",
+        "title": "Amazing!",
         "rating": 5,
         "feedback": "This product is amazing",
         "date": "2022-01-01"
       }
     ]
+  },
+  {
+    "_id": 22,
+    "src": "/assets/shop/product18.webp",
+    "providedImages": [
+      "/assets/shop/product18.webp",
+      "/assets/shop/product16.webp",
+      "/assets/shop/product15.webp",
+      "/assets/shop/product14.webp"
+    ],
+    "title": "t-shirt with tape details t-shirt with tape detailst-shirt with tape detailst-shirt with tape details",
+    "rate": 4.5,
+    "price": 120,
+    "sale": 20,
+    "providedColors": [
+      {
+        "color": "light brown",
+        "value": "978877"
+      },
+      {
+        "color": "mint dark green",
+        "value": "43696c"
+      },
+      {
+        "color": "dark red",
+        "value": "751e1e"
+      },
+      {
+        "color": "black",
+        "value": "1e1e1e"
+      }
+    ],
+    "providedSizes": [
+      "SM",
+      "M",
+      "XL",
+      "6XL"
+    ],
+    "details": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius assumenda quisquam ipsa ullam, fugit dicta distinctio dolore inventore quod, temporibus ea vel porro illum reiciendis. Hic quasi voluptatibus necessitatibus culpa Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius assumenda quisquam ipsa ullam, fugit dicta distinctio dolore inventore quod, temporibus ea vel porro illum reiciendis. Hic quasi voluptatibus necessitatibus culpa?",
+    "material": "cotton",
+    "for": "female",
+    "quantity": 12,
+    "category": "women's fashion",
+    "rating": {
+      "count": 0,
+      "avg": 0
+    },
+    "feedbacks": []
+  },
+  {
+    "_id": 23,
+    "src": "/assets/shop/product18.webp",
+    "providedImages": [
+      "/assets/shop/product18.webp",
+      "/assets/shop/product16.webp",
+      "/assets/shop/product15.webp",
+      "/assets/shop/product14.webp"
+    ],
+    "title": "t-shirt with tape details t-shirt with tape detailst-shirt with tape detailst-shirt with tape details",
+    "rate": 4.5,
+    "price": 120,
+    "sale": 20,
+    "providedColors": [
+      {
+        "color": "light brown",
+        "value": "978877"
+      },
+      {
+        "color": "mint dark green",
+        "value": "43696c"
+      },
+      {
+        "color": "dark red",
+        "value": "751e1e"
+      },
+      {
+        "color": "black",
+        "value": "1e1e1e"
+      }
+    ],
+    "providedSizes": [
+      "SM",
+      "M",
+      "L",
+      "XL"
+    ],
+    "details": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius assumenda quisquam ipsa ullam, fugit dicta distinctio dolore inventore quod, temporibus ea vel porro illum reiciendis. Hic quasi voluptatibus necessitatibus culpa Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius assumenda quisquam ipsa ullam, fugit dicta distinctio dolore inventore quod, temporibus ea vel porro illum reiciendis. Hic quasi voluptatibus necessitatibus culpa?",
+    "material": "cotton",
+    "for": "female",
+    "quantity": 12,
+    "category": "women's fashion",
+    "rating": {
+      "count": 0,
+      "avg": 0
+    },
+    "feedbacks": []
+  },
+  {
+    "_id": 24,
+    "src": "/assets/shop/product12.webp",
+    "providedImages": [
+      "/assets/shop/product11.webp",
+      "/assets/shop/product13.webp",
+      "/assets/shop/product14.webp",
+      "/assets/shop/product10.webp"
+    ],
+    "title": "Utilty Jacket",
+    "rate": 5,
+    "price": 1200,
+    "sale": 12,
+    "providedColors": [
+      {
+        "color": "light brown",
+        "value": "978877"
+      },
+      {
+        "color": "mint dark green",
+        "value": "43696c"
+      },
+      {
+        "color": "dark red",
+        "value": "751e1e"
+      },
+      {
+        "color": "black",
+        "value": "1e1e1e"
+      }
+    ],
+    "providedSizes": [
+      "L",
+      "XL",
+      "XXL",
+      "3XL"
+    ],
+    "details": "Good and warm , Cotton material & have some waves crunches",
+    "material": "cotton",
+    "for": "both",
+    "quantity": 12,
+    "category": "men's fashion",
+    "rating": {
+      "count": 0,
+      "avg": 0
+    },
+    "feedbacks": []
+  },
+  {
+    "_id": 25,
+    "src": "/assets/shop/product12.webp",
+    "providedImages": [
+      "/assets/shop/product11.webp",
+      "/assets/shop/product13.webp",
+      "/assets/shop/product14.webp",
+      "/assets/shop/product10.webp"
+    ],
+    "title": "Utilty Jacket",
+    "rate": 5,
+    "price": 1200,
+    "sale": 12,
+    "providedColors": [
+      {
+        "color": "light brown",
+        "value": "978877"
+      },
+      {
+        "color": "mint dark green",
+        "value": "43696c"
+      },
+      {
+        "color": "dark red",
+        "value": "751e1e"
+      },
+      {
+        "color": "black",
+        "value": "1e1e1e"
+      }
+    ],
+    "providedSizes": [
+      "L",
+      "XL",
+      "XXL",
+      "3XL"
+    ],
+    "details": "Good and warm , Cotton material & have some waves crunches",
+    "material": "cotton",
+    "for": "both",
+    "quantity": 12,
+    "category": "men's fashion",
+    "rating": {
+      "count": 0,
+      "avg": 0
+    },
+    "feedbacks": []
+  },
+  {
+    "_id": 26,
+    "title": "Women Friendly Suit",
+    "details": "Professional Suit for all type of events , it's fit is so good , suitable for young. ",
+    "price": 1500,
+    "sale": 15,
+    "quantity": 4,
+    "for": "female",
+    "category": "women's fashion",
+    "providedColors": [
+      {
+        "color": "green",
+        "value": "107426"
+      },
+      {
+        "color": "orange",
+        "value": "d66b08"
+      },
+      {
+        "color": "red",
+        "value": "cc0101"
+      },
+      {
+        "color": "yellow",
+        "value": "d4c74c"
+      },
+      {
+        "color": "dark yellow",
+        "value": "a49e24"
+      },
+      {
+        "color": "blue",
+        "value": "1039d0"
+      },
+      {
+        "color": "mint dark green",
+        "value": "43696c"
+      }
+    ],
+    "providedSizes": [
+      "XXL",
+      "XL",
+      "L",
+      "M",
+      "SM",
+      "XS"
+    ],
+    "providedImages": [
+      "/assets/shop/product3.webp",
+      "/assets/shop/product5.webp",
+      "/assets/shop/product7.webp",
+      "/assets/shop/product8.webp"
+    ],
+    "src": "/assets/shop/product3.webp",
+    "rating": {
+      "count": 0,
+      "avg": 0
+    },
+    "feedbacks": []
+  },
+  {
+    "_id": 27,
+    "title": "Jump Suit",
+    "details": "Good Suit , 95% cotton material and have some 5% Likra .",
+    "price": 759,
+    "sale": 6,
+    "quantity": null,
+    "for": "female",
+    "category": "women's fashion",
+    "providedColors": [
+      {
+        "color": "mint dark green",
+        "value": "43696c"
+      },
+      {
+        "color": "dark blue",
+        "value": "193e50"
+      },
+      {
+        "color": "brown",
+        "value": "6a584b"
+      },
+      {
+        "color": "black",
+        "value": "1e1e1e"
+      },
+      {
+        "color": "light brown",
+        "value": "978877"
+      },
+      {
+        "color": "dark red",
+        "value": "751e1e"
+      },
+      {
+        "color": "red",
+        "value": "cc0101"
+      }
+    ],
+    "providedSizes": [
+      "XXL",
+      "XL",
+      "L",
+      "M",
+      "SM",
+      "XS",
+      "3XL"
+    ],
+    "providedImages": [
+      "/assets/shop/product5.webp",
+      "/assets/shop/product7.webp",
+      "/assets/shop/product8.webp"
+    ],
+    "src": "/assets/shop/product7.webp",
+    "rating": {
+      "count": 0,
+      "avg": 0
+    },
+    "feedbacks": []
+  },
+  {
+    "_id": 28,
+    "title": "Jump Suit",
+    "details": "Good Suit , 95% cotton material and have some 5% Likra .",
+    "price": 759,
+    "sale": 6,
+    "quantity": null,
+    "for": "female",
+    "category": "women's fashion",
+    "providedColors": [
+      {
+        "color": "mint dark green",
+        "value": "43696c"
+      },
+      {
+        "color": "dark blue",
+        "value": "193e50"
+      },
+      {
+        "color": "brown",
+        "value": "6a584b"
+      },
+      {
+        "color": "black",
+        "value": "1e1e1e"
+      },
+      {
+        "color": "light brown",
+        "value": "978877"
+      },
+      {
+        "color": "dark red",
+        "value": "751e1e"
+      },
+      {
+        "color": "red",
+        "value": "cc0101"
+      }
+    ],
+    "providedSizes": [
+      "XXL",
+      "XL",
+      "L",
+      "M",
+      "SM",
+      "XS",
+      "3XL"
+    ],
+    "providedImages": [
+      "/assets/shop/product5.webp",
+      "/assets/shop/product7.webp",
+      "/assets/shop/product8.webp"
+    ],
+    "src": "/assets/shop/product7.webp",
+    "rating": {
+      "count": 0,
+      "avg": 0
+    },
+    "feedbacks": []
+  },
+  {
+    "_id": 29,
+    "title": "Women Friendly Suit2",
+    "details": "Professional Suit for all type of events , it's fit is so good , suitable for young. ",
+    "price": 1500,
+    "sale": 15,
+    "quantity": null,
+    "for": "female",
+    "category": "women's fashion",
+    "providedColors": [
+      {
+        "color": "green",
+        "value": "107426"
+      },
+      {
+        "color": "orange",
+        "value": "d66b08"
+      },
+      {
+        "color": "red",
+        "value": "cc0101"
+      },
+      {
+        "color": "yellow",
+        "value": "d4c74c"
+      },
+      {
+        "color": "dark yellow",
+        "value": "a49e24"
+      },
+      {
+        "color": "blue",
+        "value": "1039d0"
+      },
+      {
+        "color": "mint dark green",
+        "value": "43696c"
+      }
+    ],
+    "providedSizes": [
+      "XXL",
+      "XL",
+      "L",
+      "M",
+      "SM",
+      "XS"
+    ],
+    "providedImages": [
+      "/assets/shop/product3.webp",
+      "/assets/shop/product5.webp",
+      "/assets/shop/product7.webp",
+      "/assets/shop/product8.webp"
+    ],
+    "src": "/assets/shop/product3.webp",
+    "rating": {
+      "count": 0,
+      "avg": 0
+    },
+    "feedbacks": []
+  },
+  {
+    "_id": 30,
+    "title": "Caught Jacket",
+    "details": "Good Caught Jacket",
+    "price": 1200,
+    "sale": 5,
+    "quantity": 15,
+    "for": "both",
+    "category": "women's fashion",
+    "providedColors": [
+      {
+        "color": "blue",
+        "value": "1039d0"
+      },
+      {
+        "color": "dark blue",
+        "value": "193e50"
+      },
+      {
+        "color": "purple",
+        "value": "7D06F5"
+      },
+      {
+        "color": "pink",
+        "value": "cb0b8a"
+      },
+      {
+        "color": "red",
+        "value": "cc0101"
+      },
+      {
+        "color": "orange",
+        "value": "d66b08"
+      },
+      {
+        "color": "green",
+        "value": "107426"
+      },
+      {
+        "color": "yellow",
+        "value": "d4c74c"
+      },
+      {
+        "color": "dark yellow",
+        "value": "a49e24"
+      }
+    ],
+    "providedSizes": [
+      "XXL",
+      "XL",
+      "L",
+      "M",
+      "SM",
+      "XS"
+    ],
+    "providedImages": [
+      "/assets/shop/product9.webp",
+      "/assets/shop/product10.webp",
+      "/assets/shop/product11.webp",
+      "/assets/shop/product12.webp"
+    ],
+    "src": "/assets/shop/product12.webp",
+    "rating": {
+      "count": 0,
+      "avg": 0
+    },
+    "feedbacks": []
+  },
+  {
+    "_id": 31,
+    "title": "Jacket",
+    "details": "Good and warm",
+    "price": 1200,
+    "sale": 5,
+    "quantity": 15,
+    "for": "male",
+    "category": "women's fashion",
+    "providedColors": [
+      {
+        "color": "all",
+        "value": ""
+      },
+      {
+        "color": "black",
+        "value": "1e1e1e"
+      },
+      {
+        "color": "gray",
+        "value": "c8c8c8"
+      },
+      {
+        "color": "white",
+        "value": "f2f2f2"
+      },
+      {
+        "color": "brown",
+        "value": "6a584b"
+      },
+      {
+        "color": "light brown",
+        "value": "978877"
+      },
+      {
+        "color": "dark red",
+        "value": "751e1e"
+      },
+      {
+        "color": "mint dark green",
+        "value": "43696c"
+      },
+      {
+        "color": "babyblue",
+        "value": "109cbb"
+      },
+      {
+        "color": "blue",
+        "value": "1039d0"
+      },
+      {
+        "color": "dark blue",
+        "value": "193e50"
+      },
+      {
+        "color": "purple",
+        "value": "7D06F5"
+      },
+      {
+        "color": "pink",
+        "value": "cb0b8a"
+      },
+      {
+        "color": "red",
+        "value": "cc0101"
+      },
+      {
+        "color": "orange",
+        "value": "d66b08"
+      },
+      {
+        "color": "green",
+        "value": "107426"
+      },
+      {
+        "color": "yellow",
+        "value": "d4c74c"
+      },
+      {
+        "color": "dark yellow",
+        "value": "a49e24"
+      }
+    ],
+    "providedSizes": [
+      "All",
+      "6XL",
+      "5XL",
+      "4XL",
+      "3XL",
+      "XXL",
+      "XL",
+      "L",
+      "M",
+      "SM",
+      "XS"
+    ],
+    "providedImages": [
+      "/assets/shop/product15.webp",
+      "/assets/shop/product16.webp",
+      "/assets/shop/product17.webp",
+      "/assets/shop/product18.webp"
+    ],
+    "src": "/assets/shop/product18.webp",
+    "rating": {
+      "count": 0,
+      "avg": 0
+    },
+    "feedbacks": []
+  },
+  {
+    "_id": 32,
+    "title": "Formal Blazer",
+    "details": "Formal Blazer Good Fit",
+    "price": 1244,
+    "sale": 10,
+    "quantity": 16,
+    "material": "cotton",
+    "for": "male",
+    "category": "men's fashion",
+    "providedColors": [
+      {
+        "color": "black",
+        "value": "1e1e1e"
+      },
+      {
+        "color": "gray",
+        "value": "c8c8c8"
+      },
+      {
+        "color": "brown",
+        "value": "6a584b"
+      },
+      {
+        "color": "mint dark green",
+        "value": "43696c"
+      },
+      {
+        "color": "dark red",
+        "value": "751e1e"
+      },
+      {
+        "color": "babyblue",
+        "value": "109cbb"
+      }
+    ],
+    "providedSizes": [
+      "All",
+      "6XL",
+      "5XL",
+      "4XL",
+      "3XL",
+      "XXL",
+      "XL",
+      "L",
+      "M",
+      "SM",
+      "XS"
+    ],
+    "providedImages": [
+      "/assets/shop/formal.webp",
+      "/assets/shop/product12.webp",
+      "/assets/shop/product14.webp",
+      "/assets/shop/product15.webp"
+    ],
+    "src": "/assets/shop/formal.webp",
+    "rating": {
+      "count": 0,
+      "avg": 0
+    },
+    "feedbacks": []
   }
 ]

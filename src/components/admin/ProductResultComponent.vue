@@ -1,11 +1,9 @@
 <template>
-    <section v-if="show" class="w-full h-fit px-4 sm:px-12 py-8  bg-gray-100">
-        <div class="bg-white p-4 shadow-md px-4 sm:px-8 py-2 sm:py-4">
-            <h1 id="result" class="font-bold text-2xl capitalize">
-                product preview
-            </h1>
-
-            <div class=" flex flex-wrap mt-4 ">
+    <section v-if="show" class="w-full h-fit px-4 sm:px-6 py-2 bg-gray-100">
+        <div class="bg-white shadow-md py-2 sm:py-4">
+            <h1 id="result" class="px-4 font-bold text-2xl capitalize">
+                product preview </h1>
+            <div class=" flex flex-wrap mt-4 px-4 sm:px-8">
                 <div class="w-full md:w-1/2 flex flex-row gap-2 sm:gap-3">
                     <!-- Options Images -->
                     <div class="w-[25%] flex flex-col">
@@ -31,7 +29,7 @@
                             <p class="capitalize text-xl sm:text-2xl font-medium"><span
                                     class="text-xs text-gray-700">EGP
                                 </span>
-                                {{ calcSale(object.price, object.sale / 100) }}</p>
+                                {{ handlePrice(object.price, object.sale / 100) }}</p>
                             <div v-if="object.sale != 0.0" class="product-price-discount">
                                 <div class="flex relative mt-1">
                                     <p class="text-gray-500">
@@ -54,11 +52,13 @@
                         <!-- colours -->
                         <div>
                             <p class="capitalize text-gray-600 font-medium">provided colors</p>
-                            <div class="colors mt-3 flex flex-wrap">
+                            <div class="colors mt-3 flex flex-wrap gap-y-2">
                                 <label v-for="item in object.providedColors" class="not-import relative">
-                                    <input name="selectedColor" type="radio" :value="item.color" class="appearance-none w-6 
+                                    <div class="w-6 sm:w-8 h-6 sm:h-8 mr-3 border-2 border-gray-600 cursor-pointer rounded"
+                                        :style="{ 'background-color': `#${providedColor(item)}` }" />
+                                    <!-- <input name="selectedColors" type="radio" :value="item.color" class="appearance-none w-6 
                                         sm:w-8 h-6 sm:h-8 mr-3 border-2 border-gray-400 cursor-pointer rounded"
-                                        :style="{ 'background-color': `#${providedColor(item)}` }">
+                                        :style="{ 'background-color': `#${providedColor(item)}` }"> -->
                                 </label>
                             </div>
                         </div>
@@ -66,11 +66,10 @@
                         <!-- sizes -->
                         <div>
                             <p class="capitalize text-gray-600 font-medium">provided sizes</p>
-                            <div class="colors mt-3 flex">
+                            <div class="colors mt-3 flex flex-wrap gap-y-2">
                                 <label v-for="item in object.providedSizes" :key="item"
                                     class="not-import flex items-center cursor-pointer">
-                                    <input type="radio" :value="item" :id="item" class="appearance-none hidden">
-                                    <span class="px-2 md:px-2 py-1 md:py-1 mr-1 border-2 bg-gray-100 text-gray-600
+                                    <span class="px-2 md:px-2 py-1 md:py-1 mr-1 border-2 bg-gray-100 text-gray-700
                                         whitespace-nowrap capitalize font-bold transition-all">
                                         {{ item }}
                                     </span>
@@ -99,11 +98,8 @@ export default {
     },
     data() {
         return {
-            selectedColor: '',
-            main: null,
             colors: dataCategories.colorList,
             // show result
-            selectedImg: null,
             selectedImageIndex: null,
         }
     },
@@ -116,7 +112,7 @@ export default {
             const color = this.colors.find(v => v.color === item.color);
             return color.value;
         },
-        calcSale(price, sale) {
+        handlePrice(price, sale) {
             return (price * (1 - sale)).toFixed(0);
         },
     }

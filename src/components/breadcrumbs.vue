@@ -1,7 +1,6 @@
 <template>
     <p class="pt-4 text-gray-500 capitalize bg-white text-sm">
         <span v-for="(breadcrumb, index) in breadcrumbList" :key="index" class="hover:underline">
-            <!-- Add a clickable link for all breadcrumbs except the last one -->
             <router-link :to="breadcrumb.link">
                 {{ breadcrumb.name }}
             </router-link>
@@ -15,13 +14,19 @@
 
 export default {
     name: 'Breadcrumbs',
+    props: {
+        breadcrumbs: {
+            type: Array,
+            required: true
+        }
+    },
     data() {
         return {
             breadcrumbList: []
         }
     },
-    mounted() {
-        this.updateList();
+    async mounted() {
+        await this.updateList();
     },
     watch: {
         '$route'() {
@@ -29,12 +34,8 @@ export default {
         }
     },
     methods: {
-        routerTo(pRouterTo) {
-            if (this.breadcrumbList[pRouterTo].link)
-                this.$router.push(this.breadcrumbList[pRouterTo].link);
-        },
         updateList() {
-            this.breadcrumbList = this.$route.meta.breadcrumb;
+            this.breadcrumbList = this.breadcrumbs;
         }
     }
 }

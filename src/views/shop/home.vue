@@ -21,7 +21,7 @@
 
         <!-- BRANDS -->
         <section class="brands w-full min-h-20 sm:min-h-24 bg-black flex flex-wrap items-center 
-            justify-evenly gap-x-1 sm:gap-x-4 ">
+            justify-evenly gap-x-1 sm:gap-x-4 px-6 sm:px-12">
             <div class="w-2/12">
                 <img loading="lazy" src="../../assets/images/brands/versace.webp" alt="VERSACE">
             </div>
@@ -130,17 +130,14 @@
         </section>
 
         <!-- become seller -->
-        <section data-aos="fade-up"
+        <section data-aos="fade-up" v-show="!this.user"
             class="become-seller my-4 md:my-8 px-8 lg:px-16 flex flex-wrap justify-between border-y-2 border-y-gray-300 ">
-            <div class="w-full md:w-6/12  sm:mt-0 p-0 md:p-8">
-                <img class="mt-4 sm:m-auto w-full h-full rounded border-2 border-gray-700" loading="lazy"
-                    src="../../assets/images/videos/Add-digital-product.gif" alt="">
-            </div>
-            <div class="w-full md:w-6/12 py-10">
+
+            <div class="w-full md:w-6/12 py-4 md:py-10">
                 <h1 class="whitespace-nowrap font-bold text-lg sm:text-xl md:text-2xl uppercase">
                     <i class="fa-sharp fa-regular fa-cart-flatbed-boxes pr-2"></i> become SHOP.CO seller
                 </h1>
-                <div class="w-full sm:w-11/12">
+                <div class="w-full">
                     <p class="text-sm sm:text-md pt-4 text-gray-500 leading-7">
                         Join Shop.Co as a seller and take control of your online business! Manage your product listings,
                         respond to customer inquiries, and ensure a seamless shopping experience. Your role includes
@@ -148,14 +145,21 @@
                         Start selling effortlessly on Shop.Co today! 🚀<br>
                         Join <span class="text-black font-bold uppercase">Shop.Co</span> sellers and easily list your
                         products for sell.
-                        <p class="my-3 sm:my-6 border-b-2 bg-gray-600" />
+                        <p class="w-full md:w-10/12 my-3 sm:my-6 border-b-2 bg-gray-600" />
                     </p>
                 </div>
-
-                <BaseButton @click="this.$router.push({ name: 'seller-dashboard' })"
-                    class="w-full sm:w-8/12 text-md mt-4 rounded text-sm sm:text-lg">
-                    <span class=" uppercase">join Shop.Co sellers now</span> <i class="fa-light fa-users pl-2"></i>
+                <BaseButton @click="this.$router.push({ name: 'AD-Dashboard' })"
+                    class="whitespace-nowrap text-start 
+                    w-full sm:w-6/12 md:w-8/12 px-6 rounded-sm border-t-0 border-r-0 border-gray-300 flex justify-between">
+                    <p>join Shop.Co sellers now</p>
+                    <div>
+                        <i class="fa-light fa-users pl-2"></i><i class="fa-solid fa-chevrons-right text-sm pl-2"></i>
+                    </div>
                 </BaseButton>
+            </div>
+            <div class="w-full md:w-6/12 flex justify-center items-center px-0 md:px-6 py-4">
+                <img class="w-full h-[16em] lg:h-[20em] rounded border-2 border-gray-300 bg-gray-100 shadow-sm"
+                    loading="lazy" src="../../assets/images/shop/preview/fashion shop-pana2.svg" alt="">
             </div>
         </section>
 
@@ -193,7 +197,7 @@ import BaseFooter from '../../components/BaseFooter.vue';
 import BaseButton from '../../components/BaseButton.vue';
 import BaseCard from '../../components/BaseCard.vue';
 import Data from '../../assets/db/data.json';
-import ProductComponent from '../../components/ProductComponent.vue';
+import ProductComponent from '../../components/shop/ProductComponent.vue';
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 
 import { Swiper, SwiperSlide } from 'swiper/vue';

@@ -6,17 +6,17 @@ const router = createRouter({
         {
             path: "/shop.co.trade/login",
             name: "AD-Login",
-            component: () => import("../../views/users/admin/auth/Login.vue"),
+            component: () => import("../../views/users/auth/Login.vue"),
         },
         {
             path: "/shop.co.trade/register",
             name: "AD-Signup",
-            component: () => import("../../views/users/admin/auth/Signup.vue"),
+            component: () => import("../../views/users/auth/Signup.vue"),
         },
         {
-            path: "/shop.co.trade/foget-password",
+            path: "/shop.co.trade/forget-password",
             name: "AD-ForgetPassword",
-            component: () => import("../../views/users/admin/auth/ForgetPassword.vue"),
+            component: () => import("../../views/users/auth/ForgetPassword.vue"),
         },
         {
             path: "/shop.co.trade/seller/dashboard",
@@ -27,9 +27,8 @@ const router = createRouter({
             },
         },
         {
-            path: "/shop.co.trade/seller/:shopName/:shopId",
+            path: "/shop.co.trade/seller/:shopName/:sId",
             name: "AD-Shop",
-            props: true,
             component: () => import("../../views/users/admin/services/profile/ShopInfo.vue"),
             meta: {
                 // requiredAuth: true
@@ -39,7 +38,7 @@ const router = createRouter({
             path: "/shop.co.trade/seller/inventory",
             name: "AD-Inventory",
             props: true,
-            component: () => import("../../views/users/admin/services/product-services/Inventory.vue"),
+            component: () => import("../../views/users/admin/services/services/Inventory.vue"),
             meta: {
                 requiresTransition: true
                 // requiredAuth: true
@@ -75,7 +74,7 @@ const router = createRouter({
         {
             path: "/shop.co.trade/seller/services/add-product",
             name: "Add-Product",
-            component: () => import("../../views/users/admin/services/product-services/AddProduct.vue"),
+            component: () => import("../../views/users/admin/services/services/AddProduct.vue"),
             meta: {
                 // requiredAuth: true
             },
@@ -83,7 +82,7 @@ const router = createRouter({
         {
             path: "/shop.co.trade/inventory/edit-product/:id",
             name: "Edit-Product",
-            component: () => import("../../views/users/admin/services/product-services/Edit-Product.vue"),
+            component: () => import("../../views/users/admin/services/services/EditProduct.vue"),
             beforeEnter: (to, from, next) => {
                 const productExists = data.find(v => v._id === parseInt(to.params.id));
                 if (productExists) {

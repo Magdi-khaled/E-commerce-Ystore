@@ -51,7 +51,7 @@
                             </router-link>
                         </li>
                         <li class="border-l-[1px] border-b-[1px] border-l-gray-300 rounded-l-md">
-                            <router-link :to="{ name: 'AD-Shop', params: { shopName: 'ZARA', shopId: 1 } }"
+                            <router-link :to="{ name: 'AD-Shop', params: { shopName: shopName, sId: sId } }"
                                 class="block w-full h-full p-3 font-medium capitalize text-black hover:text-gray-600 text-sm">
                                 <i class="fa-brands fa-shopware text-sm pr-1"></i> show career
                             </router-link>
@@ -191,10 +191,11 @@ export default {
     components: { ADNavigation, BaseButton, Calendar, ChartComponent, InFooter },
     data() {
         return {
-            shopName: 'ZARA',
+            sId: 6554437,
+            shopName: 'Xzen-Shop',
             shopOwner: 'Magdi Khaled',
             show: true,
-            servShow: false,
+            servShow: true,
             shopProducts: [],
             currentPage: 1,
             pageSize: 20,

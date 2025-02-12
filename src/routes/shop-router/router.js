@@ -140,13 +140,14 @@ const router = createRouter({
             path: "/shop.co/shop/product/:id",
             name: "Product",
             component: () => import("../../views/shop/shop.product/Product.vue"),
-            breadcrumb: [
-                { name: 'home', link: '/shop.co/home' },
-                { name: 'shop', link: '/shop.co/shop' },
-                { name: 'product', link: '/shop.co/shop/product/:id' },
-            ],
+            meta: {
+                breadcrumb: [
+                    { name: 'home', link: '/shop.co/home' },
+                    { name: 'shop', link: '/shop.co/shop' },
+                    { name: 'product', link: '/shop.co/shop/product/:id' },
+                ]
+            },
             beforeEnter: (to, from, next) => {
-
                 const productExists = data.find(v => v._id === parseInt(to.params.id));
                 if (productExists) {
                     setTimeout(() => {

@@ -46,7 +46,7 @@
                 <i class="fa-solid fa-bars block sm:hidden"></i>
             </p>
             <div v-show="accountDropdown"
-                class="w-fit h-fit bg-white absolute z-50 top-[100%] left-[-2%] border-2 rounded-md hover:text-gray-900">
+                class="w-fit h-fit bg-white absolute z-[60] top-[100%] left-[-2%] border-2 rounded-md hover:text-gray-900">
                 <ul @click.stop class="px-1 text-sm sm:text-md">
                     <li class="p-2">
                         <router-link :to="{ name: 'User-Profile' }" class="hover:opacity-60">
@@ -153,12 +153,13 @@
     <hr>
     <div class="hidden">{{ allv }}</div>
     <div v-show="this.$route.name.split('-')[0] !== 'user'" class="relative">
-        <button @click="scrollLeft" class="prev-btn text-gray-300 bg-gray-200 font-bold absolute z-[100] left-2 
+        <button @click="scrollLeft" class="prev-btn text-gray-300 bg-gray-200 font-bold absolute z-[50] left-2 
         px-2 py-0 sm:py-[1.5px] shadow-sm hover:text-gray-700 hover:bg-gray-400 transition-all duration-100">
             <i class="fa-solid fa-angle-left text-sm sm:text-md"></i>
         </button>
         <ul ref="scrollContainer"
-            class="border-b-[1px] absolute z-50 bg-white w-full px-5 flex justify-between overflow-x-scroll scroll-smooth capitalize text-sm sm:text-[16px] font-medium whitespace-nowrap scrollbar-hidden">
+            class="border-b-[1px] bg-white w-full px-5 flex justify-between overflow-x-scroll scroll-smooth capitalize text-sm sm:text-[16px] font-medium whitespace-nowrap scrollbar-hidden">
+            <!-- class="border-b-[1px] absolute z-[50] bg-white w-full px-5 flex justify-between overflow-x-scroll scroll-smooth capitalize text-sm sm:text-[16px] font-medium whitespace-nowrap scrollbar-hidden"> -->
             <li class="hover:bg-gray-200 text-center py-1 transition-all duration-100"
                 v-for="(item, index) in NavigationItems" :key="index">
                 <router-link class="px-4 sm:px-10 md:px-14 py-1" :to="{ name: item.route }">
@@ -166,14 +167,14 @@
                 </router-link>
             </li>
         </ul>
-        <button @click="scrollRight" class="next-btn text-gray-300 bg-gray-200 font-bold absolute z-[100] right-2 
+        <button @click="scrollRight" class="next-btn text-gray-300 bg-gray-200 font-bold absolute z-[50] right-2 top-0
         px-2 py-[1.5px] shadow-sm hover:text-gray-700 hover:bg-gray-400 transition-all duration-100">
             <i class="fa-solid fa-angle-right text-sm sm:text-md"></i>
         </button>
     </div>
 </template>
 <script>
-import NavigatedCart from '../cart/NavigatedCart.vue';
+import NavigatedCart from '../shop/NavigatedCart.vue';
 import db from '../../assets/db/data.json';
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { mapActions } from 'vuex';

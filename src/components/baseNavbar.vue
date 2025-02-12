@@ -240,7 +240,7 @@
 
 <script>
 import { ref, onMounted, onBeforeUnmount } from 'vue';
-import NavigatedCart from '../components/cart/NavigatedCart.vue';
+import NavigatedCart from '../components/shop/NavigatedCart.vue';
 import BaseButton from '../components/BaseButton.vue';
 import { mapActions } from 'vuex';
 export default {

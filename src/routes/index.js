@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import userRouter, { routerCustomerGuard } from "./user-router/router";
+import userRouter, { routerUserGuard } from "./user-router/router";
 import adminRouter, { routerSellerrGuard } from "./admin-router/router";
 import shopRouter from "./shop-router/router";
 import NotFound from '../components/NotFound.vue';
@@ -30,7 +30,7 @@ const router = createRouter({
 });
 
 // router Guards
-router.beforeEach(routerCustomerGuard);
+router.beforeEach(routerUserGuard);
 router.beforeEach(routerSellerrGuard);
 
 // loading spinner transition

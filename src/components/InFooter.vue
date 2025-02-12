@@ -1,5 +1,5 @@
 <template>
-    <footer class="profile-footer flex items-center justify-between w-full px-8 md:px-16 py-2">
+    <footer class="profile-footer flex items-center justify-between w-full px-2 sm:px-6 py-4">
         <p class="text-gray-500 text-sm">
             © 2024 shop.co. All rights reserved
         </p>

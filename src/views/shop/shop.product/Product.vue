@@ -2,14 +2,14 @@
 <template>
     <UserNavbar v-if="tuser == 'customer'" />
     <BaseNavbar v-else />
-    <div class="productproduct px-4 sm:px-8 ">
-        <Breadcrumbs />
-        <div class=" flex flex-wrap mt-4 ">
+    <Breadcrumbs class="mt-2 px-3 md:px-4 pt-[3px] pb-4" :breadcrumbs="this.$route.meta.breadcrumb" />
+    <div class="px-4 sm:px-8 ">
+        <div class=" flex flex-wrap">
             <div data-aos="fade-up" class="w-full md:w-1/2 flex flex-row gap-2 lg:gap-3">
                 <!-- Options Images -->
                 <div class="w-[25%] lg:w-[22%] flex flex-col">
-                    <div v-for="(image, index) in providedImages" :key="index" class="w-full h-auto p-1 cursor-pointer"
-                        @click="showImage(image, index)">
+                    <div v-for="(image, index) in product?.providedImages" :key="index"
+                        class="w-full h-auto p-1 cursor-pointer" @click="showImage(image, index)">
                         <img :class="{ 'opacity-[1] border-2 border-gray-600': selectedImageIndex == index }"
                             class="opacity-80 h-[6.5em] sm:h-[8em] md:h-[9em] w-full rounded-md border hover:scale-[101.5%] transition-transform duration-200 ease-in-out"
                             :src="image" alt="Product Option" />
@@ -32,25 +32,25 @@
                 </div>
             </div>
             <div data-aos="fade-left" class="p-2 px-4 md:px-6 w-full md:w-1/2">
-                <p class="candal-regular font-bold text-2xl lg:text-4xl uppercase">{{ product.title }}</p>
+                <p class="candal-regular font-bold text-2xl lg:text-3xl capitalize">{{ product.title }}</p>
                 <div class="product-rate">
                     <div class="stars-rate my-2 flex items-center gap-1">
-                        <div v-for="item in Math.floor(product.rate)">
+                        <div v-for="item in Math.floor(product.rating?.avg)">
                             <i class="fa-sharp fa-solid fa-star text-[#db9454]"></i>
                         </div>
-                        <i v-if="isHalf(product.rate)"
+                        <i v-if="isHalf(product.rating?.avg)"
                             class="ffa-sharp fa-regular fa-star-half-stroke text-[#db9454]"></i>
-                        <div v-for="item in clacStars(product.rate)">
+                        <div v-for="item in handleStars(product.rating?.avg)">
                             <i class="fa-sharp fa-regular fa-star empty-star text-[#db9454]"></i>
                         </div>
                         <p class="pl-1 font-semibold">
-                            {{ product.rate }}<span class="text-gray-400">/5</span>
+                            {{ product.rating?.avg }}<span class="text-gray-400">/5</span>
                         </p>
                     </div>
                     <div class="product-price my-4">
                         <p class="capitalize text-xl sm:text-2xl font-medium"><span class="text-xs text-gray-700">EGP
                             </span>
-                            {{ calcSale(product.price, product.sale) }}</p>
+                            {{ handlePrice(product.price, product.sale) }}</p>
                         <div v-if="product.sale != 0.0" class="product-price-discount">
                             <div class="flex relative mt-1">
                                 <p class="text-gray-500">
@@ -67,18 +67,17 @@
                 </div>
                 <div class="w-full md:w-10/12 my-6">
                     <p class="text-gray-600">
-                        This graphic t-shirt which is perfect for any occasion.
-                        Crafted from a soft and breathable fabric, it
-                        offers superior comfort and style.
+                        {{ product.details }}
                     </p>
                 </div>
                 <hr class="my-6">
                 <!-- colours -->
                 <div>
                     <p class="capitalize text-gray-600">select color</p>
-                    <div class="colors mt-3 flex">
-                        <label v-for="item in product.providedColors" class="relative">
-                            <input name="selectedColor" type="radio" v-model="color" :value="item.value" class="appearance-none w-6 sm:w-8 
+                    <div class="colors mt-3 flex flex-wrap w-8/12">
+                        <label v-for="item in product?.providedColors" class="relative">
+                            <input v-if="item.color != 'all'" name="selectedColor" type="radio" v-model="color"
+                                :value="item.value" class="appearance-none w-6 sm:w-8 
                         h-6 sm:h-8 mr-3 border-2 border-gray-400 cursor-pointer rounded"
                                 :class="{ 'outline outline-2 outline-[#000]': color == item.value }"
                                 :style="{ 'background-color': `#${item.value}` }">
@@ -92,11 +91,11 @@
                 <!-- sizes -->
                 <div>
                     <p class="capitalize text-gray-600">choose size</p>
-                    <div class="colors mt-3 flex">
-                        <label v-for="item in product.providedSizes" :key="item"
+                    <div class="colors mt-3 flex flex-wrap w-10/12 gap-y-2">
+                        <label v-for="item in product?.providedSizes" :key="item"
                             class="flex items-center cursor-pointer">
                             <input type="radio" v-model="size" :value="item" :id="item" class="appearance-none hidden">
-                            <span
+                            <span v-if="item != 'All'"
                                 class="px-2 md:px-2 py-1 md:py-1 mr-1 border-2 bg-gray-100 text-gray-600 whitespace-nowrap capitalize font-bold transition-all"
                                 :class="{ 'text-red-400 border-gray-500': size === item }">
                                 {{ item }}
@@ -109,13 +108,14 @@
                     <div class="pagination font-medium grid grid-cols-3 text-lg 
                         border-2 border-black w-[30%] sm:w-[24%]">
                         <div class="bg-gray-900 text-white flex items-center justify-center">
-                            <button @click="quantity--"><i class="fa-solid fa-minus"></i></button>
+                            <button @click="handleQuantity(false)">
+                                <i class="fa-solid fa-minus"></i></button>
                         </div>
                         <div class="bg-white flex items-center justify-center">
                             <p class="px-3 text-lg">{{ quantity }}</p>
                         </div>
                         <div class="bg-gray-900 text-white flex items-center justify-center">
-                            <button @click="quantity++"><i class="fa-solid fa-plus"></i></button>
+                            <button @click="handleQuantity(true)"><i class="fa-solid fa-plus"></i></button>
                         </div>
                     </div>
                     <div class="w-8/12 sm:w-9/12">
@@ -123,6 +123,8 @@
                         </BaseButton>
                     </div>
                 </div>
+                <p v-if="outStock" class="text-red-500 text-sm my-2">You can't order more quantity than what
+                    is in stock.</p>
                 <hr class="my-8 hidden md:block">
             </div>
         </div>
@@ -200,7 +202,7 @@
                         <i class="fa-sharp fa-solid fa-star text-[#db9454]"></i>
                     </div>
                     <i v-if="isHalf(3.5)" class="ffa-sharp fa-regular fa-star-half-stroke text-[#db9454]"></i>
-                    <div v-for="item in clacStars(3.5)">
+                    <div v-for="item in handleStars(3.5)">
                         <i class="fa-sharp fa-regular fa-star empty-star text-[#db9454]"></i>
                     </div>
                     <p class="pl-1 font-medium text-sm sm:text-lg whitespace-nowrap">
@@ -225,9 +227,9 @@
                 </BaseButton>
             </div>
             <!-- reviews -->
-            <div class="h-36 sm:h-auto w-full sm:w-8/12 md:w-9/12">
+            <div class="w-full sm:w-8/12 md:w-9/12">
                 <div v-if="!product.feedbacks.length"
-                    class="bg-gray-50 border-[2px] p-2 h-full rounded flex flex-col justify-center items-center">
+                    class="h-36 sm:h-full  bg-gray-50 border-[2px] p-2  rounded flex flex-col justify-center items-center">
                     <h1 class="font-medium text-sm text-gray-500">no reviews about this product untill
                         now...</h1>
                     <BaseButton @click="navigateAndToggleReview" class="text-sm sm:text-md px-12 mt-2 hidden sm:block">
@@ -316,6 +318,8 @@ import BaseCard from '../../../components/BaseCard.vue';
 import BaseFooter from '../../../components/BaseFooter.vue';
 import { mapActions, mapGetters, } from 'vuex';
 
+import { inject } from "vue";
+
 export default {
     components: { BaseNavbar, UserNavbar, BaseButton, BaseCard, BaseFooter },
     data() {
@@ -329,6 +333,7 @@ export default {
             size: '',
             r_more: false,
             quantity: 1,
+            outStock: '',
             reviewsFilter: 'latest',
             review: "",
             reviewTitle: "",
@@ -345,6 +350,10 @@ export default {
                 pointerEvents: "none",
             },
         }
+    },
+    setup() {
+        const handlePrice = inject('handlePrice');
+        return { handlePrice }
     },
     computed: {
         ...mapGetters(['Get_Products']),
@@ -372,7 +381,6 @@ export default {
         initData() {
             this.product = this.Get_Products.find(v => v._id == this.$route.params.id);
             this.selectedImg = this.product.src;
-            this.providedImages = this.product.providedImages
         },
         zoomLens(event) {
             const mainImage = this.$refs.mainImage;
@@ -405,25 +413,37 @@ export default {
         hideLens() {
             this.lensStyles.display = "none";
         },
-        calcSale(price, sale) {
-            if (sale === 0) return price + '.00';
-            return price - (price * (sale / 100)).toFixed(2);
-        },
+        // handlePrice(price, sale) {
+        //     if (sale === 0) return price.toFixed(2);
+        //     return (price - (price * (sale / 100))).toFixed(2);
+        // },
         isHalf(rate) {
             var b = +Math.trunc(rate);
             return rate != b;
         },
-        clacStars(rate) {
+        handleQuantity(id) {
+            if (id) {
+                if (this.quantity === this.product.quantity) {
+                    this.outStock = true;
+                    return;
+                }
+                this.quantity++;
+            }
+            else {
+                if (this.quantity == 1) return;
+                this.quantity--;
+                this.outStock = false;
+            }
+        },
+        handleStars(rate) {
             return 5 - Math.ceil(rate);
         },
         navigateAndToggleReview() {
-            if (this.tuser != 'customer')
-                this.$router.push({ name: 'customer-login' });
-            else this.customScrollTo('textarea-review');
-        },
-        customScrollTo(id) {
-            const section = document.getElementById(id);
-            section.scrollIntoView({ behavior: 'smooth' }); // Smooth scroll to the section
+            if (this.tuser != 'customer') this.$router.push({ name: 'User-Login' });
+            else {
+                const section = document.getElementById('textarea-review');
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
         },
         selectRating(rating) {
             this.selectedRating = rating;

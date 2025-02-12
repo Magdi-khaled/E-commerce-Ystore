@@ -1,5 +1,5 @@
 <template>
-    <button class="py-3 bg-black text-white font-medium capitalize rounded border-2 border-black
+    <button :class="{ disabled: disabled }" class="py-3 bg-black text-white font-medium capitalize rounded border-2 border-black
             hover:bg-gray-200 hover:text-black transition duration-300 ease-in-out ">
         <slot />
     </button>
@@ -21,7 +21,7 @@ export default {
     color: gray;
     border: transparent;
     /* Example color for disabled state */
-    cursor: not-allowed;
+    cursor: auto;
     opacity: 0.6;
 }
 </style>

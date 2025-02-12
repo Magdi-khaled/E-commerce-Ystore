@@ -2,36 +2,47 @@
     <UserNavbar v-if="user == 'customer'" :currentlyShop="true" />
     <BaseNavbar v-else />
     <div class="bg-gray-100">
-
-        <Breadcrumbs class="px-3 md:px-4 pt-[3px] pb-4" />
-        <section class="shop w-[100%] px-3 md:px-6 pb-4 m-auto bg-white ">
-            <div class="flex gap-4 ">
+        <Breadcrumbs class="mt-2 px-3 md:px-4 pt-[3px] pb-4" :breadcrumbs="this.$route.meta.breadcrumb" />
+        <section class="px-3 md:px-6 pb-4 m-auto bg-white">
+            <div class="flex gap-4">
 
                 <FilterComponent class=" w-[19%]" :showFilter="showFilter" @closeFilter="showFilter = false" />
                 <div class="pl-0 md:pl-2 w-full">
                     <!-- Shop Header -->
                     <div class="flex items-center justify-between font-medium mr-1 sm:mr-2 md:mr-3 mt-3 sm:mt-0">
-                        <p class="whitespace-nowrap text-xs sm:text-[14px] text-gray-400 font-medium">
-                            Showing 1-20 from total <span class="text-black"> {{ shopProducts.length }}</span> for
-                            "<span class="text-black capitalize"> {{ allv }}</span>"
-                        </p>
+                        <div class="flex items-center gap-4">
+                            <p class="whitespace-nowrap text-xs sm:text-[14px] text-gray-400 font-medium">
+                                Showing 1-20 from total <span class="text-black"> {{ shopProducts.length }}</span> for
+                                "<span class="text-black capitalize"> {{ allv }}</span>"
+                            </p>
+                            <div v-if="this.asPopular" class="w-5/12 flex items-center gap-2 text-black border-2
+                            border-gray-500 cursor-pointer p-[5px] text-sm rounded-full transition-all duration-100">
+                                <button @click="this.asUsual = true, this.asPopular = !this.asPopular">
+                                    <i class="fa-regular fa-xmark hover:text-gray-500 "></i>
+                                </button>
+                                <p>
+                                    {{ asUsual ? '' : 'Most popular' }}
+                                </p>
+                            </div>
+                        </div>
                         <div v-if="!filterButton" class="flex justify-between whitespace-nowrap text-sm capitalize">
-                            sort by:
+                            showed by:
                             <div class="pl-1 relative z-30 ">
                                 <button @click="mostPopular = !mostPopular"
                                     class="capitalize text-black transition hover:bg-gray-200 rounded-md">
-                                    most popular <i class="fa-solid fa-chevron-down text-md"></i>
+                                    {{ asUsual ? 'as usual' : 'as popular' }} <i
+                                        class="fa-solid fa-chevron-down text-md"></i>
                                 </button>
                                 <div v-if="mostPopular"
-                                    class="w-full rounded-sm border-2 mt-1 text-black bg-white absolute">
-                                    <button @click="ascending = true"
-                                        class="w-full text-start capitalize px-1 hover:bg-gray-200 flex items-center justify-between">
-                                        ascending <i class="fa-solid fa-arrow-up-wide-short"></i>
+                                    class="w-fit rounded-sm border-2 mt-1 text-black bg-white absolute right-[0%]">
+                                    <button @click="asPopular = true, mostPopular = false, asUsual = false"
+                                        class="w-full capitalize px-1 hover:bg-gray-200 flex items-center justify-between">
+                                        most popular <i class="fa-solid fa-arrow-up-wide-short pl-2"></i>
                                     </button>
                                     <hr>
-                                    <button @click="descending = true"
-                                        class="w-full text-start capitalize px-1 hover:bg-gray-200 flex items-center justify-between">
-                                        descending <i class="fa-solid fa-arrow-down-wide-short"></i>
+                                    <button @click="asUsual = true, mostPopular = false, asPopular = false"
+                                        class="w-full capitalize px-1 hover:bg-gray-200 flex items-center justify-between">
+                                        as usual <i class="fa-solid fa-arrow-down-wide-short pl-2"></i>
                                     </button>
                                 </div>
                             </div>
@@ -71,8 +82,8 @@
 <script>
 import BaseNavbar from '../../components/BaseNavbar.vue';
 import UserNavbar from '../../components/user/UserNavbar.vue';
-import FilterComponent from '../../components/cart/FilterComponent.vue';
-import ProductComponent from '../../components/ProductComponent.vue';
+import FilterComponent from '../../components/shop/FilterComponent.vue';
+import ProductComponent from '../../components/shop/ProductComponent.vue';
 import BaseFooter from '../../components/BaseFooter.vue';
 
 import { onMounted, onBeforeUnmount, ref } from 'vue';
@@ -86,8 +97,8 @@ export default {
             shopProducts: [],
             currentPage: 1,
             pageSize: 20,
-            ascending: false,
-            descending: false,
+            asPopular: false,
+            asUsual: true,
             showFilter: false,
             mostPopular: false
         }

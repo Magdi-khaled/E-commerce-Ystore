@@ -1,16 +1,16 @@
 <template>
     <!-- hidden navbar -->
-    <nav class="admin-navbar flex items-center justify-between px-2 sm:px-4 py-2 bg-white" :class="$attrs.class">
+    <nav class="admin-navbar flex items-center justify-between px-2 sm:px-6 py-2 bg-white"
+        :class="[$attrs.class, { 'sm:px-[14px]': dashboard }]">
         <div class="w-8/12 lg:w-full flex items-center justify-between"
             :class="{ 'justify-end': sm, 'w-full': !show || full }">
-            <div v-if="this.$route.name === 'AD-Dashboard'">
-                <button v-if="!medium && dashboard" @click="handleSide"
-                    class="w-10 sm:w-12 text-xl hover:text-gray-600">
-                    <i v-if="show" class="fa-regular fa-left-to-line text-md"></i>
-                    <i v-else class="fa-solid fa-bars text-md "></i>
+            <div v-if="this.$route.name === 'AD-Dashboard'" class="pr-4">
+                <button v-if="!medium && dashboard" @click="handleSide" class="text-xl hover:text-gray-600">
+                    <i v-if="show" class="fa-regular fa-left-to-line"></i>
+                    <i v-else class="fa-solid fa-bars"></i>
                 </button>
                 <button v-else-if="medium && dashboard" @click="handleSmallSide"
-                    class="w-8 sm:w-16 text-xl hover:text-gray-600">
+                    class="text-xl hover:text-gray-600 pr-4">
                     <i class="fa-regular fa-bars text-md"></i>
                 </button>
             </div>
@@ -28,7 +28,7 @@
             <div class="w-5/12 md:w-3/12 flex justify-between items-center">
                 <div class="flex gap-2 sm:gap-3 md:gap-4">
                     <button class=""
-                        @click="this.$router.push({ name: 'AD-Shop', params: { shopName: 'ZARA', shopId: 6123 } })"
+                        @click="this.$router.push({ name: 'AD-Shop', params: { shopName: shopName, sId: sId } })"
                         title="Your Shop Profile">
                         <i class="fa-sharp fa-regular fa-store p-1 mr-2 text-xl md:text-2xl"></i>
                     </button>
@@ -74,6 +74,8 @@ export default {
     },
     data() {
         return {
+            sId: 6554437,
+            shopName: 'Xzen-Shop',
             inheritAttrs: false, // to prevent inheriting class from parent
             full: true,
             searchTxt: '',
@@ -94,9 +96,6 @@ export default {
         },
         handleSide() {
             this.show = !this.show;
-            // this.hideSide = !this.hideSide;
-            // this.showSide = !this.showSide;
-            // console.log(this.hideSide);
             this.$emit('toggleSidebar', this.computedShow);
         },
         handleSmallSide() {
