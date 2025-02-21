@@ -1,5 +1,5 @@
 <template>
-    <button :class="{ disabled: disabled }" class="py-3 bg-black text-white font-medium capitalize rounded border-2 border-black
+    <button :class="{ disabled: disabled }" class="py-3 bg-black text-white whitespace-nowrap font-medium capitalize rounded border-2 border-black
             hover:bg-gray-200 hover:text-black transition duration-300 ease-in-out ">
         <slot />
     </button>

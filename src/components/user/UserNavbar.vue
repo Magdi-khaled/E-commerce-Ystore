@@ -1,9 +1,10 @@
 <template>
-    <nav class="flex flex-row flex-wrap items-center justify-between px-6 lg:px-12 py-4 ">
+    <nav class="flex flex-row flex-wrap items-center justify-between px-2 sm:px-6 lg:px-12 py-4 ">
         <!-- LOGO SHOP.CO -->
-        <div class="w-[11%]" :class="{ 'w-[27%]': sm }">
+        <!-- <div class="w-[9%]" :class="{ 'w-[27%]': sm }"> -->
+        <div class="w-2/12 sm:w-[15%] md:w-[12%] lg:w-[9%]">
             <router-link :to="{ name: 'Home' }">
-                <img src="../../assets/images/logo/logo.webp" alt="SHOP.CO">
+                <img src="../../assets/images/logo/logo.PNG" alt="SHOP.CO">
             </router-link>
         </div>
         <div v-if="!sm" class="w-1/12 font-bold text-sm whitespace-nowrap">
@@ -18,24 +19,31 @@
                 go to shop <i class="fa-solid fa-shop pl-2"></i>
             </button>
         </div>
-        <div v-if="!sm" class="w-4/12 lg:w-5/12 search-bar relative hidden sm:block">
-            <label for="userSreachTxt"
+        <div v-if="!sm" class="w-4/12 md:w-3/12 lg:w-5/12 search-bar relative hidden sm:block">
+            <label for="searchText"
                 class="text-sm sm:text-md flex w-full bg-gray-100 border-2 rounded-sm py-[6px] px-3">
                 <i class="fa-regular fa-magnifying-glass text-sm sm:text-[16px] text-gray-400 pr-2"></i>
-                <input name="searchText" v-model="userSreachTxt" @change="handleSearchResult" type="text"
-                    placeholder="What are you looking for?" class="w-10/12 bg-[#f2f2f2] outline-none">
+                <input name="searchText" id="searchText" v-model="userSreachTxt" @change="handleSearchResult"
+                    type="text" autofill="off" placeholder="What are you looking for?"
+                    class="w-full bg-[#f2f2f2] outline-none">
             </label>
-            <ul v-if="userSreachTxt" class="w-full absolute z-50 bg-white border-2 border-t-0 rounded-b-md">
-                <template v-for="item in handleSearchResult" :key="index" class="w-full flex flex-col">
-                    <li class="w-96 py-2">
-                        <router-link to="" class="hover:bg-[#2f2f2f] hover:text-white  px-8 py-2 cursor-pointer">
-                            {{ item }}
-                        </router-link>
-                    </li>
-                </template>
-            </ul>
+            <div v-show="userSreachTxt" class="w-full absolute z-50 bg-white ">
+                <div v-if="handleSearchResult.length"
+                    class="max-h-[15em] overflow-y-auto border-2 border-t-0 rounded-b-sm">
+                    <ul class="mb-4">
+                        <h1 class="px-4 py-2 text-gray-500 capitalize text-sm">matching keywords</h1>
+                        <li v-for="item in handleSearchResult"
+                            class="max-h-[3em] overflow-hidden text-ellipsis text-sm md:text-md leading-7 border-b-[1px]">
+                            <router-link :to="{ name: 'Product', params: { id: item._id } }"
+                                class="block w-full h-full first-letter:capitalize hover:bg-gray-700 hover:text-white px-6 py-2 cursor-pointer">
+                                {{ item.title }}
+                            </router-link>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div class="w-3/12 sm:w-1/12 font-bold capitalize relative cursor-pointer whitespace-nowrap hover:text-gray-600"
+        <div class="w-3/12 sm:w-2/12 md:w-1/12 font-bold capitalize relative cursor-pointer whitespace-nowrap hover:text-gray-600"
             @click="accountDropdown = !accountDropdown">
             <h1 class="text-sm hidden sm:block">ahlan {{ user.name.split(' ')[0] }}! <i
                     class="fa-solid fa-sort-down pl-1 sm:pl-2"></i>
@@ -45,64 +53,66 @@
                 <span v-else>your account</span>
                 <i class="fa-solid fa-bars block sm:hidden"></i>
             </p>
-            <div v-show="accountDropdown"
-                class="w-fit h-fit bg-white absolute z-[60] top-[100%] left-[-2%] border-2 rounded-md hover:text-gray-900">
-                <ul @click.stop class="px-1 text-sm sm:text-md">
-                    <li class="p-2">
-                        <router-link :to="{ name: 'User-Profile' }" class="hover:opacity-60">
-                            <i class="fa-solid fa-user pr-1"></i>
-                            profile
-                        </router-link>
-                    </li>
-                    <hr>
-                    <li class="p-2">
-                        <router-link :to="{ name: 'User-Qrcode' }" class="hover:opacity-60">
-                            <i class="fa-solid fa-qrcode pr-1"></i> QR code</router-link>
-                    </li>
-                    <hr>
-                    <li class="p-2">
-                        <router-link :to="{ name: 'User-Cart' }" class="hover:opacity-60">
-                            <i class="fa-solid fa-heart pr-1"></i> wishlist</router-link>
-                    </li>
-                    <hr>
-                    <li class="p-2">
-                        <router-link :to="{ name: 'User-Orders' }" class="hover:opacity-60">
-                            <i class="fa-solid fa-list-dropdown pr-1"></i> orders</router-link>
-                    </li>
-                    <hr>
-                    <li class="p-2">
-                        <router-link :to="{ name: 'User-Returns' }" class="hover:opacity-60">
-                            <i class="fa-duotone fa-regular fa-rotate-left pr-1"></i>
-                            returns</router-link>
-                    </li>
-                    <hr>
-                    <li class="p-2">
-                        <router-link :to="{ name: 'User-Payments' }" class="hover:opacity-60">
-                            <i class="fa-duotone fa-solid fa-wallet pr-1"></i>
-                            payments</router-link>
-                    </li>
-                    <hr>
-                    <li class="p-2">
-                        <router-link :to="{ name: 'User-Notifications' }" class="hover:opacity-60">
-                            <i class="fa-solid fa-bell pr-1"></i>
-                            notifactions</router-link>
-                    </li>
-                    <hr>
-                    <li class="p-2">
-                        <router-link :to="{ name: 'User-SecuritySittings' }" class="hover:opacity-60">
-                            <i class="fa-solid fa-lock pr-1"></i>
-                            security sittings</router-link>
-                    </li>
-                    <hr>
-                    <li class="p-2">
-                        <button @click="uLogout" class="hover:opacity-60">
-                            <i class="fa-solid fa-door-open"></i>
-                            signout
-                        </button>
-                    </li>
-                    <hr>
-                </ul>
-            </div>
+            <transition name="fade">
+                <div v-show="accountDropdown"
+                    class="w-fit h-fit bg-white absolute z-[60] top-[100%] left-[-2%] border-2 rounded-md hover:text-gray-900">
+                    <ul @click.stop class="px-1 text-sm sm:text-md">
+                        <li class="p-2">
+                            <router-link :to="{ name: 'User-Profile' }" class="hover:opacity-60">
+                                <i class="fa-solid fa-user pr-1"></i>
+                                profile
+                            </router-link>
+                        </li>
+                        <hr>
+                        <li class="p-2">
+                            <router-link :to="{ name: 'User-Qrcode' }" class="hover:opacity-60">
+                                <i class="fa-solid fa-qrcode pr-1"></i> QR code</router-link>
+                        </li>
+                        <hr>
+                        <li class="p-2">
+                            <router-link :to="{ name: 'User-Cart' }" class="hover:opacity-60">
+                                <i class="fa-solid fa-heart pr-1"></i> wishlist</router-link>
+                        </li>
+                        <hr>
+                        <li class="p-2">
+                            <router-link :to="{ name: 'User-Orders' }" class="hover:opacity-60">
+                                <i class="fa-solid fa-list-dropdown pr-1"></i> orders</router-link>
+                        </li>
+                        <hr>
+                        <li class="p-2">
+                            <router-link :to="{ name: 'User-Returns' }" class="hover:opacity-60">
+                                <i class="fa-duotone fa-regular fa-rotate-left pr-1"></i>
+                                returns</router-link>
+                        </li>
+                        <hr>
+                        <li class="p-2">
+                            <router-link :to="{ name: 'User-Payments' }" class="hover:opacity-60">
+                                <i class="fa-duotone fa-solid fa-wallet pr-1"></i>
+                                payments</router-link>
+                        </li>
+                        <hr>
+                        <li class="p-2">
+                            <router-link :to="{ name: 'User-Notifications' }" class="hover:opacity-60">
+                                <i class="fa-solid fa-bell pr-1"></i>
+                                notifactions</router-link>
+                        </li>
+                        <hr>
+                        <li class="p-2">
+                            <router-link :to="{ name: 'User-SecuritySittings' }" class="hover:opacity-60">
+                                <i class="fa-solid fa-lock pr-1"></i>
+                                security sittings</router-link>
+                        </li>
+                        <hr>
+                        <li class="p-2">
+                            <button @click="uLogout" class="hover:opacity-60">
+                                <i class="fa-solid fa-door-open"></i>
+                                signout
+                            </button>
+                        </li>
+                        <hr>
+                    </ul>
+                </div>
+            </transition>
         </div>
         <span v-if="sm" class="px-4">|</span>
         <!-- <div class="w-2/12 md:w-1/12 border-r-2 sm:border-x-2 px-2 font-bold capitalize">
@@ -111,32 +121,56 @@
                 <i class="fa-regular fa-heart text-lg pl-0 sm:pl-2"></i>
             </router-link>
         </div> -->
-        <div class="w-2/12 lg:w-1/12 px-2 font-bold capitalize whitespace-nowrap">
-            <button class="ml-2 w-full flex items-center justify-end text-sm sm:text-md hover:text-gray-500"
+        <div
+            class="w-4/12 sm:w-3/12 md:w-[15%] lg:w-2/12 flex justify-between font-semibold capitalize whitespace-nowrap">
+            <router-link class="w-8/12 flex items-center justify-center text-md hover:text-gray-600" to="">
+                <span class="tracking-wide text-sm sm:text-md">wishlist</span>
+                <i class="fa-regular fa-heart text-lg pl-1"></i>
+                <span class="text-xs pt-2 mt-1">({{ 1 }})</span>
+            </router-link>
+            <button class="ml-2 w-4/12 relative flex items-center justify-end text-xl hover:text-gray-500"
                 @click="cartOn = true">
-                <!-- <span class="tracking-wide hidden sm:block"> -->
-                <span class="tracking-wide">your cart </span>
-                <i class="fa-solid fa-cart-shopping pl-2"></i>
+                <!-- <span class="tracking-wide">your cart </span> -->
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="bg-white pt-2 text-xs mt-1">
+                    ({{ Get_CartItems.length }})</span>
             </button>
         </div>
+        <!-- <div class="w-2/12 lg:w-1/12 px-2 font-bold capitalize whitespace-nowrap">
+            <button class="ml-2 w-full flex items-center justify-end text-sm sm:text-md hover:text-gray-500"
+                @click="cartOn = true">
+                <span class="tracking-wide">your cart </span>
+                <i class="fa-solid fa-cart-shopping pl-2"></i>
+                <span class="text-xs mr-1 mt-1">({{ Get_CartItems.length }})</span>
+            </button>
+        </div> -->
         <!-- side-shopping-cart -->
         <NavigatedCart :showCart="cartOn" @closeCart="cartOn = false" />
 
         <div v-if="sm" class="w-full relative pt-4">
-            <label for="" class="relative">
-                <input name="searchText" v-model="userSreachTxt" @change="handleSearchResult" type="text"
-                    placeholder="What are you looking for?"
-                    class="w-full mb-2 p-2 pl-8 bg-[#f2f2f2] outline-none rounded-sm text-sm focus:bg-white focus:border-[1px]">
+            <label for="searchText" class="relative">
+                <input name="searchText" id="searchText" v-model="userSreachTxt" @change="handleSearchResult"
+                    type="text" placeholder="What are you looking for?"
+                    class="w-full p-2 pl-8 bg-[#f2f2f2] outline-none rounded-sm text-sm focus:bg-white focus:border-[1px]">
                 <i class="fa-regular fa-magnifying-glass absolute left-[10px] top-[18%] text-md text-gray-400"></i>
-                <ul v-if="userSreachTxt" class=" absolute bg-white w-full z-50 rounded-b-xl">
-                    <template v-for="item in handleSearchResult" :key="index">
-                        <li class="hover:bg-[#2f2f2f] hover:text-white px-10 py-2 cursor-pointer">{{ item }}
-                        </li>
-                    </template>
-                </ul>
+                <div v-show="userSreachTxt" class="w-full absolute z-[100] bg-white ">
+                    <div v-if="handleSearchResult.length"
+                        class="max-h-[25em] overflow-y-auto border-2 border-gray-600 border-t-0 rounded-b-sm">
+                        <ul class="mb-4">
+                            <h1 class="px-4 py-2 text-gray-500 capitalize text-sm">matching keywords</h1>
+                            <li v-for="item in handleSearchResult"
+                                class="max-h-[3em] overflow-hidden text-ellipsis text-sm md:text-md leading-7 border-b-[1px]">
+                                <router-link :to="{ name: 'Product', params: { id: item._id } }"
+                                    class="block w-full h-full first-letter:capitalize hover:bg-gray-700 hover:text-white px-6 py-2 cursor-pointer">
+                                    {{ item.title }}
+                                </router-link>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </label>
         </div>
-        <div v-if="sm" class="w-full font-bold text-sm whitespace-nowrap flex justify-between">
+        <div v-if="sm" class="w-full mt-2 font-bold text-sm whitespace-nowrap flex justify-between">
             <router-link to="/shop.co/user/profile" class="flex sm:block hover:opacity-60">
                 <h1 class="capitalize text-xs">
                     <i class="fa-regular fa-location-dot"></i> address :
@@ -178,6 +212,7 @@ import NavigatedCart from '../shop/NavigatedCart.vue';
 import db from '../../assets/db/data.json';
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { mapActions } from 'vuex';
+import { mapGetters } from 'vuex/dist/vuex.cjs.js';
 
 export default {
     name: 'UserNavbar',
@@ -192,8 +227,9 @@ export default {
                 address: 'Giza - El-warrak'
             },
             hiddenNav: false,
+            show: false,
             cartOn: false,
-            products: db.map(v => v.title),
+            products: db,
             NavigationItems: [
                 { label: "Home", route: "Home" },
                 { label: "men's fashion", route: "men-fashion" },
@@ -207,16 +243,28 @@ export default {
             ],
         }
     },
+    setup() {
+        const sm = ref(window.innerWidth < 782);
+        const updateShow = () => {
+            sm.value = window.innerWidth < 782;
+        };
+        onMounted(() => {
+            window.addEventListener('resize', updateShow);
+        });
+        onBeforeUnmount(() => {
+            window.removeEventListener('resize', updateShow);
+        });
+        return {
+            sm
+        }
+    },
     computed: {
+        ...mapGetters(['Get_CartItems']),
         handleSearchResult() {
             const searchedList = this.products.filter((item) =>
-                item.toLowerCase().toString().includes(this.userSreachTxt.toLowerCase())
+                item.title.toLowerCase().toString().includes(this.userSreachTxt.toLowerCase())
             );
-            console.log('searching...');
-            setTimeout(() => {
-                this.show = false;
-            }, 1000);
-            this.show = true;
+            // setTimeout(() => {  }, 1200);
             return searchedList;
         },
         allv() {
@@ -230,6 +278,7 @@ export default {
                 "sport-wear": "all sport wear",
                 "girls-wear": "all girls fashion",
                 "boys-wear": "all boys fashion",
+                "formal-wear": "all formal wear",
             };
             if (routeMapping[this.$route.name])
                 sessionStorage.setItem('allT', routeMapping[this.$route.name]);
@@ -250,22 +299,29 @@ export default {
                 "sport-wear": "all sport wear",
                 "girls-wear": "all girls fashion",
                 "boys-wear": "all boys fashion",
+                "formal-wear": "all formal wear",
             };
             console.log('current:', to.name);
             sessionStorage.setItem('allT', routeMapping[to.name]);
+
+            this.$nextTick(() => {
+                this.allT = sessionStorage.getItem('allT') || '';
+            }).then(() => {
+                window.location.reload();
+            });
             // Perform any logic needed on route change
         }
     },
     methods: {
-        ...mapActions(['userLogout']),
+        ...mapActions(['UserLogout']),
         async uLogout() {
             try {
-                await this.userLogout();
+                await this.UserLogout();
                 setTimeout(() => {
-                    this.$router.push({ name: 'customer-login' });
+                    this.$router.push({ name: 'User-Login' });
                 }, 1500)
             } catch (error) {
-                console.error('logout error : ', error);
+                console.error('Logout Error : ', error);
             }
         },
         scrollLeft() {
@@ -275,23 +331,9 @@ export default {
             this.$refs.scrollContainer.scrollBy({ left: 200, behavior: "smooth" });
         },
     },
-    setup() {
-        const sm = ref(window.innerWidth < 880);
-        const updateShow = () => {
-            sm.value = window.innerWidth < 880;
-        };
-        onMounted(() => {
-            window.addEventListener('resize', updateShow);
-        });
-        onBeforeUnmount(() => {
-            window.removeEventListener('resize', updateShow);
-        });
-        return {
-            sm
-        }
-    }
 }
 </script>
+
 <style scoped>
 /* Hide scrollbar */
 .scrollbar-hidden::-webkit-scrollbar {
@@ -301,5 +343,15 @@ export default {
 .scrollbar-hidden {
     -ms-overflow-style: none;
     scrollbar-width: none;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.2s ease-in-out;
+}
+
+.fade-enter,
+.fade-leave-to {
+    opacity: 0;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <UserNavbar v-if="tuser === 'customer'" />
+    <UserNavbar v-if="user === 'customer'" />
     <BaseNavbar v-else />
     <div class="px-6 sm:px-16 mb-[10em] mt-2">
         <h1 class="whitespace-nowrap text-xl sm:text-2xl font-bold uppercase py-5"
@@ -21,15 +21,18 @@
                     </router-link>
                 </div>
             </div>
-            <div v-else class=" w-full lg:w-7/12 border-2 border-gray-400 rounded mb-6 lg:mb-0">
+            <div v-else class=" w-full h-fit lg:w-7/12 border-2 border-gray-400 rounded mb-6 lg:mb-0">
                 <div v-for="item in cartItems" class="cart-item flex flex-wrap relative">
-                    <button class="text-lg sm:text-xl absolute right-[4%] sm:right-[2%] top-[11%]" title="remove-item">
+                    <button @click="removeCartItem(item._id)"
+                        class="text-lg sm:text-xl absolute right-[4%] sm:right-[2%] top-[11%]" title="remove-item">
                         <i class="fa-solid fa-trash-can text-red-600 hover:text-red-400 cursor-pointer"></i>
                     </button>
 
                     <div class="w-3/12 h-auto m-2 sm:m-3">
-                        <img class="w-full sm:w-11/12 h-[7em] sm:h-[8em] md:h-[10em] rounded border-2 border-gray-400"
-                            :src="item.imgSrc" alt="cart-product">
+                        <router-link :to="{ name: 'Product', params: { id: item._id } }">
+                            <img class="w-full sm:w-11/12 h-[7em] sm:h-[8em] md:h-[10em] rounded border-2 border-gray-400"
+                                :src="item.src" alt="cart-product">
+                        </router-link>
                     </div>
                     <div class="w-[65%] sm:w-[70%] py-4 flex flex-col justify-between">
                         <div>
@@ -46,18 +49,19 @@
                             <p class="font-bold text-sm sm:text-xl capitalize">
                                 <span class="text-gray-600 text-sm">EGP </span>{{ item.price }}
                             </p>
-                            <div
-                                class="text-sm sm:text-md font-medium grid grid-cols-3 border-[1.5px] border-black w-[30%] sm:w-[25%]">
+
+                            <div class="pagination font-medium grid grid-cols-3 text-lg
+                                        border-2 border-black w-[30%] sm:w-[24%]">
                                 <div class="bg-gray-900 text-white flex items-center justify-center">
-                                    <button @click="item.quantity--" class="block w-full h-full py-2 px-1">
-                                        <i class="fa-solid fa-minus"></i></button>
+                                    <button @click="handleQuantity(false, item)">
+                                        <i class="fa-solid fa-minus text-sm sm:text-md"></i></button>
                                 </div>
-                                <div class="bg-white flex items-center justify-center">
-                                    <p class="text-sm sm:text-lg">{{ item.quantity }}</p>
+                                <div class="text-black bg-white flex items-center justify-center">
+                                    <p class="px-3 text-lg">{{ item.orderQuantity }}</p>
                                 </div>
                                 <div class="bg-gray-900 text-white flex items-center justify-center">
-                                    <button @click="item.quantity++" class="block w-full h-full py-2 px-1"><i
-                                            class="fa-solid fa-plus"></i></button>
+                                    <button @click="handleQuantity(true, item)"><i
+                                            class="fa-solid fa-plus text-sm sm:text-md"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -65,8 +69,9 @@
                     <hr class="w-full bg-gray-300 block">
                 </div>
             </div>
-            <CheckoutComponent v-if="cartItems.length" :subTotal="calcSubTotal" :Discount="0.2" :deliveryFees="15"
-                :cartEmpty="!cartItems.length ? true : false" class="w-full lg:w-4/12 rounded h-fit border-gray-400" />
+            <CheckoutComponent :subTotal="subTotal" :discount="discount" :deliveryFees="15"
+                :cartEmpty="cartItems.length ? false : true"
+                class="w-full lg:w-4/12 my-[0] rounded h-fit border-gray-400" />
         </div>
     </div>
     <BaseFooter />
@@ -78,44 +83,66 @@ import UserNavbar from '../../../../components/user/UserNavbar.vue';
 import BaseButton from '../../../../components/BaseButton.vue';
 import CheckoutComponent from '../../../../components/shop/CheckoutComponent.vue';
 import BaseFooter from '../../../../components/BaseFooter.vue';
-
+import { inject } from 'vue';
 export default {
     components: { BaseNavbar, UserNavbar, BaseButton, CheckoutComponent, BaseFooter },
     data() {
         return {
-            tuser: localStorage.getItem('user'),
-            cartItems: [],
+            user: localStorage.getItem('user'),
         }
     },
     computed: {
         ...mapGetters(['Get_CartItems']),
-        calcSubTotal() {
+        cartItems() {
+            return this.Get_CartItems;
+        },
+        subTotal() {
             var total = 0;
-            this.Get_CartItems.forEach(item => {
-                console.log(item.price);
-                total += item.price * item.quantity;
+            this.cartItems.forEach(item => {
+                total += this.handlePrice(item.price, item.sale) * item.orderQuantity;
             });
             return total;
+        },
+        discount() {
+            var discount = 0;
+            this.cartItems.forEach(item => {
+                discount += (item.sale / 100) * item.price * item.orderQuantity;
+            }); // 0.12 * 1200 * 1
+            return discount;
         }
+    },
+    setup() {
+        const handlePrice = inject('handlePrice');
+        const handleQuantity = inject('handleQuantity');
+        return { handlePrice, handleQuantity }
     },
     created() {
         this.fetchData();
     },
     methods: {
-        ...mapActions(['FetchCartItems']),
+        ...mapActions(['FetchCartItems', 'RemoveCartItem']),
         async fetchData() {
             try {
-                // await this.FetchCartItems();
+                await this.FetchCartItems();
                 this.initData();
             }
             catch (error) {
                 console.error('Fetching Cart Error: ', error);
             }
         },
+        async removeCartItem(id) {
+            try {
+                await this.RemoveCartItem(id);
+                this.show = true;
+                setTimeout(() => { this.show = false }, 1500);
+            }
+            catch (error) {
+                console.error('Remove Item Error: ', error);
+            }
+        },
         initData() {
             this.cartItems = this.Get_CartItems;
-        }
+        },
     }
 }
 </script>
-<style scoped></style>

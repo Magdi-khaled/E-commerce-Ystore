@@ -102,8 +102,8 @@
                 </button>
 
                 <div :class="{ active: !coloring }" class="colors w-full mb-4">
-                    <label v-for="colorItem in colorList" class="relative">
-                        <input type="radio" v-model="color" :value="colorItem.color"
+                    <label :for="colorItem.color" v-for="colorItem in colorList" class="relative">
+                        <input type="radio" v-model="color" :value="colorItem.color" :id="colorItem.color"
                             class="appearance-none w-6 h-6 m-1 border-2 border-gray-400 cursor-pointer rounded-sm"
                             :class="{
                                 'outline outline-2 outline-black': color == colorItem.color,
@@ -142,20 +142,13 @@
                     </div>
                 </div>
             </div>
-            <!-- apply button -->
-            <!-- <hr class="my-4" />
-        <div>
-            <BaseButton @click="applyFilters" class="w-full">
-                apply filters
-            </BaseButton>
-        </div> -->
         </div>
     </Transition>
     <!-- </Teleport> -->
 </template>
 <script>
 import BaseButton from "../../components/BaseButton.vue";
-import categories from "../../assets/db/shop.categories.data.json";
+import db from "../../assets/db/shop.categories.data.json";
 import noUiSlider from "nouislider";
 import { ref, onMounted, onBeforeUnmount } from "vue";
 
@@ -170,8 +163,7 @@ export default {
     components: { BaseButton },
     data() {
         return {
-            // allT: sessionStorage.getItem('allT'),
-            allT: sessionStorage.getItem('allT'),
+            allT: sessionStorage.getItem('allT') || '',
             pricing: true,
             coloring: true,
             sizing: true,
@@ -181,12 +173,10 @@ export default {
             color: "",
             clothesType: [],
             selectedSize: [],
-            catList: categories.categories,
-            colorList: categories.colorList,
-            sizeList: categories.sizeList,
-            FilterStyle: categories.filterStyle,
-            // Define a mapping between `allT` values and route names
-
+            catList: db.categories,
+            colorList: db.colorList,
+            sizeList: db.sizeList,
+            FilterStyle: db.filterStyle,
         };
     },
     async created() {
@@ -204,6 +194,7 @@ export default {
                 "all sport wear": "sport-wear",
                 "all girls fashion": "girls-wear",
                 "all boys fashion": "boys-wear",
+                "all formal wear": "formal-wear",
             };
             const routeName = routeMapping[newValue];
 
@@ -214,6 +205,12 @@ export default {
                     console.error("Navigation error:", err);
                 });
             }
+        },
+        $route(to, from) {
+            // this.fetchData(); // Function to fetch new data when the route changes
+            this.$nextTick(() => {
+                this.allT = sessionStorage.getItem('allT') || '';
+            });
         },
     },
     computed: {
@@ -265,13 +262,6 @@ export default {
             slider.value.noUiSlider.on("update", (values) => {
                 priceRange.value = values.map(Number);
             });
-            // ///////
-            const handleStorageChange = (event) => {
-                if (event.key === 'allT') {
-                    this.allT = event.newValue;
-                }
-            };
-            window.addEventListener('storage', handleStorageChange);
         });
         return { priceRange, slider, hideFitler };
     },
@@ -295,9 +285,5 @@ export default {
 .fade-enter-from,
 .fade-leave-to {
     opacity: 0;
-}
-
-input {
-    transition: background 0.25s ease-in;
 }
 </style>

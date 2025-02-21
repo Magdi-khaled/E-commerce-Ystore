@@ -7,7 +7,7 @@
         <section data-aos="fade-up"
             class="preview w-full h-[50vh] sm:h-[60vh] md:h-[80vh] flex justify-center items-end">
             <div class="py-8 px-4 lg:px-14 w-full">
-                <p class="w-full md:w-3/12 lg:w-[8.9%] py-5 sm:py-8 text-gray-200 text-sm md:text-lg font-medium  ">
+                <p class=" w-full md:w-3/12 lg:w-[8.9%] py-5 sm:py-8 text-gray-200 text-sm md:text-lg font-medium  ">
                     Browse through our diverse range of meticulously crafted garments,
                     <br v-if="br1">
                     designed to bring out your individuality and cater to your sense of style.
@@ -237,11 +237,9 @@ export default {
         this.fetchData();
     },
     setup() {
-
         const br1 = ref(window.innerWidth > 642);
         const spvCheck = ref(window.innerWidth < 590);
         const spv = ref(4);
-
 
         const updateShow = () => {
             br1.value = window.innerWidth > 642;
@@ -259,14 +257,14 @@ export default {
         };
     },
     methods: {
-        ...mapActions(['fetchMainProducts']),
+        ...mapActions(['FetchNBProduvts']),
         initData() {
             this.newProducts = this.Get_NewProducts;
             this.bestSellers = this.Get_bestSellers;
         },
         async fetchData() {
             try {
-                await this.fetchMainProducts();
+                await this.FetchNBProduvts();
                 await this.initData();
             } catch (error) {
                 console.error(error);

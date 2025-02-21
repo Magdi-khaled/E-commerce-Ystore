@@ -20,13 +20,15 @@
         </nav>
         <hr class="my-4 w-11/12 bg-black">
         <div>
-            <p class="capitalize text-gray-500 hover:text-black cursor-pointer transition duration-150">
+            <button @click="uLogout"
+                class="capitalize text-gray-500 hover:text-black cursor-pointer transition duration-150">
                 <i class="fa-solid fa-door-open"></i> sign out
-            </p>
+            </button>
         </div>
     </aside>
 </template>
 <script>
+import { mapActions } from 'vuex';
 export default {
     name: 'UserSidebar',
     props: ['clicked'],
@@ -59,6 +61,7 @@ export default {
         },
     },
     methods: {
+        ...mapActions(['UserLogout']),
         updateClicked(index) {
             if (index === 0) this.$router.push({ name: 'User-Profile' });
             else if (index === 1) this.$router.push({ name: 'User-Qrcode' });
@@ -69,6 +72,16 @@ export default {
             else if (index === 6) this.$router.push({ name: 'User-Notifications' });
             else if (index === 7) this.$router.push({ name: 'User-SecuritySittings' });
             this.value = index;
+        },
+        async uLogout() {
+            try {
+                await this.UserLogout();
+                setTimeout(() => {
+                    this.$router.push({ name: 'User-Login' });
+                }, 1500)
+            } catch (error) {
+                console.error('Logout Error : ', error);
+            }
         },
     },
 }

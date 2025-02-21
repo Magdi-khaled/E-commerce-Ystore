@@ -7,14 +7,13 @@
             shadow-md shadow-gray-300">
             <div class="flex items-center gap-2 pt-8">
                 <router-link :to="{ name: 'Home' }" class="flex items-center gap-2 ">
-                    <img class="w-5/12 sm:w-4/12" src="../../../assets/images/logo/logo.webp" alt="shop.co">
-                    <i class="fa-solid fa-shop text-xl"></i>
+                    <img class="w-5/12 sm:w-4/12" src="../../../assets/images/logo/logo.png" alt="shop.co">
                 </router-link>
             </div>
 
             <div class="my-4">
-                <h1 v-if="authUser" class="text-xl font-bold capitalize">welcome back !</h1>
-                <h1 v-else class="text-xl font-bold capitalize">Seller department!</h1>
+                <!-- <h1 v-if="authUser" class="text-xl font-bold capitalize">welcome back !</h1> -->
+                <!-- <h1 v-else class="text-xl font-bold capitalize">Seller department!</h1> -->
 
                 <p v-if="authUser" class="mt-1 text-sm sm:text-md font-bold text-gray-500 capitalize">sign in <span
                         class="lowercase">and</span>
@@ -28,9 +27,9 @@
             <Form @submit.prevent="login" class="grid gap-y-4">
 
                 <Field label="email address" name="email" type="email" v-model="email"
-                    placeholder="Enter your mail address" class="border-b-[3px] border-gray-600" />
+                    placeholder="Enter your mail address" />
                 <Field label="password" name="password" type="password" v-model="password"
-                    placeholder="Enter your password" class="border-b-[3px] border-gray-600" />
+                    placeholder="Enter your password" />
 
                 <div class="w-full my-2 forget-password flex justify-between">
                     <div class="flex items-center gap-1 w-4/12 text-sm sm:text-md">

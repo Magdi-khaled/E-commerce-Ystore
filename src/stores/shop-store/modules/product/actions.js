@@ -1,7 +1,7 @@
 import axios from "axios";
 import data from '../../../../assets/db/data.json'
 export const actions = {
-    async fetchProducts({ commit }) {
+    async FetchProducts({ commit }) {
         try {
             // const res = await axios.get('http://localhost:3000/getproducts');
             const products = data;
@@ -13,7 +13,7 @@ export const actions = {
             console.error("Fetching Products error: ", error);
         }
     },
-    async fetchMainProducts({ commit }) {
+    async FetchNBProduvts({ commit }) {
         try {
             // const response = await axios.get('https://api.example.com/products');
             const newProducts = [

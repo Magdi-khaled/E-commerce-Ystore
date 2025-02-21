@@ -5,8 +5,8 @@
             shadow-md shadow-gray-300">
             <div class="flex items-center gap-2">
                 <router-link :to="{ name: 'Home' }" class="flex items-center gap-2 ">
-                    <img class="w-5/12 sm:w-4/12" src="../../../assets/images/logo/logo.webp" alt="shop.co">
-                    <i class="fa-solid fa-shop text-xl"></i>
+                    <img class="w-5/12 sm:w-4/12" src="../../../assets/images/logo/logo.png" alt="shop.co">
+                    <!-- <i class="fa-solid fa-shop text-xl"></i> -->
                 </router-link>
             </div>
 
@@ -19,28 +19,26 @@
 
             <Form class="my-4 grid grid-cols-1 sm:grid-cols-2 gap-4" @submit.prevent="register">
                 <Field label="first name" name="firstname" type="text" v-model="firstname"
-                    placeholder="Enter first name" class="border-b-[3px] border-gray-600" />
+                    placeholder="Enter first name" />
 
-                <Field label="last name" name="lastname" type="text" v-model="lastname" placeholder="Enter last name"
-                    class="border-b-[3px] border-gray-600" />
+                <Field label="last name" name="lastname" type="text" v-model="lastname" placeholder="Enter last name" />
 
-                <Field label="phone" name="phone" type="text" v-model="phone" placeholder="Enter phone number"
-                    class="border-b-[3px] border-gray-600" />
+                <Field label="phone" name="phone" type="text" v-model="phone" placeholder="Enter phone number" />
 
                 <Field label="country" name="country" type="select" v-model="country" placeholder="Enter last name"
-                    class="border-b-[3px] border-gray-600" :options="countries" optiontsType="choose country" />
+                    :options="countries" optionsType="choose country" />
 
                 <Field label="Location/address" name="location" type="text" v-model="location"
-                    placeholder="address Line" class="border-b-[3px] border-gray-600" />
+                    placeholder="address Line" />
 
-                <Field label="email address" name="email" type="email" v-model="email" placeholder="Enter email address"
-                    class="border-b-[3px] border-gray-600" />
+                <Field label="email address" name="email" type="email" v-model="email"
+                    placeholder="Enter email address" />
 
-                <Field label="password" name="password" type="password" v-model="password" placeholder="Enter password"
-                    class="border-b-[3px] border-gray-600" />
+                <Field label="password" name="password" type="password" v-model="password"
+                    placeholder="Enter password" />
 
                 <Field label="repeat password" name="confirmPassword" type="password" v-model="confirmPassword"
-                    placeholder="repeat password" class="border-b-[3px] border-gray-600" />
+                    placeholder="repeat password" />
 
                 <BaseButton @click="register" class="mt-2 col-span-2 rounded-sm py-[10px]">
                     register

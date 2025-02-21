@@ -981,5 +981,19 @@
         "borderRadius": "20px",
         "height": "calc(100vh - 5rem)",
         "overflowY": "auto"
-    }
+    },
+    "states": [
+        "giza",
+        "cairo",
+        "alexandria",
+        "port said",
+        "suez"
+    ],
+    "countries": [
+        "egypt",
+        "KSA",
+        "UAE",
+        "Qatar",
+        "Bahrain"
+    ]
 }

@@ -41,27 +41,27 @@
 
                         <div class="col-span-2 sm:col-span-1">
                             <Field label="category" name="category" type="select" v-model="category"
-                                :options="categories.slice(1)" optiontsType="Select Category"
+                                :options="categories.slice(1)" optionsType="Select Category"
                                 :validator="vSchema.category" />
                         </div>
                         <div class="col-span-2 sm:col-span-1">
                             <Field label="material" name="material" type="select" v-model="material"
-                                :options="materials" optiontsType="Select material" :validator="vSchema.material" />
+                                :options="materials" optionsType="Select material" :validator="vSchema.material" />
                         </div>
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4 ">
                         <div class="col-span-2 sm:col-span-1">
                             <Field label="for" name="gender" type="select" v-model="gender"
-                                :options="['male', 'female', 'both']" optiontsType="Select Gender"
+                                :options="['male', 'female', 'both']" optionsType="Select Gender"
                                 :validator="vSchema.gender" />
                         </div>
                         <!-- provided sizes  -->
                         <div class="relative col-span-2 sm:col-span-1">
                             <p class="after:content-['*'] after:text-red-600 text-sm sm:text-md font-medium capitalize">
                                 provided sizes </p>
-                            <div ref="dropdown1" @click="toggleDropdown(1)"
-                                class="w-full mt-1 border-[2px] p-2 cursor-pointer bg-gray-100 relative">
+                            <div ref="dropdown1" @click="toggleDropdown(1)" class="w-full mt-1 p-2 cursor-pointer bg-gray-100 relative border-[2px]
+                            border-b-[3px] border-b-gray-600">
                                 <span class="select-size text-gray-700 text-sm sm:text-md">
                                     {{ providedSizes.length ? providedSizes.join(", ") : "Select Sizes" }}
                                 </span>
@@ -75,7 +75,7 @@
                                     @click="handleSizeChange(option)"
                                     class="not-import flex items-center text-sm sm:text-md px-3 py-2 hover:bg-gray-100 cursor-pointer ">
                                     <input type="checkbox" :name="option" :value="option" v-model="providedSizes"
-                                        class="mr-2" />
+                                        class="mr-3 border-b-[3px] border-gray-600" />
                                     {{ option }}
                                 </label>
                             </div>
@@ -84,8 +84,8 @@
                         <div class="relative col-span-2 sm:col-span-1">
                             <p class="after:content-['*'] after:text-red-600 text-sm sm:text-md font-medium capitalize">
                                 provided colors </p>
-                            <div ref="dropdown2" @click="toggleDropdown(2)"
-                                class="w-full mt-1 border-[2px] p-2 cursor-pointer bg-gray-100 relative">
+                            <div ref="dropdown2" @click="toggleDropdown(2)" class="w-full mt-1 p-2 cursor-pointer bg-gray-100 relative border-[2px]
+                                border-b-[3px] border-b-gray-600">
                                 <span :title="providedColors.map(c => c.color).join(', ')"
                                     class="select-size  text-gray-700 text-sm sm:text-md capitalize">
                                     {{ providedColors.length ? providedColors.map(c => c.color).join(", ")
@@ -101,7 +101,7 @@
                                     @click="handelColorChange(option)"
                                     class="not-import flex items-center text-sm sm:text-md px-3 py-2 hover:bg-gray-100 cursor-pointer ">
                                     <input type="checkbox" :name="option.color" :value="option.value"
-                                        v-model="providedColors" class="mr-2" />
+                                        v-model="providedColors" class="mr-3 order-b-[3px] border-gray-600" />
                                     {{ option.color }}
                                 </label>
                             </div>
@@ -122,10 +122,6 @@
                             cancel </BaseButton>
                     </div>
                 </Form>
-                <!-- <div class="container">
-                    <input type="file" @change="uploadImage" />
-                    <img v-if="outputImage" :src="outputImage" alt="Processed Image" />
-                </div> -->
             </div>
         </div>
     </section>

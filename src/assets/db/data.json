@@ -8,7 +8,7 @@
       "/assets/shop/product15.webp",
       "/assets/shop/product14.webp"
     ],
-    "title": "t-shirt with tape details t-shirt with tape detailst-shirt with tape detailst-shirt with tape details",
+    "title": "t-shirt with tape details",
     "rate": 4.5,
     "price": 120,
     "sale": 20,
@@ -1934,7 +1934,7 @@
     "details": "Good Suit , 95% cotton material and have some 5% Likra .",
     "price": 759,
     "sale": 6,
-    "quantity": null,
+    "quantity": 7,
     "for": "female",
     "category": "women's fashion",
     "providedColors": [

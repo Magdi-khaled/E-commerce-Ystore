@@ -32,7 +32,7 @@ const router = createRouter({
             component: () => import("../../views/users/user/profile/UserProfile.vue"),
             meta: {
                 requiresTransition: true,
-                // requiredAuth: true
+                requiredAuth: true
             },
         },
         {
@@ -41,7 +41,7 @@ const router = createRouter({
             component: () => import("../../views/users/user/profile/UserQrcode.vue"),
             meta: {
                 requiresTransition: true,
-                //  requiredAuth: true
+                requiredAuth: true
             },
         },
         {
@@ -50,7 +50,7 @@ const router = createRouter({
             component: () => import("../../views/users/user/profile/UserOrders.vue"),
             meta: {
                 requiresTransition: true,
-                //  requiredAuth: true
+                requiredAuth: true
             },
         },
         {
@@ -59,7 +59,7 @@ const router = createRouter({
             component: () => import("../../views/users/user/profile/UserReturns.vue"),
             meta: {
                 requiresTransition: true,
-                //  requiredAuth: true
+                requiredAuth: true
             },
         },
         {
@@ -68,7 +68,7 @@ const router = createRouter({
             component: () => import("../../views/users/user/profile/UserPayments.vue"),
             meta: {
                 requiresTransition: true,
-                //  requiredAuth: true
+                requiredAuth: true
             },
         },
         {
@@ -77,7 +77,7 @@ const router = createRouter({
             component: () => import("../../views/users/user/profile/UserNotifyHistory.vue"),
             meta: {
                 requiresTransition: true,
-                //  requiredAuth: true
+                requiredAuth: true
             },
         },
         {
@@ -86,7 +86,7 @@ const router = createRouter({
             component: () => import("../../views/users/user/profile/UserSecuritySittings.vue"),
             meta: {
                 requiresTransition: true,
-                //  requiredAuth: true
+                requiredAuth: true
             },
         },
         {
@@ -95,7 +95,7 @@ const router = createRouter({
             component: () => import("../../views/users/user/shop/CheckOut.vue"),
             meta: {
                 requiresTransition: true,
-                //  requiredAuth: true
+                // requiredAuth: true
             },
         },
     ]

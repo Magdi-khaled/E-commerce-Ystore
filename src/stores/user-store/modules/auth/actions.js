@@ -15,7 +15,7 @@ export const actions = {
 
             console.log('loggedin');
             // console.log('USER : ', user);
-            // commit('Set_User', user);
+            // await commit('Set_User', user);
             return true;
         } catch (error) {
             console.error(error);
@@ -25,9 +25,9 @@ export const actions = {
     async UserLogout({ commit }) {
         try {
             console.log('loggedOut...');
-            localStorage.removeItem('token');
+            // localStorage.removeItem('token');
             localStorage.setItem('user', '');
-            commit('Set_User', null);
+            await commit('Set_User', null);
         } catch (error) {
             console.error(error);
         }

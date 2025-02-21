@@ -24,15 +24,12 @@ import 'swiper/css/pagination';
 import 'nouislider/dist/nouislider.css';
 
 const app = createApp(App);
-
 app.use(router);
 app.use(store);
-
 
 // Call Global Components
 app.component("Pagination", Pagination);
 app.component("Breadcrumbs", Breadcrumbs);
-
 // Call AOS
 AOS.init({
     duration: 1000, // Animation duration (default: 400ms)

@@ -16,12 +16,14 @@ const router = createRouter({
                     { name: 'home', link: '/shop.co/home' },
                 ]
             },
+
         },
         {
             path: "/shop.co/shop",
             name: "Shop",
             component: () => import("../../views/shop/Shop.vue"),
             meta: {
+                requiresTransition: true,
                 breadcrumb: [
                     { name: 'home', link: '/shop.co/home' },
                     { name: 'shop', link: '/shop.co/shop' },
@@ -33,6 +35,7 @@ const router = createRouter({
             name: "men-fashion",
             component: () => import("../../views/shop/Shop.vue"),
             meta: {
+                requiresTransition: true,
                 breadcrumb: [
                     { name: 'home', link: '/shop.co/home' },
                     { name: 'shop', link: '/shop.co/shop' },
@@ -45,6 +48,7 @@ const router = createRouter({
             name: "women-fashion",
             component: () => import("../../views/shop/Shop.vue"),
             meta: {
+                requiresTransition: true,
                 breadcrumb: [
                     { name: 'home', link: '/shop.co/home' },
                     { name: 'shop', link: '/shop.co/shop' },
@@ -57,6 +61,7 @@ const router = createRouter({
             name: "sport-wear",
             component: () => import("../../views/shop/Shop.vue"),
             meta: {
+                requiresTransition: true,
                 breadcrumb: [
                     { name: 'home', link: '/shop.co/home' },
                     { name: 'shop', link: '/shop.co/shop' },
@@ -69,6 +74,7 @@ const router = createRouter({
             name: "girls-wear",
             component: () => import("../../views/shop/Shop.vue"),
             meta: {
+                requiresTransition: true,
                 breadcrumb: [
                     { name: 'home', link: '/shop.co/home' },
                     { name: 'shop', link: '/shop.co/shop' },
@@ -81,6 +87,7 @@ const router = createRouter({
             name: "boys-wear",
             component: () => import("../../views/shop/Shop.vue"),
             meta: {
+                requiresTransition: true,
                 breadcrumb: [
                     { name: 'home', link: '/shop.co/home' },
                     { name: 'shop', link: '/shop.co/shop' },
@@ -93,6 +100,7 @@ const router = createRouter({
             name: "bags-luggage",
             component: () => import("../../views/shop/Shop.vue"),
             meta: {
+                requiresTransition: true,
                 breadcrumb: [
                     { name: 'home', link: '/shop.co/home' },
                     { name: 'shop', link: '/shop.co/shop' },
@@ -105,6 +113,7 @@ const router = createRouter({
             name: "formal-wear",
             component: () => import("../../views/shop/Shop.vue"),
             meta: {
+                requiresTransition: true,
                 breadcrumb: [
                     { name: 'home', link: '/shop.co/home' },
                     { name: 'shop', link: '/shop.co/shop' },
@@ -117,6 +126,7 @@ const router = createRouter({
             name: "shoes-fashion",
             component: () => import("../../views/shop/Shop.vue"),
             meta: {
+                requiresTransition: true,
                 breadcrumb: [
                     { name: 'home', link: '/shop.co/home' },
                     { name: 'shop', link: '/shop.co/shop' },
@@ -129,6 +139,7 @@ const router = createRouter({
             name: "accessories",
             component: () => import("../../views/shop/Shop.vue"),
             meta: {
+                requiresTransition: true,
                 breadcrumb: [
                     { name: 'home', link: '/shop.co/home' },
                     { name: 'shop', link: '/shop.co/shop' },
@@ -141,6 +152,7 @@ const router = createRouter({
             name: "Product",
             component: () => import("../../views/shop/shop.product/Product.vue"),
             meta: {
+                requiresTransition: true,
                 breadcrumb: [
                     { name: 'home', link: '/shop.co/home' },
                     { name: 'shop', link: '/shop.co/shop' },

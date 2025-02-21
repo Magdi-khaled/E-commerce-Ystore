@@ -15,7 +15,6 @@
                             :src="image" alt="Product Option" />
                     </div>
                 </div>
-
                 <!-- Main Image -->
                 <div class="w-[80%] md:w-[90%] h-auto p-0 sm:p-1">
                     <div class="relative overflow-hidden w-full h-auto rounded-md cursor-zoom-in" @mousemove="zoomLens"
@@ -125,12 +124,11 @@
                 </div>
                 <p v-if="outStock" class="text-red-500 text-sm my-2">You can't order more quantity than what
                     is in stock.</p>
-                <hr class="my-8 hidden md:block">
             </div>
         </div>
     </div>
     <!-- product rating & reviews -->
-    <div data-aos="fade-up" class="product-details px-4 md:px-10 mt-8">
+    <div data-aos="fade-up" class="product-details px-4 md:px-10">
         <hr class="my-4">
         <!-- product details  -->
         <div data-aos="fade-up">
@@ -210,7 +208,7 @@
                         3.5 out of 5
                     </p>
                 </div>
-                <h1 class="text-gray-600 mb-2">{{ product.feedbacks.length }} global ratings</h1>
+                <h1 class="text-gray-600 mb-2">{{ product?.feedbacks.length }} global ratings</h1>
                 <div v-for="item in [1, 2, 3, 4, 5].reverse()"
                     class="flex items-center justify-start whitespace-nowrap">
                     <p class="text-gray-500 w-2/12">{{ item }} star</p>
@@ -228,7 +226,7 @@
             </div>
             <!-- reviews -->
             <div class="w-full sm:w-8/12 md:w-9/12">
-                <div v-if="!product.feedbacks.length"
+                <div v-if="!product?.feedbacks.length"
                     class="h-36 sm:h-full  bg-gray-50 border-[2px] p-2  rounded flex flex-col justify-center items-center">
                     <h1 class="font-medium text-sm text-gray-500">no reviews about this product untill
                         now...</h1>
@@ -239,8 +237,8 @@
                 </div>
                 <div v-else class="flex flex-row flex-wrap justify-between">
                     <div class="ml-4 w-4/12 sm:w-2/12">
-                        <select id="reviewFilter" class="w-full pl-2 rounded capitalize border-[2px] 
-                                        border-gray-400 bg-gray-100 text-black cursor-pointer font-medium outline-none"
+                        <select id="reviewFilter"
+                            class="w-full pl-2 rounded capitalize border-[2px] border-gray-400 bg-gray-100 text-black cursor-pointer font-medium outline-none"
                             v-model="reviewsFilter">
                             <option value="latest" class="text-md" selected>latest
                             </option>
@@ -252,7 +250,7 @@
                     </div>
                 </div>
 
-                <div v-if="product.feedbacks.length > displayedCount" class="flex justify-center my-3 relative">
+                <div v-if="product?.feedbacks.length > displayedCount" class="flex justify-center my-3 relative">
                     <button @click="showMoreReviews" class="font-medium text-md 
                             hover:text-gray-600 rounded whitespace-nowrap underline transition duration-150">
                         <p v-if="!r_more">more reviews <i class="fa-solid fa-chevrons-right text-xs"></i></p>
@@ -358,20 +356,28 @@ export default {
     computed: {
         ...mapGetters(['Get_Products']),
         displayedFeedbacks() {
-            return this.product.feedbacks.slice(0, this.displayedCount);
+            return this.product?.feedbacks.slice(0, this.displayedCount);
         },
     },
     created() {
         this.fetchData();
     },
     methods: {
-        ...mapActions(['fetchProducts']),
+        ...mapActions(['FetchProducts', 'AddItemToCart']),
         async fetchData() {
             try {
-                await this.fetchProducts();
+                await this.FetchProducts();
                 this.initData();
             } catch (err) {
                 console.error(err);
+            }
+        },
+        async addToCart() {
+            try {
+                await this.AddItemToCart(this.product);
+            }
+            catch (err) {
+                console.error('adding item to cart error : ', err);
             }
         },
         showImage(src, index) {
@@ -382,6 +388,7 @@ export default {
             this.product = this.Get_Products.find(v => v._id == this.$route.params.id);
             this.selectedImg = this.product.src;
         },
+
         zoomLens(event) {
             const mainImage = this.$refs.mainImage;
             const lens = this.$refs.lens;
@@ -413,10 +420,6 @@ export default {
         hideLens() {
             this.lensStyles.display = "none";
         },
-        // handlePrice(price, sale) {
-        //     if (sale === 0) return price.toFixed(2);
-        //     return (price - (price * (sale / 100))).toFixed(2);
-        // },
         isHalf(rate) {
             var b = +Math.trunc(rate);
             return rate != b;
@@ -462,7 +465,7 @@ export default {
             this.reviewObj.rating = this.selectedRating;
             this.reviewObj.title = reviewTitle.value;
             this.reviewObj.feedback = review.value;
-            this.product.feedbacks.push(this.reviewObj);
+            this.product?.feedbacks.push(this.reviewObj);
             this.displayedCount += 1;
         }
     }
