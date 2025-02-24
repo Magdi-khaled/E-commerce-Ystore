@@ -1,6 +1,5 @@
 <template>
-    <UserNavbar v-if="tuser === 'customer'" />
-    <BaseNavbar v-else />
+    <UserNavbar />
 
     <div class="h-full w-full flex border-t-2">
         <div class="w-3/12 hidden lg:block bg-gray-50 border-r border-gray-500">
@@ -28,18 +27,16 @@
     <InFooter />
 </template>
 <script>
-import BaseNavbar from '../../../../components/BaseNavbar.vue';
 import UserNavbar from '../../../../components/user/UserNavbar.vue';
 import UserSidebar from '../../../../components/user/UserSidebar.vue';
 import InFooter from '../../../../components/InFooter.vue';
 export default {
     components: {
-        BaseNavbar, UserNavbar, UserSidebar, InFooter
+        UserNavbar, UserSidebar, InFooter
     },
     data() {
         return {
             clicked: 1,
-            tuser: localStorage.getItem('user'),
         }
     }
 

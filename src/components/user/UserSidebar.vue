@@ -65,7 +65,7 @@ export default {
         updateClicked(index) {
             if (index === 0) this.$router.push({ name: 'User-Profile' });
             else if (index === 1) this.$router.push({ name: 'User-Qrcode' });
-            else if (index === 2) this.$router.push({ name: 'User-Cart' });
+            else if (index === 2) this.$router.push({ name: 'User-Wishlist' });
             else if (index === 3) this.$router.push({ name: 'User-Orders' });
             else if (index === 4) this.$router.push({ name: 'User-Returns' });
             else if (index === 5) this.$router.push({ name: 'User-Payments' });

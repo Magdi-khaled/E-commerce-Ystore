@@ -816,6 +816,142 @@
                     ]
                 }
             ]
+        },
+        {
+            "show": false,
+            "name": "formal wear",
+            "label": "all formal wear",
+            "categories": [
+                {
+                    "show": false,
+                    "name": "Clothing",
+                    "categories": [
+                        {
+                            "show": false,
+                            "name": "Blazzers",
+                            "categories": [
+                                {
+                                    "show": false,
+                                    "name": "Black Blazzer",
+                                    "amount": 16.99,
+                                    "currency": "USD",
+                                    "size": "S"
+                                },
+                                {
+                                    "show": false,
+                                    "name": "Tirraz Blezzer",
+                                    "amount": 47.99,
+                                    "currency": "USD",
+                                    "size": "M"
+                                },
+                                {
+                                    "show": false,
+                                    "name": "Formal Shirts",
+                                    "amount": 63.99,
+                                    "currency": "USD",
+                                    "size": "L"
+                                }
+                            ]
+                        },
+                        {
+                            "show": false,
+                            "name": "Pants",
+                            "categories": [
+                                {
+                                    "show": false,
+                                    "name": "Blue Jeans",
+                                    "amount": 44.99,
+                                    "currency": "USD",
+                                    "size": "M"
+                                },
+                                {
+                                    "show": false,
+                                    "name": "Brown Pant",
+                                    "amount": 89.99,
+                                    "currency": "USD",
+                                    "size": "S"
+                                }
+                            ]
+                        },
+                        {
+                            "show": false,
+                            "name": "Shorts",
+                            "categories": [
+                                {
+                                    "show": false,
+                                    "name": "Sport Short",
+                                    "amount": 32.99,
+                                    "currency": "USD",
+                                    "size": "M"
+                                },
+                                {
+                                    "show": false,
+                                    "name": "Jeans Short",
+                                    "amount": 99.99,
+                                    "currency": "USD",
+                                    "size": "XS"
+                                },
+                                {
+                                    "show": false,
+                                    "name": "Black Short",
+                                    "amount": 56.99,
+                                    "currency": "USD",
+                                    "size": "L"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "show": false,
+                    "name": "Accessories",
+                    "categories": [
+                        {
+                            "show": false,
+                            "name": "Sunglasses",
+                            "amount": 36.99,
+                            "currency": "USD"
+                        },
+                        {
+                            "show": false,
+                            "name": "Beanie",
+                            "amount": 17.99,
+                            "currency": "USD"
+                        },
+                        {
+                            "show": false,
+                            "name": "Scarf",
+                            "amount": 15.99,
+                            "currency": "USD"
+                        }
+                    ]
+                },
+                {
+                    "show": false,
+                    "name": "Shoes",
+                    "label": "all Shoes",
+                    "categories": [
+                        {
+                            "show": false,
+                            "name": "Sneaker",
+                            "amount": 89.99,
+                            "currency": "USD"
+                        },
+                        {
+                            "show": false,
+                            "name": "Sport Shoe",
+                            "amount": 47.99,
+                            "currency": "USD"
+                        },
+                        {
+                            "show": false,
+                            "name": "Boots",
+                            "amount": 103.99,
+                            "currency": "USD"
+                        }
+                    ]
+                }
+            ]
         }
     ],
     "materials": [

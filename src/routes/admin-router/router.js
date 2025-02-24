@@ -4,22 +4,22 @@ const router = createRouter({
     history: createWebHistory(),
     routes: [
         {
-            path: "/shop.co.trade/login",
+            path: "/ystore.trade/login",
             name: "AD-Login",
             component: () => import("../../views/users/auth/Login.vue"),
         },
         {
-            path: "/shop.co.trade/register",
+            path: "/ystore.trade/signup",
             name: "AD-Signup",
             component: () => import("../../views/users/auth/Signup.vue"),
         },
         {
-            path: "/shop.co.trade/forget-password",
+            path: "/ystore.trade/forget-password",
             name: "AD-ForgetPassword",
             component: () => import("../../views/users/auth/ForgetPassword.vue"),
         },
         {
-            path: "/shop.co.trade/seller/dashboard",
+            path: "/ystore.trade/admin/dashboard",
             name: "AD-Dashboard",
             component: () => import("../../views/users/admin/services/dashboard/Dashboard.vue"),
             meta: {
@@ -27,7 +27,7 @@ const router = createRouter({
             },
         },
         {
-            path: "/shop.co.trade/seller/:shopName/:sId",
+            path: "/ystore.trade/admin/:shopName/:sId",
             name: "AD-Shop",
             component: () => import("../../views/users/admin/services/profile/ShopInfo.vue"),
             meta: {
@@ -35,7 +35,7 @@ const router = createRouter({
             },
         },
         {
-            path: "/shop.co.trade/seller/inventory",
+            path: "/ystore.trade/admin/inventory",
             name: "AD-Inventory",
             props: true,
             component: () => import("../../views/users/admin/services/services/Inventory.vue"),
@@ -45,7 +45,7 @@ const router = createRouter({
             },
         },
         {
-            path: "/shop.co.trade/seller/inbox",
+            path: "/ystore.trade/admin/inbox",
             name: "AD-Inbox",
             props: true,
             component: () => import("../../views/users/admin/services/dashboard/Dashboard.vue"),
@@ -54,7 +54,7 @@ const router = createRouter({
             },
         },
         {
-            path: "/shop.co.trade/seller/ads-manager",
+            path: "/ystore.trade/admin/ads-manager",
             name: "AD-adsManager",
             props: true,
             component: () => import("../../views/users/admin/services/dashboard/Dashboard.vue"),
@@ -63,7 +63,7 @@ const router = createRouter({
             },
         },
         {
-            path: "/shop.co.trade/seller/faqs",
+            path: "/ystore.trade/admin/faqs",
             name: "AD-Faqs",
             props: true,
             component: () => import("../../views/users/admin/services/dashboard/Dashboard.vue"),
@@ -72,7 +72,7 @@ const router = createRouter({
             },
         },
         {
-            path: "/shop.co.trade/seller/services/add-product",
+            path: "/ystore.trade/admin/services/add-product",
             name: "Add-Product",
             component: () => import("../../views/users/admin/services/services/AddProduct.vue"),
             meta: {
@@ -80,7 +80,7 @@ const router = createRouter({
             },
         },
         {
-            path: "/shop.co.trade/inventory/edit-product/:id",
+            path: "/ystore.trade/admin/inventory/edit-product/:id",
             name: "Edit-Product",
             component: () => import("../../views/users/admin/services/services/EditProduct.vue"),
             beforeEnter: (to, from, next) => {
@@ -92,20 +92,20 @@ const router = createRouter({
                     next();
                 }
                 else {
-                    next('/shop.co/404-not-found');
+                    next('/ystore/404-not-found');
                 }
             },
         }
     ]
 })
 
-export function routerSellerrGuard(to, from, next) {
+export function routerAdminGuard(to, from, next) {
     if (to.meta.requiredAuth) {
         const isAuthenticated = localStorage.getItem("admintoken");
         if (!isAuthenticated) {
             next();
         } else {
-            next({ name: 'seller-login' });
+            next({ name: 'AD-Login' });
         }
     } else {
         next();

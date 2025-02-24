@@ -4,7 +4,7 @@
         <!-- <div class="w-[9%]" :class="{ 'w-[27%]': sm }"> -->
         <div class="w-2/12 sm:w-[15%] md:w-[12%] lg:w-[9%]">
             <router-link :to="{ name: 'Home' }">
-                <img src="../../assets/images/logo/logo.PNG" alt="SHOP.CO">
+                <img src="../../assets/images/logo/logo.png" alt="SHOP.CO">
             </router-link>
         </div>
         <div v-if="!sm" class="w-1/12 font-bold text-sm whitespace-nowrap">
@@ -70,7 +70,7 @@
                         </li>
                         <hr>
                         <li class="p-2">
-                            <router-link :to="{ name: 'User-Cart' }" class="hover:opacity-60">
+                            <router-link :to="{ name: 'User-Wishlist' }" class="hover:opacity-60">
                                 <i class="fa-solid fa-heart pr-1"></i> wishlist</router-link>
                         </li>
                         <hr>
@@ -115,18 +115,13 @@
             </transition>
         </div>
         <span v-if="sm" class="px-4">|</span>
-        <!-- <div class="w-2/12 md:w-1/12 border-r-2 sm:border-x-2 px-2 font-bold capitalize">
-            <router-link class="flex items-center justify-center text-sm sm:text-md" to="">
-                <span class="tracking-wide hidden sm:block">wishlist</span>
-                <i class="fa-regular fa-heart text-lg pl-0 sm:pl-2"></i>
-            </router-link>
-        </div> -->
         <div
             class="w-4/12 sm:w-3/12 md:w-[15%] lg:w-2/12 flex justify-between font-semibold capitalize whitespace-nowrap">
-            <router-link class="w-8/12 flex items-center justify-center text-md hover:text-gray-600" to="">
+            <router-link :to="{ name: 'User-Wishlist' }"
+                class="w-8/12 flex items-center justify-center text-md hover:text-gray-600" to="">
                 <span class="tracking-wide text-sm sm:text-md">wishlist</span>
                 <i class="fa-regular fa-heart text-lg pl-1"></i>
-                <span class="text-xs pt-2 mt-1">({{ 1 }})</span>
+                <span class="text-xs pt-2 mt-1">({{ Get_Wishlist.length }})</span>
             </router-link>
             <button class="ml-2 w-4/12 relative flex items-center justify-end text-xl hover:text-gray-500"
                 @click="cartOn = true">
@@ -136,14 +131,6 @@
                     ({{ Get_CartItems.length }})</span>
             </button>
         </div>
-        <!-- <div class="w-2/12 lg:w-1/12 px-2 font-bold capitalize whitespace-nowrap">
-            <button class="ml-2 w-full flex items-center justify-end text-sm sm:text-md hover:text-gray-500"
-                @click="cartOn = true">
-                <span class="tracking-wide">your cart </span>
-                <i class="fa-solid fa-cart-shopping pl-2"></i>
-                <span class="text-xs mr-1 mt-1">({{ Get_CartItems.length }})</span>
-            </button>
-        </div> -->
         <!-- side-shopping-cart -->
         <NavigatedCart :showCart="cartOn" @closeCart="cartOn = false" />
 
@@ -193,7 +180,6 @@
         </button>
         <ul ref="scrollContainer"
             class="border-b-[1px] bg-white w-full px-5 flex justify-between overflow-x-scroll scroll-smooth capitalize text-sm sm:text-[16px] font-medium whitespace-nowrap scrollbar-hidden">
-            <!-- class="border-b-[1px] absolute z-[50] bg-white w-full px-5 flex justify-between overflow-x-scroll scroll-smooth capitalize text-sm sm:text-[16px] font-medium whitespace-nowrap scrollbar-hidden"> -->
             <li class="hover:bg-gray-200 text-center py-1 transition-all duration-100"
                 v-for="(item, index) in NavigationItems" :key="index">
                 <router-link class="px-4 sm:px-10 md:px-14 py-1" :to="{ name: item.route }">
@@ -259,7 +245,7 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(['Get_CartItems']),
+        ...mapGetters(['Get_CartItems', 'Get_Wishlist']),
         handleSearchResult() {
             const searchedList = this.products.filter((item) =>
                 item.title.toLowerCase().toString().includes(this.userSreachTxt.toLowerCase())
@@ -312,8 +298,11 @@ export default {
             // Perform any logic needed on route change
         }
     },
+    mounted() {
+        this.FetchWishlist();
+    },
     methods: {
-        ...mapActions(['UserLogout']),
+        ...mapActions(['UserLogout', 'FetchWishlist']),
         async uLogout() {
             try {
                 await this.UserLogout();

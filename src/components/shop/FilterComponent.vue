@@ -268,7 +268,8 @@ export default {
     methods: {
         handleSelectedFilter() {
             const category = this.catList.find(v => v.label === this.allT);
-            return category.show = true;
+            category.show = true;
+            return category?.show;
         }
     },
 };

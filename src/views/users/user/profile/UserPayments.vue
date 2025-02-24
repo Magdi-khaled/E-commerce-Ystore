@@ -1,7 +1,6 @@
 <template>
 
-    <UserNavbar v-if="tuser == 'customer'" />
-    <BaseNavbar v-else />
+    <UserNavbar />
 
     <div class="h-full w-full flex border-t-2">
 
@@ -98,7 +97,6 @@
     <InFooter />
 </template>
 <script>
-import BaseNavbar from '../../../../components/BaseNavbar.vue';
 import baseButton from '../../../../components/baseButton.vue';
 import BaseModal from '../../../../components/BaseModal.vue';
 import UserSidebar from '../../../../components/user/UserSidebar.vue';
@@ -107,12 +105,11 @@ import PaymentCard from '../../../../components/user/PaymentCard.vue';
 import InFooter from '../../../../components/InFooter.vue';
 export default {
     components: {
-        BaseNavbar, UserNavbar, baseButton, UserSidebar, PaymentCard, BaseModal, InFooter
+        UserNavbar, baseButton, UserSidebar, PaymentCard, BaseModal, InFooter
     },
     data() {
         return {
             clicked: 5,
-            tuser: localStorage.getItem('user'),
             user: {
                 paymentcards: [
                     {

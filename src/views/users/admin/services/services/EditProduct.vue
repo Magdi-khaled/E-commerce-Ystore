@@ -45,7 +45,7 @@
                             <p class="after:content-['*'] after:text-red-600 text-sm sm:text-md font-medium capitalize">
                                 provided sizes </p>
                             <div ref="dropdownSizes" @click="toggleDropdown()"
-                                class="w-full mt-1 border-[2px] p-2 cursor-pointer bg-gray-100 relative">
+                                class="w-full mt-1 border-[2px] p-2 cursor-pointer bg-gray-100 relative border-b-[3px] border-b-gray-600">
                                 <span class="select-size text-gray-700 text-sm sm:text-md"
                                     :title="product.providedSizes">
                                     {{ product.providedSizes.length ? product.providedSizes.join(", ") : "Select Sizes"

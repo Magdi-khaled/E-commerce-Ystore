@@ -6,12 +6,16 @@
     <BaseTeleport :show="show" :type="'success'">
         Product Added to shopping cart
     </BaseTeleport>
+    <BaseTeleport :show="wish" :type="'message'">
+        Product Added to Wishlist
+    </BaseTeleport>
     <div class="bg-gray-100">
         <Breadcrumbs class="mt-2 px-3 md:px-4 pt-[3px] pb-4" :breadcrumbs="this.$route.meta.breadcrumb" />
         <section class="px-3 md:px-6 pb-4 m-auto bg-white">
             <div class="flex gap-4">
 
-                <FilterComponent class=" w-[19%]" :showFilter="showFilter" @closeFilter="showFilter = false" />
+                <FilterComponent class="w-[25%] md:w-[20%]" :showFilter="showFilter"
+                    @closeFilter="showFilter = false" />
                 <div class="pl-0 md:pl-2 w-full">
                     <!-- Shop Header -->
                     <div class="flex items-center justify-between font-medium mr-1 sm:mr-2 md:mr-3 mt-3 sm:mt-0">
@@ -61,23 +65,43 @@
                         </div>
                     </div>
                     <!-- Shop Products -->
-                    <div class="flex flex-wrap gap-2">
+                    <!-- <div class="flex flex-wrap gap-2"> -->
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                         <div v-for="(product, index) in paginatedItems" :key="product._id"
                             class="mt-4 rounded-sm product relative " @mouseover="hoveredProductId = product._id"
                             @mouseleave="hoveredProductId = null">
-                            <transition name="fade" v-if="hoveredProductId === product._id">
-                                <div class="absolute z-10 text-md sm:text-lg top-2 right-2 opacity-[1] flex flex-col
-                                        transition-all duration-150">
-                                    <button @click="addToCart(product)" class="" title="Add To Cart">
-                                        <i class="fa-solid fa-cart-plus text-gray-600 hover:text-black"></i>
-                                    </button>
-                                    <button @click="addToWishlist(product)" class="" title="Add To Wishlist">
-                                        <i class="fa-regular fa-heart text-gray-600 hover:text-black"></i>
-                                        <!-- <i class="fa-solid fa-heart text-red-800 hover:text-black text-xl"></i> -->
-                                    </button>
-                                </div>
+                            <!-- small screen -->
+                            <transition name="fade">
+                                <button v-if="smallWished" @mouseover="wished = product._id" @mouseleave="wished = null"
+                                    @click="addToWishlist(product)"
+                                    class="absolute z-10 font-extrabold text-md sm:text-2xl top-2 right-2 opacity-[1] flex flex-col transition-all duration-150"
+                                    title="Add To Wishlist">
+                                    <i class="text-gray-900" :class="{
+                                        'fa-regular fa-heart': wished !== product._id,
+                                        'fa-solid fa-heart': wished === product._id
+                                    }"></i>
+                                </button>
                             </transition>
-                            <router-link :to="infoRoute(product._id)">
+                            <!-- x-large screen -->
+                            <transition name="fade">
+                                <button v-if="(hoveredProductId === product._id && !smallWished) || isWished(product)"
+                                    @mouseover="wished = product._id" @mouseleave="wished = null"
+                                    @click="addToWishlist(product)" class="absolute z-10 font-extrabold text-md sm:text-2xl top-2 right-2
+                                    opacity-[1] flex flex-col transition-all duration-150" title="Add To Wishlist">
+                                    <i class="text-gray-900" :class="{
+                                        'fa-regular fa-heart': wished !== product._id && !isWished(product),
+                                        'fa-solid fa-heart': wished === product._id || isWished(product)
+                                    }"></i>
+                                </button>
+                            </transition>
+                            <transition name="fade">
+                                <button @click="addToCart(product)" class="absolute z-10 font-extrabold 
+                                text-md sm:text-xl bottom-[80%] sm:bottom-8 right-2 opacity-[1] flex flex-col
+                                transition-all duration-150" title="Add To Cart">
+                                    <i class="fa-solid fa-cart-plus text-gray-900 hover:text-gray-500"></i>
+                                </button>
+                            </transition>
+                            <router-link :to="{ name: 'Product', params: { id: product._id } }">
                                 <ProductComponent :product="product" />
                             </router-link>
                         </div>
@@ -110,6 +134,7 @@ export default {
             user: localStorage.getItem('user'),
             allT: sessionStorage.getItem('allT') || '',
             show: false,
+            wish: false,
             shopProducts: [],
             currentPage: 1,
             pageSize: 20,
@@ -118,6 +143,7 @@ export default {
             showFilter: false,
             mostPopular: false,
             hoveredProductId: null,
+            wished: null,
         }
     },
     watch: {
@@ -129,8 +155,10 @@ export default {
     },
     setup() {
         const filterButton = ref(window.innerWidth < 775);
+        const smallWished = ref(window.innerWidth < 645);
         const updateShow = () => {
             filterButton.value = window.innerWidth < 775;
+            smallWished.value = window.innerWidth < 645;
         };
 
         onMounted(() => {
@@ -140,7 +168,7 @@ export default {
             addEventListener('resize', updateShow);
         });
         return {
-            filterButton
+            filterButton, smallWished
         }
     },
     beforeRouteUpdate(to, from, next) {
@@ -152,9 +180,10 @@ export default {
             this.allT = sessionStorage.getItem('allT') || '';
         });
         this.fetchData();
+
     },
     computed: {
-        ...mapGetters(['Get_Products']),
+        ...mapGetters(['Get_Products', 'Get_Wishlist',]),
         totalPages() {
             return Math.ceil(this.shopProducts.length / this.pageSize);
         },
@@ -162,16 +191,18 @@ export default {
             const startIndex = (this.currentPage - 1) * this.pageSize;
             const endIndex = startIndex + this.pageSize;
             return this.Get_Products.slice(startIndex, endIndex);
-        }
+        },
+
     },
     methods: {
-        ...mapActions(['FetchProducts', 'AddItemToCart', 'AddToWishlist']),
+        ...mapActions(['FetchProducts', 'FetchWishlist', 'AddItemToCart', 'AddToWishlist', 'RemoveWishItem']),
         initData() {
             this.shopProducts = this.Get_Products;
         },
         async fetchData() {
             try {
                 await this.FetchProducts();
+                await this.FetchWishlist();
                 this.initData();
             }
             catch (err) {
@@ -180,6 +211,7 @@ export default {
         },
         async addToCart(cartItem) {
             try {
+
                 await this.AddItemToCart(cartItem);
                 this.show = true;
                 setTimeout(() => { this.show = false }, 1500);
@@ -190,17 +222,19 @@ export default {
         },
         async addToWishlist(wishItem) {
             try {
-                await this.AddToWishlist(wishItem);
+                const exist = await this.AddToWishlist(wishItem);
             }
             catch (err) {
                 console.error('Add to Wishlist : ', err);
             }
         },
+        isWished(product) {
+            const existed = this.Get_Wishlist.find(v => v._id === product._id);
+            if (existed) return true
+            else return false
+        },
         updateAllT() {
             this.allT = sessionStorage.getItem('allT') || '';
-        },
-        infoRoute(id) {
-            return `/shop.co/shop/product/${id}`;
         },
         prevPage() {
             if (this.currentPage > 1) {

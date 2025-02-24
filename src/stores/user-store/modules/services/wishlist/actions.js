@@ -13,12 +13,14 @@ export const actions = {
     },
     async AddToWishlist({ dispatch }, AddedItem) {
         try {
-            // if (localStorage.getItem('user') !== 'customer') {
             let updatedWishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-            updatedWishlist.push(AddedItem);
+            const existItem = updatedWishlist.find(v => v._id === AddedItem._id);
+            if (existItem) {
+                const index = updatedWishlist.findIndex(v => v === existItem);
+                updatedWishlist.splice(index, 1);
+            }
+            else updatedWishlist.push(AddedItem);
             localStorage.setItem('wishlist', JSON.stringify(updatedWishlist));
-            // }
-
             await dispatch('FetchWishlist');
         }
         catch (error) {

@@ -12,17 +12,18 @@
                             back to dashboard <i class="fa-duotone fa-regular fa-chevrons-right pl-2"></i>
                         </BaseButton>
                     </div>
-                    <h1 class="capitalize font-semibold text-lg sm:text-xl">
+                    <h1 class="capitalize font-semibold text-lg sm:text-xl mt-4 sm:mt-0">
                         <i class="fa-sharp fa-regular fa-cart-flatbed-boxes pr-2"></i> your inventory <span
                             class="text-gray-600 text-xs">({{ inventory.length }} products)</span>
                     </h1>
                 </div>
-                <hr>
+                <hr class="w-full my-3 border-b-2 border-b-gray-400">
                 <!-- Inventory Products -->
                 <div v-if="inventory.length" class="pl-0 sm:pl-2 lg:pl-4 h-fit w-full">
-                    <div class="mt-6 flex flex-wrap gap-y-4 gap-x-2 justify-between sm:justify-start">
-                        <div v-for="(product, index) in paginatedItems" :key="product._id"
-                            class="relative w-[48%] sm:w-[32%] md:w-[24%] lg:w-[16%]">
+                    <!-- <div class="mt-6 flex flex-wrap gap-y-4 gap-x-2 justify-between sm:justify-start"> -->
+                    <div class="mt-2 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                        <div v-for="(product, index) in paginatedItems" :key="product._id" class="relative">
+                            <!-- class="relative w-[48%] sm:w-[32%] md:w-[24%] lg:w-[16%]"> -->
                             <div class="absolute top-[2%] right-[5%] text-gray-700 hover:text-gray-900">
                                 <button @click="showOptions[product._id] = !showOptions[product._id]"
                                     class="  rounded transition duration-200">
@@ -62,7 +63,7 @@
                                     </BaseButton>
                                 </div>
                             </BaseModal>
-                            <router-link :to="infoRoute(product._id)" class="product">
+                            <router-link :to="{ name: 'Product', params: { id: product._id } }">
                                 <ProductComponent :product="product" />
                             </router-link>
                         </div>

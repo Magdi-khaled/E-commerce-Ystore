@@ -112,7 +112,7 @@
                     <i class="fa-solid fa-bars"></i>
                 </button>
                 <div class="w-4/12">
-                    <img class="w-[80%]" src="../assets/images/logo/logo.webp" alt="shop.co">
+                    <img class="w-[80%]" src="../assets/images/logo/logo.png" alt="shop.co">
                 </div>
             </div>
             <hr>

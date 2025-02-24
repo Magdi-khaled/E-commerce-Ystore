@@ -88,8 +88,8 @@
                                 border-b-[3px] border-b-gray-600">
                                 <span :title="providedColors.map(c => c.color).join(', ')"
                                     class="select-size  text-gray-700 text-sm sm:text-md capitalize">
-                                    {{ providedColors.length ? providedColors.map(c => c.color).join(", ")
-                                        : "select colors" }}
+                                    {{providedColors.length ? providedColors.map(c => c.color).join(", ")
+                                        : "select colors"}}
                                 </span>
                                 <i
                                     class="fa-solid fa-chevron-down text-xs text-gray-600 absolute right-[1%] top-[25%]"></i>
@@ -108,11 +108,21 @@
                         </div>
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-4 ">
-                        <Field label="Product Image" name="image" type="file" accept="image/*" v-model="image"
-                            :validator="vSchema.image" />
-
-                        <Field label="Provided Images" name="providedImages" type="file" accept="image/*"
-                            v-model="providedImages" :multiple="true" :validator="vSchema.providedImages" />
+                        <!-- <Field label="Product Image" name="image" type="file" accept="image/*" v-model="image"
+                            :validator="vSchema.image" /> -->
+                        <label for="image" class="mt-4 border-2 border-gray-400 bg-gray-100 border-dashed rounded-md
+                        flex justify-center items-center h-32 sm:h-36 not-import">
+                            <input type="file" name="image" id="image" accept="image/*" @input="handleFileUpload"
+                                class="w-10/12 file:bg-gray-900 file:rounded-md file:text-white file:text-sm file:md:text-sm">
+                        </label>
+                        <label for="images" class="mt-4 border-2 border-gray-400 bg-gray-100 border-dashed rounded-md
+                        flex justify-center items-center h-32 sm:h-36 not-import">
+                            <input type="file" name="images" id="images" accept="image/*" multiple
+                                @input="handleFilesUpload"
+                                class="w-10/12 file:bg-gray-900 file:rounded-md file:text-white file:text-sm file:md:text-sm">
+                        </label>
+                        <!-- <Field label="Provided Images" name="providedImages" type="file" accept="image/*"
+                            v-model="providedImages" :multiple="true" :validator="vSchema.providedImages" /> -->
                     </div>
                     <div class="w-full flex flex-row-reverse gap-2 sm:gap-4 mt-2 text-sm sm:text-md">
                         <BaseButton @click="addProduct" class="w-5/12 sm:w-4/12 md:w-2/12  py-[6px] sm:py-[10px]">
@@ -192,6 +202,19 @@ export default {
     },
     methods: {
         ...mapActions(['AddProduct']),
+        handleFileUpload(event) {
+            const file = event.target.files[0];
+
+            if (file) {
+                this.image = `/assets/shop/${file.name}`; // Store the file object
+            }
+        }, handleFilesUpload(event) {
+            const files = Array.from(event.target.files);
+
+            files.forEach(v => {
+                this.providedImages.push(`/assets/shop/${v.name}`)
+            })
+        },
         async addProduct() {
             try {
                 // Validate the form

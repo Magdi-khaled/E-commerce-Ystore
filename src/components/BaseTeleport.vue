@@ -31,13 +31,15 @@ export default {
 <style scoped>
 div {
     opacity: 0;
-    left: -100%;
+    /* left: -100%; */
+    z-index: -200;
     transition: all 0.3s ease-in-out;
 }
 
 div.active {
     left: 2%;
     opacity: 1;
-    transition: all 0.3s ease-in-out, opacity 0.7s ease-in-out;
+    z-index: 200;
+    transition: opacity 0.7s ease-in-out;
 }
 </style>

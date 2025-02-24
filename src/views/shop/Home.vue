@@ -51,14 +51,18 @@
             <div class="new-arrivals-products">
                 <div v-if="!spvCheck" class="flex flex-wrap justify-between gap-4">
                     <div v-for="product in newProducts" class="mt-4 product relative">
-                        <ProductComponent :product="product"></ProductComponent>
+                        <router-link :to="{ name: 'Product', params: { id: product._id } }">
+                            <ProductComponent :product="product"></ProductComponent>
+                        </router-link>
                     </div>
                 </div>
                 <swiper v-else class="flex flex-wrap justify-between" :modules="modules"
                     :slides-per-view="slidesPerView" :mousewheel="{ scorllable: true }"
                     :scrollbar="{ draggable: false }">
                     <swiper-slide v-for="product in newProducts" class="mt-4 mr-4 rounded-sm product relative">
-                        <ProductComponent :product="product"></ProductComponent>
+                        <router-link :to="{ name: 'Product', params: { id: product._id } }">
+                            <ProductComponent :product="product"></ProductComponent>
+                        </router-link>
                     </swiper-slide>
                 </swiper>
                 <div class="w-full text-center my-6">
@@ -83,14 +87,18 @@
             <div class="new-arrivals-products">
                 <div v-if="!spvCheck" class="flex flex-wrap justify-between gap-4">
                     <div v-for="product in bestSellers" class="mt-4 rounded-sm product relative">
-                        <ProductComponent :product="product" />
+                        <router-link :to="{ name: 'Product', params: { id: product._id } }">
+                            <ProductComponent :product="product" />
+                        </router-link>
                     </div>
                 </div>
                 <swiper v-else class="flex flex-wrap justify-between" :modules="modules"
                     :slides-per-view="slidesPerView" :mousewheel="{ scorllable: true }"
                     :scrollbar="{ draggable: false }">
                     <swiper-slide v-for="product in bestSellers" class="mt-4 mr-4 rounded-sm product relative">
-                        <ProductComponent :product="product" />
+                        <router-link :to="{ name: 'Product', params: { id: product._id } }">
+                            <ProductComponent :product="product" />
+                        </router-link>
                     </swiper-slide>
                 </swiper>
                 <div class="w-full text-center my-6">
@@ -135,7 +143,7 @@
 
             <div class="w-full md:w-6/12 py-4 md:py-10">
                 <h1 class="whitespace-nowrap font-bold text-lg sm:text-xl md:text-2xl uppercase">
-                    <i class="fa-sharp fa-regular fa-cart-flatbed-boxes pr-2"></i> become SHOP.CO seller
+                    <i class="fa-sharp fa-regular fa-cart-flatbed-boxes pr-2"></i> become ystore seller
                 </h1>
                 <div class="w-full">
                     <p class="text-sm sm:text-md pt-4 text-gray-500 leading-7">
@@ -143,22 +151,22 @@
                         respond to customer inquiries, and ensure a seamless shopping experience. Your role includes
                         creating compelling listings, processing orders efficiently, and keeping inventory accurate.
                         Start selling effortlessly on Shop.Co today! 🚀<br>
-                        Join <span class="text-black font-bold uppercase">Shop.Co</span> sellers and easily list your
+                        Join <span class="text-black font-bold uppercase">ystore</span> sellers and easily list your
                         products for sell.
-                        <p class="w-full md:w-10/12 my-3 sm:my-6 border-b-2 bg-gray-600" />
                     </p>
                 </div>
+                <hr class="w-full md:w-10/12 my-3 sm:my-6" />
                 <BaseButton @click="this.$router.push({ name: 'AD-Dashboard' })"
                     class="whitespace-nowrap text-start 
                     w-full sm:w-6/12 md:w-8/12 px-6 rounded-sm border-t-0 border-r-0 border-gray-300 flex justify-between">
-                    <p>join Shop.Co sellers now</p>
+                    <p>join YSTORE sellers community now</p>
                     <div>
                         <i class="fa-light fa-users pl-2"></i><i class="fa-solid fa-chevrons-right text-sm pl-2"></i>
                     </div>
                 </BaseButton>
             </div>
             <div class="w-full md:w-6/12 flex justify-center items-center px-0 md:px-6 py-4">
-                <img class="w-full h-[16em] lg:h-[20em] rounded border-2 border-gray-300 bg-gray-100 shadow-sm"
+                <img class="w-full h-[16em] lg:h-[20em] rounded border-2 border-gray-300 bg-gray-50 shadow-sm"
                     loading="lazy" src="../../assets/images/shop/preview/fashion shop-pana2.svg" alt="">
             </div>
         </section>

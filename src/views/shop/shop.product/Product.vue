@@ -2,35 +2,40 @@
 <template>
     <UserNavbar v-if="tuser == 'customer'" />
     <BaseNavbar v-else />
+
+    <BaseTeleport :show="show" :type="'success'">
+        Product Added to shopping cart
+    </BaseTeleport>
     <Breadcrumbs class="mt-2 px-3 md:px-4 pt-[3px] pb-4" :breadcrumbs="this.$route.meta.breadcrumb" />
     <div class="px-4 sm:px-8 ">
-        <div class=" flex flex-wrap">
-            <div data-aos="fade-up" class="w-full md:w-1/2 flex flex-row gap-2 lg:gap-3">
+        <div data-aos="fade-up" class=" flex flex-wrap">
+            <div class="w-full md:w-1/2 flex flex-row gap-2 lg:gap-3">
                 <!-- Options Images -->
                 <div class="w-[25%] lg:w-[22%] flex flex-col">
                     <div v-for="(image, index) in product?.providedImages" :key="index"
                         class="w-full h-auto p-1 cursor-pointer" @click="showImage(image, index)">
                         <img :class="{ 'opacity-[1] border-2 border-gray-600': selectedImageIndex == index }"
-                            class="opacity-80 h-[6.5em] sm:h-[8em] md:h-[9em] w-full rounded-md border hover:scale-[101.5%] transition-transform duration-200 ease-in-out"
+                            class="opacity-80 h-[6.5em] md:h-[8em] lg:h-[9em] w-full rounded-md border hover:scale-[101.5%] transition-transform duration-200 ease-in-out"
                             :src="image" alt="Product Option" />
                     </div>
                 </div>
                 <!-- Main Image -->
-                <div class="w-[80%] md:w-[90%] h-auto p-0 sm:p-1">
+                <div class="w-[80%] md:w-[100%] lg:w-[90%] h-auto p-0 sm:p-1">
                     <div class="relative overflow-hidden w-full h-auto rounded-md cursor-zoom-in" @mousemove="zoomLens"
                         @mouseleave="hideLens">
-                        <img ref="mainImage" class="w-full h-[25em] sm:h-[35em]" :src="selectedImg"
+                        <img ref="mainImage" class="w-full h-[25em] md:h-[30em] lg:h-[35em]" :src="selectedImg"
                             alt="Main Product Image" />
                         <div ref="lens" class="absolute rounded-full bg-transparent border-2 border-gray-500 "
                             :style="lensStyles"></div>
                     </div>
                     <div class="w-full mt-4">
-                        <BaseButton class="addToCart-btn w-full">add to cart <i class="fa-solid fa-cart-shopping"></i>
+                        <BaseButton @click="addToCart(product)" class="addToCart-btn w-full">add to cart <i
+                                class="fa-solid fa-cart-shopping"></i>
                         </BaseButton>
                     </div>
                 </div>
             </div>
-            <div data-aos="fade-left" class="p-2 px-4 md:px-6 w-full md:w-1/2">
+            <div class="p-2 px-4 md:px-6 w-full md:w-1/2">
                 <p class="candal-regular font-bold text-2xl lg:text-3xl capitalize">{{ product.title }}</p>
                 <div class="product-rate">
                     <div class="stars-rate my-2 flex items-center gap-1">
@@ -269,7 +274,7 @@
                     </label>
                     <div class="w-full sm:w-3/12 whitespace-nowrap relative">
                         <div @click="dropdownOpen = !dropdownOpen" class="capitalize text-sm sm:text-md font-medium
-                                bg-gray-50 border-2 p-2 rounded cursor-pointer">
+                                bg-gray-100 border-2 border-gray-400 p-2 rounded-sm shadow-sm cursor-pointer">
                             <span v-if="selectedRating">
                                 Selected Rate :
                                 {{ selectedRating }}/5 <i class="fa-solid fa-star text-black"></i>
@@ -288,21 +293,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="w-full mt-2">
-                    <!-- title -->
-                    <label for="reviewTitle" class="font-semibold capitalize">title</label>
-                    <input type="text" v-model="reviewTitle" id="reviewTitle" name="reviewTitle"
-                        placeholder="Review Title" class="w-full my-2 font-medium placeholder:font-normal p-1 bg-gray-100 outline-none
-                        rounded focus:bg-white border-2 py-1 px-2">
-                    <!-- description -->
-                    <label for="reviewTitle" class="font-semibold capitalize">description</label>
-                    <textarea v-model="review" id="review" type="text" placeholder="What's your opinion?..." class="w-full my-2 font-medium placeholder:font-normal py-3 px-2 h-14 sm:h-16 
-                        bg-gray-100 outline-none rounded focus:bg-white border-2" />
+                <Form @submit.prevent="addReview" class="w-full mt-2 grid gap-4">
+                    <Field label="title" type="text" name="reviewTitle" placeholder="Enter review title"
+                        v-model="reviewTitle" />
+                    <Field label="description" type="textarea" name="review" placeholder="Enter your feedback..."
+                        v-model="review" />
                     <div class="w-full flex justify-end mt-2">
                         <BaseButton @click="addReview" :class="{ 'submit-review w-full sm:w-3/12': true }">submit
                         </BaseButton>
                     </div>
-                </div>
+                </Form>
             </div>
         </section>
     </div>
@@ -312,14 +312,17 @@
 import BaseNavbar from '../../../components/BaseNavbar.vue';
 import UserNavbar from '../../../components/user/UserNavbar.vue';
 import BaseButton from '../../../components/BaseButton.vue';
+import BaseTeleport from '../../../components/BaseTeleport.vue';
 import BaseCard from '../../../components/BaseCard.vue';
+import Field from '../../../components/form/Field.vue';
+import { Form } from 'vee-validate';
 import BaseFooter from '../../../components/BaseFooter.vue';
 import { mapActions, mapGetters, } from 'vuex';
 
 import { inject } from "vue";
 
 export default {
-    components: { BaseNavbar, UserNavbar, BaseButton, BaseCard, BaseFooter },
+    components: { BaseNavbar, BaseTeleport, UserNavbar, BaseButton, BaseCard, Field, Form, BaseFooter },
     data() {
         return {
             tuser: localStorage.getItem('user'),
@@ -329,6 +332,7 @@ export default {
             providedImages: [],
             color: '',
             size: '',
+            show: false,
             r_more: false,
             quantity: 1,
             outStock: '',
@@ -372,12 +376,14 @@ export default {
                 console.error(err);
             }
         },
-        async addToCart() {
+        async addToCart(cartItem) {
             try {
-                await this.AddItemToCart(this.product);
+                await this.AddItemToCart(cartItem);
+                this.show = true;
+                setTimeout(() => { this.show = false }, 1500);
             }
             catch (err) {
-                console.error('adding item to cart error : ', err);
+                console.error('Add to Cart : ', err);
             }
         },
         showImage(src, index) {

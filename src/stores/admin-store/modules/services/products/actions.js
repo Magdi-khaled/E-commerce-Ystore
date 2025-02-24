@@ -4,8 +4,10 @@ import inventoryProducts from '../../../../../assets/db/data.json';
 export const actions = {
     async FetchInventory({ commit }) {
         try {
-            const response = await axios.get('http://localhost:3000/getproducts');
-            await commit('Set_Inventory', response.data);
+            // const response = await axios.get('http://localhost:3000/getproducts');
+            // await commit('Set_Inventory', response.data);
+
+            await commit('Set_Inventory', inventoryProducts);
         } catch (err) {
             console.error("Axios Error:", err);
         }

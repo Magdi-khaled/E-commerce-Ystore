@@ -125,14 +125,14 @@ function handleInput(event) {
         <!-- Multiple Files Input -->
         <input v-else-if="props.type === 'file' && props.multiple" :type="props.type" :name="props.name"
             :id="props.name" @blur="validate()" @change="handleFilesChange" :accept="props.accept"
-            :multiple="props.multiple"
-            class="text-sm sm:text-md py-2 px-2 bg-gray-100 border-[2px] border-b-[3px] border-b-gray-600 outline-none text-gray-700 w-full" />
+            :multiple="props.multiple" class="text-sm sm:text-md py-2 px-2 bg-gray-100 border-[2px] border-b-[3px]
+            border-b-gray-600 outline-none text-gray-700 w-full" />
 
         <!-- Default Input [text, number, email, password, range, ...etc] -->
         <input v-else v-model="value" :type="props.type" :name="props.name" :id="props.name" :disabled="props.hide"
             :placeholder="props.placeholder" :class="{ 'cursor-not-allowed text-[#939393df]': props.hide }"
             :maxlength="props.maxLen" :minlength="props.minLen" @input="handleInput"
-            class="border-[2px] border-b-[3px] border-b-gray-600 text-sm sm:text-md py-2 px-2 bg-gray-100 outline-none text-gray-700 w-full" />
+            class="border-[2px] border-b-[3px] border-b-gray-600 text-sm sm:text-md p-2 bg-gray-100 outline-none text-gray-700 w-full" />
 
         <!-- Error Message -->
         <div v-show="errorMessage" class="text-red-500 text-sm">

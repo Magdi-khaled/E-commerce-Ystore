@@ -39,10 +39,10 @@
                             <h1 class="font-bold text-sm sm:text-xl capitalize whitespace-nowrap">
                                 {{ item.title }}</h1>
                             <p class="font-medium text-sm sm:text-lg capitalize">size: <span class="text-gray-500">
-                                    {{ item.size }}</span>
+                                    {{ item.providedSizes[0] }}</span>
                             </p>
                             <p class="font-medium text-sm sm:text-lg capitalize">color: <span class="text-gray-500">
-                                    {{ item.color }}</span>
+                                    {{ item.providedColors[0].color }}</span>
                             </p>
                         </div>
                         <div class="flex items-center justify-between">

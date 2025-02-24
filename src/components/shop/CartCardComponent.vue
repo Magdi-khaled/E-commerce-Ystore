@@ -4,11 +4,15 @@
         <i class="fa-solid fa-trash-can text-red-600 hover:text-red-400 cursor-pointer"></i>
     </button>
     <div class="w-3/12 m-3">
-        <img class="rounded" :src="item.src" alt="cart-product">
+        <router-link :to="{ name: 'Product', params: { id: item._id } }">
+            <img class="rounded" :src="item.src" alt="cart-product">
+        </router-link>
     </div>
     <div class="w-8/12 h-[120px] flex flex-col justify-between">
         <div class="w-10/12 h-8/12">
-            <h1 class="font-bold text-sm sm:text-md capitalize">{{ item.title }}</h1>
+            <h1 class="font-bold text-sm sm:text-md capitalize overflow-hidden text-ellipsis max-h-[22px]">
+                {{ item.title }}
+            </h1>
             <p class="font-medium text-sm sm:text-mdtext-md capitalize">
                 size: <span class="text-gray-500">{{ item.providedSizes[1] }}</span>
             </p>

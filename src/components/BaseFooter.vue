@@ -11,16 +11,16 @@
             <div class="w-full md:w-5/12">
                 <div class="flex justify-end relative mb-5 mt-5 md:mt-0">
                     <label for="uptodate-email" class="w-full">
-                        <input v-model="emailupto" id="uptodate-email" type="email" class="rounded-md py-2
-                        sm:py-3 pl-8 w-full text-black font-medium  text-sm sm:text-md "
+                        <input v-model="emailupto" id="uptodate-email" type="email" class="rounded outline-none py-2
+                        sm:py-3 pl-9 w-full text-black font-medium  text-sm sm:text-md "
                             placeholder="Enter your email address...">
                         <i
-                            class="fa-solid fa-at absolute z-30 left-2 top-[30%] sm:top-[25%] text-md sm:text-xl text-gray-500"></i>
+                            class="fa-solid fa-at absolute z-30 left-2 top-[30%] sm:top-[23%] text-md sm:text-xl text-gray-500"></i>
                     </label>
                 </div>
                 <div class="flex justify-center md:justify-end">
                     <button class="capitalize bg-white text-black w-full py-2 font-medium hover:text-white
-                        hover:bg-[#2f2f2f] rounded-md transition duration-300">
+                        hover:bg-[#2f2f2f] rounded transition duration-300">
                         subscribe <span class="lowercase">to</span> newsletter
                     </button>
                 </div>
@@ -30,11 +30,11 @@
         <div class="footer-content flex flex-col md:flex-row  justify-between w-full px-8 md:px-16 ">
 
             <!-- first column -->
-            <div class="footer-content-1 w-full sm:w-4/12 flex flex-col gap-5">
-                <div class="mb-2">
-                    <img loading="lazy" src="../assets/images/logo/footer-logo.webp" alt="SHOP.CO">
+            <div class="footer-content-1 w-full md:w-4/12 flex flex-col gap-5">
+                <div class="mb-2 w-4/12 md:w-7/12">
+                    <img loading="lazy" src="../assets/images/logo/footer-logo.png" alt="YSTORE-LOGO">
                 </div>
-                <div class="w-full sm:w-8/12 text-sm text-gray-600 mb-2 md:mb-6">
+                <div class="w-full md:w-8/12 text-sm text-gray-600 mb-2 md:mb-6">
                     <p>
                         We have clothes that suits your style and which you’re proud to wear. From women to men.
                     </p>
@@ -137,7 +137,7 @@
         <div class="mx-8 md:mx-16 pt-3 pb-8 flex flex-wrap justify-between">
             <div class="w-full sm:w-4/12 text-gray-500 text-sm">
                 <p>
-                    Shop.co © 2002-2024, All rights reserved
+                    YSTORE © 2002-2024, All rights reserved
                 </p>
             </div>
             <div class="w-8/12 sm:w-5/12">

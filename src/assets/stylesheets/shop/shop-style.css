@@ -1,9 +1,9 @@
 /* Product */
 .product {
-  cursor: pointer;
+  /* cursor: pointer;
   width: 19.2%;
   height: 100%;
-  transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in; */
 
   /*
     border: 0px solid rgb(155, 155, 155);
@@ -42,24 +42,24 @@
 
 @media (max-width: 1080px) {
   .product {
-    width: 24%;
+    /* width: 24%; */
   }
 }
 
 @media (max-width: 832px) {
   .product {
-    width: 24%;
+    /* width: 24%; */
   }
 }
 
 @media (max-width: 772px) {
   .product {
-    width: 32%;
+    /* width: 32%; */
   }
 }
 
 @media (max-width: 572px) {
   .product {
-    width: 48.2%;
+    /* width: 48.2%; */
   }
 }

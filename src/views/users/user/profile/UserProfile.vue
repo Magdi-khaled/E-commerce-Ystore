@@ -1,6 +1,5 @@
 <template>
-    <UserNavbar v-if="tuser == 'customer'" />
-    <BaseNavbar v-else />
+    <UserNavbar />
     <div class="h-full w-full flex">
         <div class="w-3/12 hidden lg:block bg-gray-50 border-r border-gray-500">
             <UserSidebar v-model="clicked" :clicked="clicked" />
@@ -15,19 +14,16 @@
     <InFooter />
 </template>
 <script>
-import BaseNavbar from '../../../../components/BaseNavbar.vue';
 import UserNavbar from '../../../../components/user/UserNavbar.vue';
 import UserInfoComponent from '../../../../components/user/UserInfoComponent.vue';
 import UserSidebar from '../../../../components/user/UserSidebar.vue';
 import InFooter from '../../../../components/InFooter.vue';
 export default {
-    components: {
-        BaseNavbar, UserNavbar, UserInfoComponent, UserSidebar, InFooter
+    components: { UserNavbar, UserInfoComponent, UserSidebar, InFooter
     },
     data() {
         return {
             clicked: 0,
-            tuser: localStorage.getItem('user'),
             user: {
                 email: 'magdikhaled23s@gmail.com',
                 password: '123412341234',

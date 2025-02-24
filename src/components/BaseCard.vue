@@ -21,8 +21,8 @@
             </div>
             <h1 class="font-bold">{{ card.title }}</h1>
         </div>
-        <div class="card-content h-auto h-max-24 my-2">
-            <p class="overflow-hidden text-ellipsis text-sm md:text-md">
+        <div class="card-content my-2">
+            <p class="overflow-hidden h-6 text-ellipsis text-sm md:text-md">
                 {{ card.feedback }}</p>
         </div>
         <div>

@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import userRouter, { routerUserGuard } from "./user-router/router";
-import adminRouter, { routerSellerrGuard } from "./admin-router/router";
+import adminRouter, { routerAdminGuard } from "./admin-router/router";
 import shopRouter from "./shop-router/router";
 import NotFound from '../components/NotFound.vue';
 
@@ -14,7 +14,7 @@ const router = createRouter({
             path: '/:catchAll(.*)',
             name: 'not-found',
             meta: {
-                title: 'Shop.co | Page NotFound 404',
+                title: 'Ystore | Page NotFound 404',
             },
             component: NotFound
         },
@@ -31,7 +31,7 @@ const router = createRouter({
 
 // router Guards
 router.beforeEach(routerUserGuard);
-router.beforeEach(routerSellerrGuard);
+router.beforeEach(routerAdminGuard);
 
 // loading spinner transition
 router.beforeEach((to, from, next) => {

@@ -7,7 +7,7 @@ export default {
     namespace: true,
     state() {
         return {
-            Wishlist: []
+            wishlist: []
         };
     },
     mutations,

@@ -1,7 +1,7 @@
 <template>
     <footer class="profile-footer flex items-center justify-between w-full px-2 sm:px-6 py-4">
         <p class="text-gray-500 text-sm">
-            © 2024 shop.co. All rights reserved
+            © 2024 ystore. All rights reserved
         </p>
 
         <div class="flex items-center flex-wrap justify-end text-sm text-gray-600">
