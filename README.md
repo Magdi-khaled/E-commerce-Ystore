@@ -1,6 +1,6 @@
 # Online Fashion Store
 
-**Online Fashion Store [SHOP.CO]**, E-commerce platform dedicated to fashion enthusiasts.
+**Online Fashion Store [YSTORE]**, E-commerce platform dedicated to fashion enthusiasts.
 Our store provides a seamless shopping experience for users looking for trendy clothing while also
 offering sellers and administrators efficient management tools.
 
@@ -19,7 +19,7 @@ offering sellers and administrators efficient management tools.
 - Register and manage a seller account.
 - List fashion products with images, descriptions, and pricing.
 - Track orders and manage inventory.
-- View sales reports and performance analytics.
+- View sales reports and performance analytics [Dashboard].
 
 ### 🛠️ Admin Features:
 
