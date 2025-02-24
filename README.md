@@ -1,4 +1,4 @@
-# YSTORE E-commerce - Online Fashion Store
+# YSTORE E-COMMERCE - Online Fashion Store
 
 **Online Fashion Store [YSTORE]**, E-commerce platform dedicated to fashion enthusiasts.
 Our store provides a seamless shopping experience for users looking for trendy clothing while also
