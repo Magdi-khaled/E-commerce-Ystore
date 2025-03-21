@@ -147,10 +147,10 @@
                 </h1>
                 <div class="w-full">
                     <p class="text-sm sm:text-md pt-4 text-gray-500 leading-7">
-                        Join Shop.Co as a seller and take control of your online business! Manage your product listings,
+                        Join YSTORE as a seller and take control of your online business! Manage your product listings,
                         respond to customer inquiries, and ensure a seamless shopping experience. Your role includes
                         creating compelling listings, processing orders efficiently, and keeping inventory accurate.
-                        Start selling effortlessly on Shop.Co today! 🚀<br>
+                        Start selling effortlessly on YSTORE today! 🚀<br>
                         Join <span class="text-black font-bold uppercase">ystore</span> sellers and easily list your
                         products for sell.
                     </p>
@@ -204,10 +204,10 @@ import BaseNavbar from '../../components/BaseNavbar.vue';
 import BaseFooter from '../../components/BaseFooter.vue';
 import BaseButton from '../../components/BaseButton.vue';
 import BaseCard from '../../components/BaseCard.vue';
-import Data from '../../assets/db/data.json';
 import ProductComponent from '../../components/shop/ProductComponent.vue';
-import { onBeforeUnmount, onMounted, ref } from 'vue';
+import Data from '../../composables/data.js';
 
+import { onBeforeUnmount, onMounted, ref } from 'vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Navigation, Mousewheel, Scrollbar } from 'swiper/modules';
 import { mapActions, mapGetters } from 'vuex';

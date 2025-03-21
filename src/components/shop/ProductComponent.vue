@@ -5,13 +5,13 @@
         <!-- class="w-[100%] h-[100%] rounded-[20px] border-[0.1px] border-gray-400"> -->
     </div>
 
-    <div class="detail px-2 py-2 flex flex-col justify-between">
+    <div class="detail py-2 flex flex-col justify-between">
         <p class="capitalize font-medium text-sm sm:text-md h-5 w-40 md:w-36 lg:w-[12em] tracking-tight">{{
             product.title }}
         </p>
         <!-- product-price -->
         <div
-            class="product-price text-sm sm:text-md font-sans flex pt-1 gap-1 sm:gap-2 tracking-normal whitespace-nowrap">
+            class="product-price text-sm sm:text-md font-sans flex pt-[1px] gap-1 sm:gap-2 tracking-normal whitespace-nowrap">
             <p class="font-medium">
                 <span class="text-xs text-gray-700">EGP </span>
                 {{ handlePrice(product.price, product.sale) }}

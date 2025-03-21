@@ -195,7 +195,7 @@ import { ref, onMounted, onBeforeUnmount } from 'vue';
 import NavigatedCart from '../components/shop/NavigatedCart.vue';
 import BaseButton from '../components/BaseButton.vue';
 import data from '../assets/db/data.json';
-import { mapActions } from 'vuex';
+
 export default {
     name: 'BaseNavbar',
     components: { NavigatedCart, BaseButton },

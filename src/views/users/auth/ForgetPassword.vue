@@ -111,7 +111,7 @@ export default {
             try {
                 this.otpCode = Math.floor(100000 + Math.random() * 900000);
                 console.log(this.otpCode);
-                
+
                 await this.ResetPassword({ email: this.email, otp: this.otpCode }).then(() => {
                     this.spinnerOn = true;
                     setTimeout(() => {

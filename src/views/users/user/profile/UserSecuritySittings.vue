@@ -36,8 +36,8 @@
             </div>
         </div>
 
-        <BaseModal v-model="modalActive" @close-modal="modalActive = false" @clear="clearForm"
-            :modalActive="modalActive">
+        <BaseModal @close-modal="modalActive = false" @clear="clearForm" -->
+            <!-- :modalActive="modalActive"> -->
             <div class="flex items-center justify-between p-2">
                 <h1 class="font-bold capitalize text-xl">Change password</h1>
                 <button @click="updateShowForm">

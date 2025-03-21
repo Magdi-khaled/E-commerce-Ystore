@@ -1,11 +1,11 @@
 import axios from "axios";
-import data from '../../../../assets/db/data.json'
+import products from '../../../../composables/data'
 export const actions = {
     async FetchProducts({ commit }) {
         try {
             // const res = await axios.get('http://localhost:3000/getproducts');
-            const products = data;
-            await commit('Set_Products', products);
+            const data = products;
+            await commit('Set_Products', data);
         }
         catch (error) {
             console.error("Axios Error: ", error);

@@ -1,5 +1,4 @@
 import axios from "axios";
-import Product from "../../../components/product.vue";
 
 export const actions = {
     async checkout({ commit },) {

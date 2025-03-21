@@ -3,11 +3,15 @@
     <BaseNavbar v-else />
     <!-- ADD TO CART BASE TELEPORT -->
 
-    <BaseTeleport :show="show" :type="'success'">
+    <BaseTeleport :show="show" :type="'message'">
+        <i class="fa-solid fa-cart-plus text-gray-200"></i>
         Product Added to shopping cart
     </BaseTeleport>
     <BaseTeleport :show="wish" :type="'message'">
-        Product Added to Wishlist
+        <i class="fa-regular fa-heart"></i> Product Added to Wishlist
+    </BaseTeleport>
+    <BaseTeleport :show="unwish" :type="'message'">
+        <i class="fa-regular fa-heart-crack"></i> Product removed from Wishlist
     </BaseTeleport>
     <div class="bg-gray-100">
         <Breadcrumbs class="mt-2 px-3 md:px-4 pt-[3px] pb-4" :breadcrumbs="this.$route.meta.breadcrumb" />
@@ -74,20 +78,21 @@
                             <transition name="fade">
                                 <button v-if="smallWished" @mouseover="wished = product._id" @mouseleave="wished = null"
                                     @click="addToWishlist(product)"
-                                    class="absolute z-10 font-extrabold text-md sm:text-2xl top-2 right-2 opacity-[1] flex flex-col transition-all duration-150"
-                                    title="Add To Wishlist">
+                                    class="absolute z-10 font-extrabold text-md sm:text-2xl top-2 right-[3%] text-sm sm:text-[15px] p-[2.5px]
+                                    opacity-[1] border border-black rounded-full flex flex-col transition-all duration-150" title="Add To Wishlist">
                                     <i class="text-gray-900" :class="{
-                                        'fa-regular fa-heart': wished !== product._id,
-                                        'fa-solid fa-heart': wished === product._id
+                                        'fa-regular fa-heart': wished !== product._id && !isWished(product),
+                                        'fa-solid fa-heart': wished === product._id || isWished(product)
                                     }"></i>
                                 </button>
                             </transition>
                             <!-- x-large screen -->
-                            <transition name="fade">
-                                <button v-if="(hoveredProductId === product._id && !smallWished) || isWished(product)"
+                            <transition name="fade" v-if="!smallWished">
+                                <button v-if="hoveredProductId === product._id && !smallWished || isWished(product)"
                                     @mouseover="wished = product._id" @mouseleave="wished = null"
-                                    @click="addToWishlist(product)" class="absolute z-10 font-extrabold text-md sm:text-2xl top-2 right-2
-                                    opacity-[1] flex flex-col transition-all duration-150" title="Add To Wishlist">
+                                    @click="addToWishlist(product)"
+                                    class="absolute z-10 font-extrabold top-2 right-2 text-sm sm:text-[15px] p-[2px]
+                                    opacity-[1] border border-black rounded-full flex flex-col transition-all duration-150" title="Add To Wishlist">
                                     <i class="text-gray-900" :class="{
                                         'fa-regular fa-heart': wished !== product._id && !isWished(product),
                                         'fa-solid fa-heart': wished === product._id || isWished(product)
@@ -96,7 +101,7 @@
                             </transition>
                             <transition name="fade">
                                 <button @click="addToCart(product)" class="absolute z-10 font-extrabold 
-                                text-md sm:text-xl bottom-[80%] sm:bottom-8 right-2 opacity-[1] flex flex-col
+                                text-md sm:text-xl bottom-[77%] sm:bottom-4 right-[4%] sm:right-0 opacity-[1] flex flex-col
                                 transition-all duration-150" title="Add To Cart">
                                     <i class="fa-solid fa-cart-plus text-gray-900 hover:text-gray-500"></i>
                                 </button>
@@ -135,6 +140,7 @@ export default {
             allT: sessionStorage.getItem('allT') || '',
             show: false,
             wish: false,
+            unwish: false,
             shopProducts: [],
             currentPage: 1,
             pageSize: 20,
@@ -211,7 +217,6 @@ export default {
         },
         async addToCart(cartItem) {
             try {
-
                 await this.AddItemToCart(cartItem);
                 this.show = true;
                 setTimeout(() => { this.show = false }, 1500);
@@ -223,6 +228,17 @@ export default {
         async addToWishlist(wishItem) {
             try {
                 const exist = await this.AddToWishlist(wishItem);
+                if (exist) {
+                    this.unwish = true;
+                    setTimeout(() => {
+                        this.unwish = false;
+                    }, 1500);
+                    return;
+                }
+                this.wish = true;
+                setTimeout(() => {
+                    this.wish = false;
+                }, 1500);
             }
             catch (err) {
                 console.error('Add to Wishlist : ', err);

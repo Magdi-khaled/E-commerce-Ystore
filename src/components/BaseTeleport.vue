@@ -1,12 +1,10 @@
 <template>
     <Teleport to='body'>
         <div :class="{
-            active: show, 'bg-red-400 text-gray-700': type === 'error',
-            'bg-gray-700 text-gray-200': type === 'message', 'bg-green-500 text-white': type === 'success',
+            active: show, 'bg-red-400 text-gray-700': type === 'error', 'bg-gray-700 text-gray-200': type === 'message', 'bg-green-500 text-white': type === 'success'
         }"
             class="font-semibold capitalize text-sm sm:text-md p-4 w-fit fixed left-[2%] top-5 flex items-center flex-wrap gap-2">
-            <i v-if="type === 'success' || type === 'message'" class="fa-sharp fa-solid fa-badge-check pr-2"></i>
-            <!-- <i v-if="type === 'message'" class="fa-solid fa-circle-exclamation pr-2"></i> -->
+            <i v-if="type === 'success'" class="fa-sharp fa-solid fa-badge-check pr-2"></i>
             <slot></slot>
             <i v-if="type === 'error'" class="fa-solid fa-circle-exclamation pr-2"></i>
         </div>

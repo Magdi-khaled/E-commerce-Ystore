@@ -1,6 +1,5 @@
 <script setup>
 import { provide } from 'vue';
-import { mapActions } from 'vuex/dist/vuex.cjs.js';
 import { useStore } from 'vuex';
 
 const store = useStore();

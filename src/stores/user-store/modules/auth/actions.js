@@ -1,5 +1,4 @@
 import axios from "axios";
-import emailjs from 'emailjs-com';
 
 export const actions = {
     async UserLogin({ commit }, { email, password }) {
@@ -23,13 +22,14 @@ export const actions = {
             return false;
         }
     },
-    async UserSignup({ commit }, fname, lname, email, password, repeatpassword) {
+    async UserSignup({ commit }, fname, lname, email, address, password, repeatpassword) {
         try {
             // const response = await axios.post('http://localhost:4000/api/users/login', user);
             // const user = response.user.user.User;
             const user = new FormData();
-            user.append('email', fname);
-            user.append('email', lname);
+            user.append('fname', fname);
+            user.append('lname', lname);
+            user.append('address', address);
             user.append('email', email);
             user.append('password', password);
             user.append('confirmpassword', repeatpassword);

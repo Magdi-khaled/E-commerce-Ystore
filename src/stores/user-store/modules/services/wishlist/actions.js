@@ -18,10 +18,14 @@ export const actions = {
             if (existItem) {
                 const index = updatedWishlist.findIndex(v => v === existItem);
                 updatedWishlist.splice(index, 1);
+                localStorage.setItem('wishlist', JSON.stringify(updatedWishlist));
+                await dispatch('FetchWishlist');
+                return true;
             }
             else updatedWishlist.push(AddedItem);
             localStorage.setItem('wishlist', JSON.stringify(updatedWishlist));
             await dispatch('FetchWishlist');
+            return false;
         }
         catch (error) {
             console.error("Axios Error : ", error);

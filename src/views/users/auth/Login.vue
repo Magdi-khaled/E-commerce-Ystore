@@ -143,7 +143,6 @@ export default {
                 console.log('Login Error:', err);
             }
         },
-
         initializeGoogleSignIn() {
             // Ensure Google API is loaded before calling initialize
             if (window.google) {
@@ -161,20 +160,15 @@ export default {
                 console.error("Google API not loaded.");
             }
         },
-
-
         triggerGoogleLogin() {
             window.google?.accounts.id.prompt();
         },
-
         async handleGoogleLogin(response) {
             console.log("Google Sign-In Response:", response);
-
             if (!response.credential) {
                 console.error("No credential received from Google.");
                 return;
             }
-
             // Decode JWT token to get user data
             try {
                 const userInfo = JSON.parse(atob(response.credential.split('.')[1]));

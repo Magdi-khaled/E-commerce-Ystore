@@ -1,6 +1,8 @@
 <template>
     <UserNavbar />
-    <BaseTeleport></BaseTeleport>
+    <BaseTeleport :show="unwish" :type="'message'">
+        <i class="fa-regular fa-heart-crack"></i> Product removed from Wishlist
+    </BaseTeleport>
     <div class="px-2 sm:px-6 lg:px-12 bg-gray-100">
         <div v-if="!wishlist?.length" class="w-full h-screen flex flex-col items-center justify-center">
             <div class="grayscale w-7/12 sm:w-4/12">
@@ -44,8 +46,9 @@
                     <transition name="fade">
                         <button v-if="(hovereditemId === item._id && !smallWished) || isWished(item)"
                             @mouseover="wished = item._id" @mouseleave="wished = null" @click="addToWishlist(item)"
-                            class="absolute z-10 font-extrabold text-md sm:text-2xl top-2 right-2
-                                    opacity-[1] flex flex-col transition-all duration-150" title="Add To Wishlist">
+                            class="absolute z-10 font-extrabold text-sm sm:text-[15px] p-[2px]
+                                    opacity-[1] border border-black rounded-full top-2 right-[3%] flex flex-col transition-all duration-150"
+                            title="Add To Wishlist">
                             <i class="text-gray-900" :class="{
                                 'fa-regular fa-heart': wished !== item._id && !isWished(item),
                                 'fa-solid fa-heart': wished === item._id || isWished(item)
@@ -54,7 +57,7 @@
                     </transition>
                     <transition name="fade">
                         <button @click="addToCart(item)" class="absolute z-10 font-extrabold 
-                                text-md sm:text-xl bottom-[80%] sm:bottom-4 right-2 opacity-[1] flex flex-col
+                                text-md sm:text-xl bottom-[77%] sm:bottom-4 right-[4%] sm:right-0  opacity-[1] flex flex-col
                                 transition-all duration-150" title="Add To Cart">
                             <i class="fa-solid fa-cart-plus text-gray-900 hover:text-gray-500"></i>
                         </button>
@@ -76,16 +79,18 @@ import { inject } from 'vue';
 import UserNavbar from '../../../../components/user/UserNavbar.vue';
 import ProductComponent from '../../../../components/shop/ProductComponent.vue';
 import BaseButton from '../../../../components/BaseButton.vue';
+import BaseTeleport from '../../../../components/BaseTeleport.vue';
 import IFoorer from '../../../../components/InFooter.vue';
 
 
 export default {
-    components: { UserNavbar, BaseButton, ProductComponent, IFoorer },
+    components: { UserNavbar, BaseButton, BaseTeleport, ProductComponent, IFoorer },
     data() {
         return {
             user: localStorage.getItem('user'),
             pageSize: 15,
-            hoveredProductId: null
+            hoveredProductId: null,
+            unwish: false
         }
     },
     mounted() {
@@ -119,6 +124,13 @@ export default {
         async addToWishlist(wishItem) {
             try {
                 const exist = await this.AddToWishlist(wishItem);
+                if (exist) {
+                    this.unwish = true;
+                    setTimeout(() => {
+                        this.unwish = false;
+                    }, 1500);
+                    return;
+                }
             }
             catch (err) {
                 console.error('Add to Wishlist : ', err);
