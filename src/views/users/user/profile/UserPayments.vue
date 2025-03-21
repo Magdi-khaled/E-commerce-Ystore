@@ -1,9 +1,6 @@
 <template>
-
     <UserNavbar />
-
     <div class="h-full w-full flex border-t-2">
-
         <div class="w-3/12 hidden lg:block bg-gray-50 border-r border-gray-500">
             <UserSidebar v-model="clicked" :clicked="clicked" />
         </div>
@@ -85,11 +82,11 @@
                         class="py-2 px-1 border-2 rounded-md font-medium w-full sm:w-7/12 uppercase text-xs sm:text-md">
                 </div>
                 <div class="m-auto w-full text-end">
-                    <baseButton @click="addPaymentCard"
+                    <BaseButton @click="addPaymentCard"
                         class="w-full sm:w-10/12 md:w-10/12 mr-2 rounded-md whitespace-nowrap text-md"
                         :style="{ padding: '8px' }" :class="{ 'disabled': disabledOff }">
                         confirm payment card
-                    </baseButton>
+                    </BaseButton>
                 </div>
             </form>
         </BaseModal>
@@ -97,7 +94,7 @@
     <InFooter />
 </template>
 <script>
-import baseButton from '../../../../components/baseButton.vue';
+import BaseButton from '../../../../components/BaseButton.vue';
 import BaseModal from '../../../../components/BaseModal.vue';
 import UserSidebar from '../../../../components/user/UserSidebar.vue';
 import UserNavbar from '../../../../components/user/UserNavbar.vue';
@@ -105,7 +102,7 @@ import PaymentCard from '../../../../components/user/PaymentCard.vue';
 import InFooter from '../../../../components/InFooter.vue';
 export default {
     components: {
-        UserNavbar, baseButton, UserSidebar, PaymentCard, BaseModal, InFooter
+        UserNavbar, BaseButton, UserSidebar, PaymentCard, BaseModal, InFooter
     },
     data() {
         return {
