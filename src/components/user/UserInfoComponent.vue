@@ -67,7 +67,7 @@
 </template>
 <script>
 
-import BaseButton from '../baseButton.vue';
+import BaseButton from '../BaseButton.vue';
 import Field from '../form/Field.vue';
 export default {
     name: 'UserInfoComponent',
