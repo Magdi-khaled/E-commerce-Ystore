@@ -318,5 +318,60 @@ export default {
 }
 </script>
 <style scoped>
-@import url('../../../../../assets/stylesheets/AdProduct.css');
+label {
+    position: relative;
+}
+
+.select-size {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+label:not(label.not-import)::after {
+    position: absolute;
+    content: "*";
+    color: rgb(204, 18, 18);
+    padding-left: 5px;
+}
+
+.preview img {
+    width: 250px;
+    height: 300px;
+    border: 1px solid #ddd;
+    margin-top: 10px;
+    border-radius: 8px;
+}
+
+.cancel {
+    color: #000;
+}
+
+.product-price {
+    display: flex;
+    gap: 10px;
+}
+
+.product-price p:not(.product-price-discount) {
+    font-weight: bold;
+}
+
+.product-price .product-price-discount {
+    display: flex;
+}
+
+.product-price .product-price-discount .sale {
+    display: flex;
+    align-items: center;
+    color: #ff3333;
+    font-weight: bold;
+    background-color: rgba(255, 0, 0, 0.148);
+    padding: 0px 12px;
+    margin-left: 10px;
+    border-radius: 35px;
+}
+
+/* @import url('../../../../../assets/stylesheets/AdProduct.css'); */
 </style>
