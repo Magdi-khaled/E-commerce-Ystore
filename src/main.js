@@ -27,6 +27,8 @@ const app = createApp(App);
 app.use(router);
 app.use(store);
 
+localStorage.setItem("user", "Guest");
+
 // Call Global Components
 app.component("Pagination", Pagination);
 app.component("Breadcrumbs", Breadcrumbs);
