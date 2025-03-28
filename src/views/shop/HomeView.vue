@@ -16,7 +16,7 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Navigation, Mousewheel, Scrollbar } from 'swiper/modules';
 import { useStore } from 'vuex';
 
-const user = localStorage.getItem('user') || "Guest";
+const user = localStorage.getItem('user');
 const store = useStore();
 const modules = [Navigation, Mousewheel, Scrollbar];
 // Computed Properties
@@ -41,7 +41,6 @@ const fetchData = async () => {
 };
 
 onMounted(() => {
-    localStorage.setItem("user", "Guest");
     fetchData();
 });
 </script>
