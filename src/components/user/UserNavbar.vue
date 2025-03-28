@@ -4,7 +4,7 @@
         <!-- <div class="w-[9%]" :class="{ 'w-[27%]': sm }"> -->
         <div class="w-2/12 sm:w-[15%] md:w-[12%] lg:w-[9%]">
             <router-link :to="{ name: 'Home' }">
-                <img src="../../assets/images/logo/logo.png" alt="SHOP.CO">
+                <img src="@/assets/media/logo/logo.png" alt="SHOP.CO">
             </router-link>
         </div>
         <div v-if="!sm" class="w-1/12 font-bold text-sm whitespace-nowrap">

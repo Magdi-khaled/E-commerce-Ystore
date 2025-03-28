@@ -14,7 +14,7 @@
                 </p>
                 <div class="w-full h-fit bg-white mt-6 p-6 sm:p-16 mb-32 flex flex-col items-center">
                     <img class="w-[10rem] border-2 border-gray-600 rounded-xl"
-                        src="../../../../assets/images/user/customer/qrcode.webp" alt="">
+                        src="@/assets/media/user/customer/qrcode.webp" alt="">
                     <p class="font-medium text-md py-2 text-gray-400"><i
                             class="fa-sharp fa-solid fa-circle-exclamation"></i>
                         QR Code is updated

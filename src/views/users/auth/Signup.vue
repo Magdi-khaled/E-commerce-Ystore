@@ -3,7 +3,7 @@
         <div class="lg:grid lg:min-h-screen lg:grid-cols-12">
             <aside
                 class="relative hidden lg:block h-16 lg:h-full lg:order-last lg:col-span-5 xl:col-span-6 border-l border-l-gray-500">
-                <img alt="Auth-Img" src="../../../assets/images/auth/auth.avif"
+                <img alt="Auth-Img" src="@/assets/media/auth/auth.avif"
                     class="absolute inset-0 h-full w-full object-cover grayscale-[1]" />
             </aside>
 

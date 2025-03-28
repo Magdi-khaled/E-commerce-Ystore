@@ -275,7 +275,7 @@ export default {
 };
 </script>
 <style scoped>
-@import url("../../assets/stylesheets/shop/shop-filter.css");
+@import "@/assets/css/shop/shop-filter.css";
 
 .fade-enter-active,
 .fade-leave-active {

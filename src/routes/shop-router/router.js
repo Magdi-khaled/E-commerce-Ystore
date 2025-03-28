@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import data from '../../assets/db/data.json'
+import data from '@/composables/data.js';
 const router = createRouter({
     history: createWebHistory(),
     routes: [
@@ -10,7 +10,7 @@ const router = createRouter({
         {
             path: '/ystore/home',
             name: 'Home',
-            component: () => import('../../views/shop/Home.vue'),
+            component: () => import('@/views/shop/HomeView.vue'),
             meta: {
                 breadcrumb: [
                     { name: 'home', link: '/ystore/home' },
@@ -21,7 +21,7 @@ const router = createRouter({
         {
             path: "/ystore/shop",
             name: "Shop",
-            component: () => import("../../views/shop/Shop.vue"),
+            component: () => import("@/views/shop/ShopView.vue"),
             meta: {
                 requiresTransition: true,
                 breadcrumb: [
@@ -33,7 +33,7 @@ const router = createRouter({
         {
             path: "/ystore/shop/fashion/men-wear",
             name: "men-fashion",
-            component: () => import("../../views/shop/Shop.vue"),
+            component: () => import("@/views/shop/ShopView.vue"),
             meta: {
                 requiresTransition: true,
                 breadcrumb: [
@@ -46,7 +46,7 @@ const router = createRouter({
         {
             path: "/ystore/shop/fashion/women-wear",
             name: "women-fashion",
-            component: () => import("../../views/shop/Shop.vue"),
+            component: () => import("../../views/shop/ShopView.vue"),
             meta: {
                 requiresTransition: true,
                 breadcrumb: [
@@ -59,7 +59,7 @@ const router = createRouter({
         {
             path: "/ystore/shop/sport-wear",
             name: "sport-wear",
-            component: () => import("../../views/shop/Shop.vue"),
+            component: () => import("../../views/shop/ShopView.vue"),
             meta: {
                 requiresTransition: true,
                 breadcrumb: [
@@ -72,7 +72,7 @@ const router = createRouter({
         {
             path: "/ystore/shop/girls-wear",
             name: "girls-wear",
-            component: () => import("../../views/shop/Shop.vue"),
+            component: () => import("../../views/shop/ShopView.vue"),
             meta: {
                 requiresTransition: true,
                 breadcrumb: [
@@ -85,7 +85,7 @@ const router = createRouter({
         {
             path: "/ystore/shop/boys-wear",
             name: "boys-wear",
-            component: () => import("../../views/shop/Shop.vue"),
+            component: () => import("../../views/shop/ShopView.vue"),
             meta: {
                 requiresTransition: true,
                 breadcrumb: [
@@ -98,7 +98,7 @@ const router = createRouter({
         {
             path: "/ystore/shop/bags-luggage",
             name: "bags-luggage",
-            component: () => import("../../views/shop/Shop.vue"),
+            component: () => import("../../views/shop/ShopView.vue"),
             meta: {
                 requiresTransition: true,
                 breadcrumb: [
@@ -111,7 +111,7 @@ const router = createRouter({
         {
             path: "/ystore/shop/formal-wear",
             name: "formal-wear",
-            component: () => import("../../views/shop/Shop.vue"),
+            component: () => import("../../views/shop/ShopView.vue"),
             meta: {
                 requiresTransition: true,
                 breadcrumb: [
@@ -124,7 +124,7 @@ const router = createRouter({
         {
             path: "/ystore/shop/shoes-wear", // Fixed the typo
             name: "shoes-fashion",
-            component: () => import("../../views/shop/Shop.vue"),
+            component: () => import("../../views/shop/ShopView.vue"),
             meta: {
                 requiresTransition: true,
                 breadcrumb: [
@@ -137,7 +137,7 @@ const router = createRouter({
         {
             path: "/ystore/shop/accessories", // Fixed the typo
             name: "accessories",
-            component: () => import("../../views/shop/Shop.vue"),
+            component: () => import("../../views/shop/ShopView.vue"),
             meta: {
                 requiresTransition: true,
                 breadcrumb: [

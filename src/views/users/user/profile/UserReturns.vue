@@ -27,7 +27,7 @@
                 <div v-if="!user.returns">
                     <div class="flex flex-col items-center my-20">
                         <div class="grayscale">
-                            <img src="../../../../assets/images/user/customer/returns.svg" alt="">
+                            <img src="@/assets/media/user/customer/returns.svg" alt="">
                         </div>
                         <div class="text-center mt-4">
                             <h1 class="font-bold text-lg text-gray-700 ">

@@ -1,5 +1,4 @@
 <template>
-
     <BaseTeleport :show="success" :type="'success'">Success Product Updated</BaseTeleport>
     <BaseTeleport :show="failed" :type="'error'">
         <button @click="failed = false">
@@ -72,7 +71,7 @@
                         <BaseButton @click="editProduct" class="w-5/12 sm:w-4/12 md:w-2/12  py-[6px] sm:py-[10px]">
                             Update </BaseButton>
                         <BaseButton @click="this.$router.push({ name: 'AD-Dashboard' })"
-                            class="cancel w-4/12 sm:w-2/12  bg-white border-none hover:bg-white">
+                            class="text-[#000] w-4/12 sm:w-2/12  bg-white border-none hover:bg-white">
                             cancel </BaseButton>
                     </div>
                 </Form>
@@ -226,42 +225,4 @@ label:not(label.not-import)::after {
     color: rgb(204, 18, 18);
     padding-left: 5px;
 }
-
-.preview img {
-    width: 250px;
-    height: 300px;
-    border: 1px solid #ddd;
-    margin-top: 10px;
-    border-radius: 8px;
-}
-
-.cancel {
-    color: #000;
-}
-
-.product-price {
-    display: flex;
-    gap: 10px;
-}
-
-.product-price p:not(.product-price-discount) {
-    font-weight: bold;
-}
-
-.product-price .product-price-discount {
-    display: flex;
-}
-
-.product-price .product-price-discount .sale {
-    display: flex;
-    align-items: center;
-    color: #ff3333;
-    font-weight: bold;
-    background-color: rgba(255, 0, 0, 0.148);
-    padding: 0px 12px;
-    margin-left: 10px;
-    border-radius: 35px;
-}
-
-/* @import url('../../../../../assets/stylesheets/ADProduct.css'); */
 </style>

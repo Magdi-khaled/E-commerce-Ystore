@@ -16,8 +16,7 @@
                 <div v-if="!user.paymentcards.length">
                     <div class="flex flex-col items-center my-12">
                         <div class="grayscale w-7/12 sm:w-4/12 text-center">
-                            <img class="rounded-full w-full"
-                                src="../../../../assets/images/user/customer/credit-card.svg" alt="">
+                            <img class="rounded-full w-full" src="@/assets/media/user/customer/credit-card.svg" alt="">
                         </div>
                         <div class="text-center mt-4">
                             <h1 class="font-bold text-lg text-gray-700 ">

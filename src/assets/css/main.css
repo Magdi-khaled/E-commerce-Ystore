@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* built-in proberties */
+  /* font-family: "Satoshi", sans-serif; */
+  background-color: white;
+
+  font-family: "Outfit", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+
+  /* custom  proberties */
+  --co-transition: all 0.3s ease-in-out;
+}
+*:not(textarea) {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+
+  transition: width 0.25s ease-in, height 0.25s ease-in, display 0.25s ease-in;
+}
+::selection {
+  background: #d5d1d1bc;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Global Routing Transition */
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.5s ease;
+}
+.page-enter,
+.page-leave-to {
+  opacity: 0;
+}
+#loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+#loading.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+.spinner {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #202020;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 2s linear infinite;
+}
+
+/* Global Animate */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner2 {
+  border: 3px solid rgb(195, 195, 195);
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  animation: spin2 1s forwards infinite;
+}
+
+@keyframes spin2 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Style the entire scrollbar */
+::-webkit-scrollbar {
+  width: 12px; /* Width of the scrollbar */
+  height: 12px; /* Height for horizontal scrollbar */
+}
+/* Style the scrollbar track (background) */
+::-webkit-scrollbar-track {
+  background: #e0e0e0;
+  border-radius: 10px;
+}
+/* Style the scrollbar handle */
+::-webkit-scrollbar-thumb {
+  background-color: #202020;
+  border-radius: 25px;
+  border: 3px solid #f0f0f0;
+}
+/* Style the scrollbar thumb when hovered */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #202020;
+}

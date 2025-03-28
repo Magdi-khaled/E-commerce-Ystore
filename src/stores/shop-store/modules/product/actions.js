@@ -1,5 +1,5 @@
 import axios from "axios";
-import products from '../../../../composables/data.js'
+import products from '@/composables/data.js'
 export const actions = {
     async FetchProducts({ commit }) {
         try {
@@ -14,8 +14,8 @@ export const actions = {
     async FetchNBProduvts({ commit }) {
         try {
             // const response = await axios.get('https://api.example.com/products');
-            const newProducts = products.slice(27, 31).reverse();
-            const bestSellers = products.slice(27, 31);
+            const newProducts = products.slice(0, 5).reverse();
+            const bestSellers = products.slice(4, 9);
             await commit('Set_NewProducts', newProducts);
             await commit('Set_BestSellers', bestSellers);
         }

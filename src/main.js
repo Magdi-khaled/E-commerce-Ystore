@@ -8,7 +8,7 @@ import 'aos/dist/aos.css';
 import router from "./routes/index";
 import store from "./stores/index";
 import App from './App.vue'
-import './assets/style.css'
+import './assets/css/main.css'
 
 // Global Components
 import Pagination from './components/Pagination.vue';
@@ -32,8 +32,8 @@ app.component("Pagination", Pagination);
 app.component("Breadcrumbs", Breadcrumbs);
 // Call AOS
 AOS.init({
-    duration: 1000, // Animation duration (default: 400ms)
-    once: true,     // Run only once (default: false)
+    duration: 1000,
+    once: true,
 });
 
 app.mount("#app");

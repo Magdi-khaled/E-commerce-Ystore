@@ -119,5 +119,5 @@ export default {
 }
 </script>
 <style scoped>
-@import url('../../assets/stylesheets/ADProduct.css');
+@import '@/assets/css/adproduct.css';
 </style>

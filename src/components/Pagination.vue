@@ -1,3 +1,65 @@
+<script setup>
+import { ref, computed } from 'vue';
+
+// Define Props
+const props = defineProps({
+    currentPage: {
+        type: Number,
+        required: true,
+    },
+    totalPages: {
+        type: Number,
+        required: true,
+    },
+    nextPage: {
+        type: Function,
+        required: true,
+    },
+    prevPage: {
+        type: Function,
+        required: true,
+    }
+});
+
+// Define Emits
+const emit = defineEmits(['page-changed']);
+
+// Reactive State
+const maxVisible = ref(3);
+
+const visiblePages = computed(() => {
+    const pages = [];
+    const { currentPage, totalPages } = props;
+    const maxVisibleValue = maxVisible.value;
+
+    if (totalPages <= 1) return [1];
+    pages.push(1);
+    if (currentPage - maxVisibleValue > 2) pages.push("...");
+
+    // Generate middle pages dynamically
+    for (let i = Math.max(2, currentPage - maxVisibleValue); i <= Math.min(totalPages - 1, currentPage + maxVisibleValue); i++) {
+        pages.push(i);
+    }
+
+    if (currentPage + maxVisibleValue < totalPages - 1) pages.push("...");
+
+    if (totalPages > 1) pages.push(totalPages);
+    return pages;
+});
+
+
+computed({
+    get: () => props.currentPage,
+    set: (val) => changePage(val)
+});
+
+// Methods
+const changePage = (page) => {
+    if (page === '...' || page === 0 || page === props.totalPages) return;
+    emit('page-changed', page);
+};
+</script>
+
 <template>
     <div class="pagination mt-12 mb-4 flex justify-center items-center gap-2">
         <!-- Prev Button -->
@@ -28,66 +90,8 @@
     </div>
 
 </template>
-<script>
-export default {
-    name: 'Pagination',
-    props: {
-        currentPage: {
-            type: Number,
-            required: true,
-        },
-        totalPages: {
-            type: Number,
-            required: true,
-        },
-        nextPage: {
-            type: Function,
-            required: true,
-        },
-        prevPage: {
-            type: Function,
-            required: true,
-        }
-    },
-    data() {
-        return {
-            maxVisible: 3,
-        }
-    },
-    computed: {
-        visiblePages() {
-            const pages = [];
-            const { currentPage, totalPages, maxVisible } = this;
-            pages.push(1);
 
-            if (currentPage - maxVisible > 2) pages.push("...");
 
-            for (let i = currentPage - maxVisible; i <= currentPage + maxVisible; i++) {
-                if (i > 1 && i <= totalPages) pages.push(i);
-            }
-
-            // Add ellipsis after the middle pages
-            if (currentPage + maxVisible < totalPages - 1) pages.push("...");
-            return pages;
-        },
-        value: {
-            get() {
-                return this.currentPage;
-            },
-            set(val) {
-                this.changePage(val);
-            }
-        }
-    },
-    methods: {
-        changePage(page) {
-            if (page === '...' || page === 0 || page === this.totalPages) return;
-            this.$emit('page-changed', page);
-        },
-    }
-
-}
-</script>
 <style scoped>
 button[disabled] {
     cursor: default;

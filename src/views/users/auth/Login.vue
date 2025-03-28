@@ -6,7 +6,7 @@
         <div class="lg:grid lg:min-h-screen lg:grid-cols-12">
             <aside
                 class="relative hidden lg:block h-16 lg:h-full lg:order-last lg:col-span-5 xl:col-span-6 border-l border-l-gray-500">
-                <img alt="Auth-Img" src="../../../assets/images/auth/auth.avif"
+                <img alt="Auth-Img" src="@/assets/media/auth/auth.avif"
                     class="absolute inset-0 h-full w-full object-cover grayscale-[1]" />
             </aside>
 
@@ -70,11 +70,11 @@
                         <div class="col-span-6 grid grid-cols-6 gap-4">
                             <BaseButton class="col-span-6 sm:col-span-3">
                                 <p v-if="!spinnerOn">log in</p>
-                                <span v-else class="spinnerOn border-2 border-[#fff] m-auto w-7 h-7 rounded-full" />
+                                <p v-else class="spinner2 m-auto" />
                             </BaseButton>
                             <BaseButton @click="triggerGoogleLogin"
                                 class="flex justify-center col-span-6 sm:col-span-3">
-                                <img src="../../../assets/images/icons/Google__G__logo.svg.png" alt="google-account"
+                                <img src="../../../assets/media/icons/Google__G__logo.svg.png" alt="google-account"
                                     class="w-6 h-6 border border-black p-1 mr-2 rounded-full bg-white">
                                 <p>google account</p>
                             </BaseButton>
@@ -184,15 +184,6 @@ export default {
 }
 </script>
 <style scoped>
-.spinnerOn {
-    border: 3px solid #d2d2d2;
-    border-top: 3px solid #202020;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    animation: spin 1.5s linear infinite;
-}
-
 :deep(input:not(input[type='checkbox'])) {
     padding: 12px 6px;
 }

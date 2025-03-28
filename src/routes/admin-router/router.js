@@ -81,7 +81,7 @@ const router = createRouter({
         },
         {
             path: "/ystore.trade/admin/inventory/edit-product/:id",
-            name: "Edit-Product",
+            name: "EditProduct",
             component: () => import("../../views/users/admin/services/services/EditProduct.vue"),
             beforeEnter: (to, from, next) => {
                 const productExists = data.find(v => v._id === parseInt(to.params.id));

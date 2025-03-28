@@ -18,7 +18,7 @@
         <!-- LOGO SHOP.CO -->
         <div class="w-[25%] md:w-[20%] lg:w-[12%]">
             <router-link :to="{ name: 'Home' }">
-                <img class="w-[80%]" src="../assets/images/logo/logo.png" alt="SHOP.CO">
+                <img class="w-[80%]" src="@/assets/media/logo/logo.png" alt="SHOP.CO">
             </router-link>
         </div>
 
@@ -112,7 +112,7 @@
                     <i class="fa-solid fa-bars"></i>
                 </button>
                 <div class="w-4/12">
-                    <img class="w-[80%]" src="../assets/images/logo/logo.png" alt="shop.co">
+                    <img class="w-[80%]" src="../assets/media/logo/logo.png" alt="shop.co">
                 </div>
             </div>
             <hr>
@@ -295,5 +295,5 @@ export default {
 }
 </script>
 <style scoped>
-@import url('../assets/stylesheets/shop/nav-bar.style.css');
+@import url('../assets/css/shop/nav-bar.style.css');
 </style>

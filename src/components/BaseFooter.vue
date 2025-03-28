@@ -1,3 +1,8 @@
+<script setup>
+import { ref } from 'vue';
+const emailupto = ref("");
+</script>
+
 <template>
     <footer class="footer w-full mt-32 bg-[#f0eeed]">
         <div class="footer-header bg-black w-11/12 m-auto rounded-md relative px-4
@@ -32,7 +37,7 @@
             <!-- first column -->
             <div class="footer-content-1 w-full md:w-4/12 flex flex-col gap-5">
                 <div class="mb-2 w-4/12 md:w-7/12">
-                    <img loading="lazy" src="../assets/images/logo/footer-logo.png" alt="YSTORE-LOGO">
+                    <img loading="lazy" src="../assets/media/logo/footer-logo.png" alt="YSTORE-LOGO">
                 </div>
                 <div class="w-full md:w-8/12 text-sm text-gray-600 mb-2 md:mb-6">
                     <p>
@@ -69,7 +74,7 @@
                             <router-link to="">about</router-link>
                         </li>
                         <li>
-                            <router-link to="/shop.co/user/profile">features</router-link>
+                            <router-link to="/ystore/user/profile">features</router-link>
                         </li>
                         <li>
                             <router-link to="">works</router-link>
@@ -86,7 +91,7 @@
                             <router-link to="">custom support</router-link>
                         </li>
                         <li>
-                            <router-link to="/shop.co/user/orders">delivery details</router-link>
+                            <router-link to="/ystore/user/orders">delivery details</router-link>
                         </li>
                         <li>
                             <router-link to="">terms & conditions</router-link>
@@ -100,16 +105,16 @@
                     <h1 class="uppercase">faq</h1>
                     <ul class="list-none flex flex-col gap-3">
                         <li>
-                            <router-link to="/shop.co/user/profile">account</router-link>
+                            <router-link to="/ystore/user/profile">account</router-link>
                         </li>
                         <li>
-                            <router-link to="/shop.co/user/notifications">manage deliveries</router-link>
+                            <router-link to="/ystore/user/notifications">manage deliveries</router-link>
                         </li>
                         <li>
-                            <router-link to="/shop.co/user/orders">orders</router-link>
+                            <router-link to="/ystore/user/orders">orders</router-link>
                         </li>
                         <li>
-                            <router-link to="/shop.co/user/payments">payments</router-link>
+                            <router-link to="/ystore/user/payments">payments</router-link>
                         </li>
                     </ul>
                 </div>
@@ -143,36 +148,25 @@
             <div class="w-8/12 sm:w-5/12">
                 <ul class="flex justify-end">
                     <li>
-                        <img loading="lazy" src="../assets/images/payment-methods/visa.webp" alt="visa">
+                        <img loading="lazy" src="../assets/media/payment-methods/visa.webp" alt="visa">
                     </li>
                     <li>
-                        <img loading="lazy" src="../assets/images/payment-methods/credit-card.webp" alt="credit-card">
+                        <img loading="lazy" src="../assets/media/payment-methods/credit-card.webp" alt="credit-card">
                     </li>
                     <li>
-                        <img loading="lazy" src="../assets/images/payment-methods/PayPal.webp" alt="paypal">
+                        <img loading="lazy" src="../assets/media/payment-methods/PayPal.webp" alt="paypal">
                     </li>
                     <li>
-                        <img loading="lazy" src="../assets/images/payment-methods/IphonePay.webp" alt="applePay">
+                        <img loading="lazy" src="../assets/media/payment-methods/IphonePay.webp" alt="applePay">
                     </li>
                     <li>
-                        <img loading="lazy" src="../assets/images/payment-methods/Gpay.webp" alt="Gpay">
+                        <img loading="lazy" src="../assets/media/payment-methods/Gpay.webp" alt="Gpay">
                     </li>
                 </ul>
             </div>
         </div>
     </footer>
 </template>
-
-<script>
-export default {
-    name: 'BaseFooter',
-    data() {
-        return {
-            emailupto: '',
-        }
-    },
-}
-</script>
 
 <style scoped>
 .footer-header {

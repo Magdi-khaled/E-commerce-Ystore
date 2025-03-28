@@ -478,5 +478,5 @@ export default {
 }
 </script>
 <style scoped>
-@import url('../../../assets/stylesheets/Product.css');
+@import "@/assets/css/Product.css";
 </style>

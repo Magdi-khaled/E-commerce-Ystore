@@ -12,7 +12,7 @@
                 <h1 class="font-bold text-2xl capitalize">Notifications</h1>
                 <div v-if="!user.notifications.length" class="flex flex-col items-center my-32 sm:my-16">
                     <div class="grayscale w-5/12 sm:w-3/12">
-                        <img src="../../../../assets/images/user/customer/notifications.webp" alt="no-notifications">
+                        <img src="@/assets/media/user/customer/notifications.webp" alt="no-notifications">
                     </div>
                     <div class="text-center mt-4">
                         <h1 class="font-bold text-lg text-gray-700 ">

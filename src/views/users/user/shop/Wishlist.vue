@@ -6,7 +6,7 @@
     <div class="px-2 sm:px-6 lg:px-12 bg-gray-100">
         <div v-if="!wishlist?.length" class="w-full h-screen flex flex-col items-center justify-center">
             <div class="grayscale w-7/12 sm:w-4/12">
-                <img class="m-auto" src="../../../../assets/images/user/customer/orders.svg" alt="">
+                <img class="m-auto" src="@/assets/media/user/customer/orders.svg" alt="">
             </div>
             <div class="text-center mt-4 w-8/12 sm:w-4/12">
                 <h1 class="font-bold text-lg text-gray-700 ">Your Wishlist is Empty</h1>

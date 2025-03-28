@@ -39,7 +39,7 @@
                                         </li>
                                     </router-link>
                                     <hr>
-                                    <router-link :to="{ name: 'Edit-Product', params: { id: product._id } }">
+                                    <router-link :to="{ name: 'EditProduct', params: { id: product._id } }">
                                         <li class="hover:bg-gray-200 p-[3px]">
                                             edit
                                         </li>
@@ -71,7 +71,7 @@
                 </div>
                 <div v-else class="w-full flex flex-col items-center justify-center mt-24 mb-40">
                     <div class="grayscale w-2/12">
-                        <img src="../../../../../assets/images/user/customer/orders.svg" alt="">
+                        <img src="@/assets/media/user/customer/orders.svg" alt="">
                     </div>
                     <div class="text-center mt-4">
                         <h1 class="font-bold text-lg text-gray-700 ">Your inventory is Empty</h1>

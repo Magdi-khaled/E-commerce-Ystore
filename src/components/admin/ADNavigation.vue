@@ -15,7 +15,7 @@
                 </button>
             </div>
             <div class="w-5/12 md:w-3/12 lg:w-2/12 px-1">
-                <img class="w-6/12" src="../../assets/images/logo/logo.png" alt="shop.co">
+                <img class="w-6/12" src="@/assets/media/logo/logo.png" alt="shop.co">
             </div>
             <label v-if="!sm" for="dashboardSearch" class="w-8/12 relative"
                 :class="{ 'w-8/12': !show, 'w-full': medium }">
@@ -144,8 +144,5 @@ export default {
     mounted() {
         this.$emit('toggleSidebar', this.computedShow);
     }
-
 }
 </script>
-
-<style scoped></style>
