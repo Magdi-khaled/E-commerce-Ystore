@@ -138,7 +138,7 @@ onMounted(() => {
         </section>
 
         <!-- Become Seller -->
-        <section data-aos="fade-up" v-show="!this.user"
+        <section data-aos="fade-up" v-show="!user"
             class="become-seller my-4 md:my-8 px-8 lg:px-16 flex flex-wrap justify-between border-y-2 border-y-gray-300 ">
             <BecomeSeller />
             <div class="w-full md:w-6/12 flex justify-center items-center px-0 md:px-6 py-4">
