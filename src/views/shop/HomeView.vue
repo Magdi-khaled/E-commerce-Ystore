@@ -13,12 +13,14 @@ import Fashion from '@/components/Fashion.vue';
 import data from '@/composables/data.js';
 
 import { onMounted, computed } from 'vue';
+import { useRouter } from 'vue-router';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Navigation, Scrollbar } from 'swiper/modules';
 import { useStore } from 'vuex';
 
 const user = localStorage.getItem('user');
 const store = useStore();
+const router = useRouter();
 const modules = [Navigation, Scrollbar];
 
 const newProducts = computed(() => store.getters.Get_NewProducts);
