@@ -1,3 +1,88 @@
+<script setup>
+import { computed, onMounted, ref } from 'vue';
+import BaseButton from '@/components/BaseButton.vue';
+import BaseTeleport from '@/components/BaseTeleport.vue';
+import Field from '@/components/form/Field.vue';
+import { useStore } from 'vuex';
+import { useRoute, useRouter } from 'vue-router';
+
+const store = useStore();
+const route = useRoute();
+const router = useRouter();
+
+const email = ref('');
+const newPassword = ref('');
+const confirmPassword = ref('');
+const otpCode = ref(null);
+const entredOtp = ref(null);
+const spinnerOn = ref(false);
+const verified = ref(false);
+const goReset = ref(false);
+const showpass1 = ref(false);
+const showpass2 = ref(false);
+const authUser = computed(() => {
+    const user = route.name.split('-')[0] === 'User';
+    if (user) return true;
+    return false;
+});
+
+const sendOtp = async () => {
+    try {
+        otpCode.value = Math.floor(100000 + Math.random() * 900000);
+        console.log(otpCode.value);
+
+        await store.dispatch('ResetPassword', { email: this.email, otp: this.otpCode }).then(() => {
+            spinnerOn.value = true;
+            setTimeout(() => {
+                spinnerOn.value = false;
+                verified.value = true;
+            }, 1500);
+        });
+    } catch (r) {
+        console.error('Send OTP Error: ', e);
+    }
+};
+const verifyOtp = async () => {
+    try {
+        if (otpCode.value) {
+            spinnerOn.value = true;
+            setTimeout(() => {
+                spinnerOn.value = false;
+                goReset.value = true;
+            }, 1500);
+        }
+    } catch (e) {
+        console.error('Send OTP Error: ', e);
+    }
+};
+const changePassword = async () => {
+    try {
+        spinnerOn.value = true;
+        success.value = true;
+        setTimeout(() => {
+            spinnerOn.value = false;
+            success.value = false;
+            authUser.value ? this.$router.push('User-Login') : this.$router.push('AD-Login');
+        }, 1500);
+    } catch (e) {
+        console.error('Send OTP Error: ', e);
+    }
+};
+const showPassword = () => {
+    var x = document.getElementById("Password");
+    if (x.type === "password") {
+        showpass1.value = !showpass1.value;
+        x.type = "text";
+    } else {
+        showpass2.value = !showpass2.value;
+        x.type = "password";
+    }
+};
+const togglePasswordVisibility = (id) => {
+    if (id == 1) showpass1.value = !showpass1.value;
+    else showpass2.value = !showpass2.value;
+};
+</script>
 <template>
 
     <section class="bg-white">
@@ -22,11 +107,8 @@
                     </h1>
 
                     <form v-if="!verified" @submit.prevent="sendOtp" class="grid gap-y-4 my-4">
-                        <div class="col-span-6">
-                            <label for="email" class="block text-sm font-medium text-gray-700"> Email Address </label>
-                            <input type="email" id="email" name="email" v-model="email" class="mt-1 w-full px-2 py-2 sm:py-3 rounded-md border border-gray-400
-                            bg-white text-sm text-gray-700 shadow-xs" placeholder="Enter email address" />
-                        </div>
+                        <Field label="Email Address" name="email" placeholder="Email Address" v-model="email"
+                            class="col-span-6" />
                         <BaseButton @click="sendOtp" class="col-span-6">
                             <p v-if="!spinnerOn">search</p>
                             <div v-else class="spinnerOn border-2 border-[#fff] m-auto rounded-full" />
@@ -34,11 +116,8 @@
                     </form>
 
                     <form v-else-if="!goReset" @submit.prevent="verifyOtp" class="grid gap-y-4 my-4">
-                        <div class="col-span-6">
-                            <label for="otp" class="block text-sm font-medium text-gray-700">OTP Code </label>
-                            <input type="text" id="otp" name="otp" v-model="entredOtp" class="mt-1 w-full px-2 py-2 sm:py-3 rounded-md border border-gray-400
-                            bg-white text-sm text-gray-700 shadow-xs" placeholder="Enter 6-digit otp" />
-                        </div>
+                        <Field label="OTP code" name="otp" placeholder="6-digit otp code" v-model="entredOtp"
+                            class="col-span-6" />
                         <BaseButton @click="verifyOtp" class="col-span-6">
                             <p v-if="!spinnerOn">verify</p>
                             <div v-else class="spinnerOn border-2 border-[#fff] m-auto rounded-full" />
@@ -77,95 +156,7 @@
         </div>
     </section>
 </template>
-<script>
-import BaseButton from '../../../components/BaseButton.vue';
-import { mapActions } from 'vuex';
 
-export default {
-    components: { BaseButton },
-    data() {
-        return {
-            email: '',
-            newPassword: '',
-            confirmPassword: '',
-            otpCode: null,
-            entredOtp: null,
-            spinnerOn: false,
-            verified: false,
-            goReset: false,
-            showpass1: false,
-            showpass2: false,
-        }
-    },
-    computed: {
-        authUser() {
-            const user = this.$route.name.split('-')[0] === 'User';
-            if (user)
-                return true;
-            else return false;
-        }
-    },
-    methods: {
-        ...mapActions(['ResetPassword']),
-        async sendOtp() {
-            try {
-                this.otpCode = Math.floor(100000 + Math.random() * 900000);
-                console.log(this.otpCode);
-
-                await this.ResetPassword({ email: this.email, otp: this.otpCode }).then(() => {
-                    this.spinnerOn = true;
-                    setTimeout(() => {
-                        this.spinnerOn = false;
-                        this.verified = true;
-                    }, 1500);
-                });
-            } catch (err) {
-                console.error('Send OTP Error: ', err.message);
-            }
-        },
-        async verifyOtp() {
-            try {
-                if (this.otpCode) {
-                    this.spinnerOn = true;
-                    setTimeout(() => {
-                        this.spinnerOn = false;
-                        this.goReset = true;
-                    }, 1500);
-                }
-            } catch (err) {
-                console.error('Send OTP Error: ', err.message);
-            }
-        },
-        async changePassword() {
-            try {
-                this.spinnerOn = true;
-                this.success = true;
-                setTimeout(() => {
-                    this.spinnerOn = false;
-                    this.success = false;
-                    this.authUser ? this.$router.push('User-Login') : this.$router.push('AD-Login');
-                }, 1500);
-            } catch (err) {
-                console.error('Send OTP Error: ', err.message);
-            }
-        },
-        showPassword() {
-            var x = document.getElementById("Password");
-            if (x.type === "password") {
-                this.showpass = !this.showpass;
-                x.type = "text";
-            } else {
-                this.showpass = !this.showpass;
-                x.type = "password";
-            }
-        },
-        togglePasswordVisibility(id) {
-            if (id == 1) this.showpass1 = !this.showpass1;
-            else this.showpass2 = !this.showpass2;
-        }
-    }
-}
-</script>
 <style scoped>
 .spinnerOn {
     border: 3px solid #d2d2d2;
@@ -174,9 +165,5 @@ export default {
     width: 30px;
     height: 30px;
     animation: spin 1.5s linear infinite;
-}
-
-:deep(input:not(input[type='checkbox'])) {
-    padding: 12px 6px;
 }
 </style>

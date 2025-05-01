@@ -1,3 +1,56 @@
+<script setup>
+import { computed, onMounted, ref } from 'vue';
+import BaseButton from '@/components/BaseButton.vue';
+import BaseTeleport from '@/components/BaseTeleport.vue';
+import Field from '@/components/form/Field.vue';
+import { useStore } from 'vuex';
+import { useRoute, useRouter } from 'vue-router';
+
+const store = useStore();
+const route = useRoute();
+const router = useRouter();
+
+const firstname = ref('');
+const lastname = ref('');
+const email = ref('');
+const password = ref('');
+const country = ref('');
+const address = ref('');
+const repeatPassword = ref('');
+const spinnerOn = ref(false);
+const authUser = computed(() => {
+    const user = route.name.split('-')[0] === 'User';
+    if (user) return true;
+    return false;
+});
+
+const signup = async () => {
+    try {
+        let registered;
+        if (authUser.value) registered = await store.dispatch('UserSignup', {
+            firstname: firstname.value, lastname: lastname.value,
+            email: email.value, password: password.value, repeatPassword: repeatPassword.value
+        });
+        else registered = await this.ADSignup({
+            firstname: firstname.value, lastname: lastname.value, email: email.value,
+            password: password.value, repeatPassword: repeatPassword.value
+        });
+
+        if (registered) {
+            spinnerOn.value = true;
+            setTimeout(() => {
+                router.push({ name: authUser.value ? 'User-Login' : 'AD-Login' });
+            }, 1500);
+        } else {
+            spinnerOn.value = false;
+            show.value = true;
+            setTimeout(() => { show.value = false; }, 2000);
+        }
+    } catch (e) {
+        console.error('Signup Error', e);
+    }
+};
+</script>
 <template>
     <section class="bg-white">
         <div class="lg:grid lg:min-h-screen lg:grid-cols-12">
@@ -29,36 +82,21 @@
                     </p>
 
                     <form @submit.prevent="signup" class="mt-4 grid grid-cols-6 gap-x-6 gap-y-4">
-                        <div class="col-span-6 sm:col-span-3">
-                            <label for="fname" class="block text-sm font-medium text-gray-700">
-                                First Name</label>
-                            <input type="text" id="fname" name="fname" v-model="firstname" class="mt-1 w-full px-2 py-2 sm:py-3 rounded-md border border-gray-400
-                                bg-white text-sm text-gray-700 shadow-xs" placeholder="first name" />
-                        </div>
-                        <div class="col-span-6 sm:col-span-3">
-                            <label for="fname" class="block text-sm font-medium text-gray-700">
-                                Last Name</label>
-                            <input type="text" id="lname" name="lname" v-model="lastname" class="mt-1 w-full px-2 py-2 sm:py-3 rounded-md border border-gray-400
-                                bg-white text-sm text-gray-700 shadow-xs" placeholder="last name" />
-                        </div>
-
-                        <div class="col-span-6">
-                            <label for="Email" class="block text-sm font-medium text-gray-700"> Email </label>
-                            <input type="email" id="Email" name="email" v-model="email" class="mt-1 w-full px-2 py-2 sm:py-3 rounded-md border border-gray-400
-                                bg-white text-sm text-gray-700 shadow-xs" placeholder="email address" />
-                        </div>
-
-                        <div class="col-span-6 sm:col-span-3">
-                            <label for="Password" class="block text-sm font-medium text-gray-700"> Password </label>
-                            <input type="password" id="Password" name="password" v-model="password" class="mt-1 w-full px-2 py-2 sm:py-3 rounded-md border border-gray-400
-                            bg-white text-sm text-gray-700 shadow-xs" placeholder="Password" />
-                        </div>
-                        <div class="col-span-6 sm:col-span-3">
-                            <label for="Password" class="block text-sm font-medium text-gray-700">
-                                Password Confirmation</label>
-                            <input type="password" id="Password" name="password" v-model="confirmPassword" class="mt-1 w-full px-2 py-2 sm:py-3 rounded-md border border-gray-400
-                            bg-white text-sm text-gray-700 shadow-xs" placeholder="repeat password" />
-                        </div>
+                        <Field label="first name" name="fname" placeholder="First Name" v-model="firstname"
+                            class="col-span-6 sm:col-span-3" />
+                        <Field label="last name" name="lname" placeholder="Last Name" v-model="lastname"
+                            class="col-span-6 sm:col-span-3" />
+                        <Field label="country" type="select" optionsType="Select Country"
+                            :options="['Egypt', 'KSA', 'UAE', 'Morocco']" name="country" v-model="country"
+                            class="col-span-6 sm:col-span-3" />
+                        <Field label="Address" name="address" placeholder="Your Address" v-model="address"
+                            class="col-span-6 sm:col-span-3" />
+                        <Field label="email" name="email" placeholder="Email Address" v-model="email"
+                            class="col-span-6" />
+                        <Field label="password" name="password" placeholder="Password" v-model="password"
+                            class="col-span-6 sm:col-span-3" />
+                        <Field label="repeat password" name="rpassword" placeholder="Repeat Password"
+                            v-model="repeatPassword" class="col-span-6 sm:col-span-3" />
 
                         <div class="col-span-6 mt-4">
                             <label for="MarketingAccept" class="flex items-center gap-2">
@@ -101,57 +139,6 @@
     </section>
 </template>
 
-<script>
-import BaseButton from '../../../components/BaseButton.vue'
-import { mapActions, mapGetters } from 'vuex';
-
-export default {
-    components: { BaseButton },
-    data() {
-        return {
-            firstname: '',
-            lastname: '',
-            email: '',
-            password: '',
-            confirmPassword: '',
-            spinnerOn: false,
-            isValidForm: false
-        }
-    },
-    computed: {
-        authUser() {
-            const user = this.$route.name.split('-')[0] === 'User';
-            if (user)
-                return true;
-            else return false;
-        }
-    },
-    methods: {
-        ...mapActions(['']),
-        async signup() {
-            try {
-                const { firstname, lastname, email, password, confirmPassword } = this;
-                let logged;
-                if (this.authUser) logged = await this.UserSignup({ firstname, lastname, email, password, confirmPassword });
-                else logged = await this.ADSignup({ firstname, lastname, email, password, confirmPassword });
-
-                if (logged) {
-                    this.spinnerOn = true;
-                    setTimeout(() => {
-                        this.$router.push({ name: this.authUser ? 'Home' : 'AD-dashboard' });
-                    }, 1500);
-                } else {
-                    this.spinnerOn = false;
-                    this.show = true;
-                    setTimeout(() => { this.show = false; }, 2000);
-                }
-            } catch (error) {
-                console.error('Signup Error', error);
-            }
-        }
-    }
-}
-</script>
 <style scoped>
 .spinnerOn {
     border: 3px solid #d2d2d2;

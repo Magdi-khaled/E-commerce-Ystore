@@ -10,10 +10,10 @@ export const actions = {
             user.append('email', email);
             user.append('password', password);
 
-            console.log('LoggedIn User', user);
+            // console.log('LoggedIn User', user);
             localStorage.setItem('user', 'customer');
 
-            console.log('loggedin');
+            // console.log('loggedin');
             // console.log('USER : ', user);
             // await commit('Set_User', user);
             return true;

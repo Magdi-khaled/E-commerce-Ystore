@@ -1,3 +1,84 @@
+<script setup>
+import { computed, onMounted, ref } from 'vue';
+import BaseButton from '@/components/BaseButton.vue';
+import BaseTeleport from '@/components/BaseTeleport.vue';
+import Field from '@/components/form/Field.vue';
+import { useStore } from 'vuex';
+import { useRoute, useRouter } from 'vue-router';
+
+const store = useStore();
+const route = useRoute();
+const router = useRouter();
+
+const email = ref('');
+const password = ref('');
+const spinnerOn = ref(false);
+const rememberme = ref(false);
+const show = ref(false);
+const authUser = computed(() => {
+    const user = route.name.split('-')[0] === 'User';
+    if (user) return true;
+    return false;
+});
+
+onMounted(() => initializeGoogleSignIn());
+
+const login = async () => {
+    try {
+        let logged;
+        if (authUser.value) logged = await store.dispatch('UserLogin', { email: email.value, password: password.value });
+        else logged = await store.dispatch('ADLogin', { email: email.value, password: password.value });
+
+        if (logged) {
+            spinnerOn.value = true;
+            setTimeout(() => {
+                router.push({ name: authUser.value ? 'Home' : 'AD-dashboard' });
+            }, 1500);
+        } else {
+            spinnerOn.value = false;
+            show.value = true;
+            setTimeout(() => { show.value = false; }, 2000);
+        }
+    } catch (e) {
+        console.log('Login Error:', e);
+    }
+};
+const initializeGoogleSignIn = () => {
+    // Ensure Google API is loaded before calling initialize
+    if (window.google) {
+        window.google.accounts.id.initialize({
+            client_id: "644929127593-2qfpu4fe3oud6pefs8p4ln2j9assauar.apps.googleusercontent.com",
+            callback: handleGoogleLogin,
+        });
+
+        // Render Google Sign-In button (optional)
+        window.google.accounts.id.renderButton(
+            document.getElementById("google-signin-button"),
+            { theme: "outline", size: "large" }
+        );
+    } else console.error("Google API not loaded.");
+};
+const triggerGoogleLogin = () => {
+    window.google?.accounts.id.prompt();
+};
+const handleGoogleLogin = async (response) => {
+    console.log("Google Sign-In Response:", response);
+    if (!response?.credential) {
+        console.error("No credential received from Google.");
+        return;
+    }
+    // Decode JWT token to get user data
+    try {
+        const userInfo = JSON.parse(atob(response.credential.split('.')[1]));
+        console.log("User Info:", userInfo);
+
+        // Send token to backend for verification (example)
+        // await axios.post('/api/auth/google', { token: response.credential });
+    } catch (error) {
+        console.error("Failed to parse Google token:", error);
+    }
+};
+</script>
 <template>
     <BaseTeleport :show="show" :type="'error'">
         Wrong Email or password
@@ -36,17 +117,10 @@
                     </p>
 
                     <form @submit.prevent="login" class="mt-4 grid grid-cols-6 gap-4">
-                        <div class="col-span-6">
-                            <label for="Email" class="block text-sm font-medium text-gray-700"> Email </label>
-                            <input type="email" id="Email" name="email" v-model="email" class="mt-1 w-full px-2 py-2 sm:py-3 rounded-md border border-gray-400
-                                bg-white text-sm text-gray-700 shadow-xs" placeholder="email address" />
-                        </div>
-
-                        <div class="col-span-6">
-                            <label for="Password" class="block text-sm font-medium text-gray-700"> Password </label>
-                            <input type="password" id="Password" name="password" v-model="password" class="mt-1 w-full px-2 py-2 sm:py-3 rounded-md border border-gray-400
-                            bg-white text-sm text-gray-700 shadow-xs" placeholder="Password" />
-                        </div>
+                        <Field label="email" name="email" placeholder="Email Address" v-model="email"
+                            class="col-span-6" />
+                        <Field label="password" name="password" placeholder="Password" v-model="password"
+                            class="col-span-6" />
 
                         <div class="col-span-6 mt-2 w-full sm:w-[30em] flex justify-between">
                             <label for="MarketingAccept" class="flex items-center gap-2">
@@ -56,15 +130,12 @@
                                     remember me for a month
                                 </span>
                             </label>
-
-                            <div class="">
-                                <router-link v-if="authUser" :to="{ name: 'User-ForgetPassword' }"
-                                    class="font-medium hover:underline text-sm sm:text-md">
-                                    Forget your password?</router-link>
-                                <router-link v-else :to="{ name: 'AD-ForgetPassword' }"
-                                    class="font-medium hover:underline text-sm sm:text-md">
-                                    Forget your password?</router-link>
-                            </div>
+                            <router-link v-if="authUser" :to="{ name: 'User-ForgetPassword' }"
+                                class="font-medium hover:underline text-sm sm:text-md">
+                                Forget your password?</router-link>
+                            <router-link v-else :to="{ name: 'AD-ForgetPassword' }"
+                                class="font-medium hover:underline text-sm sm:text-md">
+                                Forget your password?</router-link>
                         </div>
 
                         <div class="col-span-6 grid grid-cols-6 gap-4">
@@ -93,98 +164,3 @@
         </div>
     </section>
 </template>
-<script>
-import BaseButton from '../../../components/BaseButton.vue';
-import BaseTeleport from '../../../components/BaseTeleport.vue';
-import { mapActions, mapGetters } from 'vuex';
-export default {
-    components: { BaseButton, BaseTeleport },
-    data() {
-        return {
-            email: '',
-            password: '',
-            spinnerOn: false,
-            rememberme: false,
-            show: false
-        }
-    },
-    mounted() {
-        this.initializeGoogleSignIn();
-    },
-    computed: {
-        ...mapGetters(['Get_User']),
-        authUser() {
-            const user = this.$route.name.split('-')[0] === 'User';
-            if (user)
-                return true;
-            else return false;
-        }
-    },
-    methods: {
-        ...mapActions(['UserLogin', 'ADLogin']),
-        async login() {
-            try {
-                const { email, password } = this;
-                let logged;
-                if (this.authUser) logged = await this.UserLogin({ email, password });
-                else logged = await this.ADLogin({ email, password });
-
-                if (logged) {
-                    this.spinnerOn = true;
-                    setTimeout(() => {
-                        this.$router.push({ name: this.authUser ? 'Home' : 'AD-dashboard' });
-                    }, 1500);
-                } else {
-                    this.spinnerOn = false;
-                    this.show = true;
-                    setTimeout(() => { this.show = false; }, 2000);
-                }
-            } catch (err) {
-                console.log('Login Error:', err);
-            }
-        },
-        initializeGoogleSignIn() {
-            // Ensure Google API is loaded before calling initialize
-            if (window.google) {
-                window.google.accounts.id.initialize({
-                    client_id: "644929127593-2qfpu4fe3oud6pefs8p4ln2j9assauar.apps.googleusercontent.com",
-                    callback: this.handleGoogleLogin,
-                });
-
-                // Render Google Sign-In button (optional)
-                window.google.accounts.id.renderButton(
-                    document.getElementById("google-signin-button"),
-                    { theme: "outline", size: "large" }
-                );
-            } else {
-                console.error("Google API not loaded.");
-            }
-        },
-        triggerGoogleLogin() {
-            window.google?.accounts.id.prompt();
-        },
-        async handleGoogleLogin(response) {
-            console.log("Google Sign-In Response:", response);
-            if (!response.credential) {
-                console.error("No credential received from Google.");
-                return;
-            }
-            // Decode JWT token to get user data
-            try {
-                const userInfo = JSON.parse(atob(response.credential.split('.')[1]));
-                console.log("User Info:", userInfo);
-
-                // Send token to backend for verification (example)
-                // await axios.post('/api/auth/google', { token: response.credential });
-            } catch (error) {
-                console.error("Failed to parse Google token:", error);
-            }
-        }
-    }
-}
-</script>
-<style scoped>
-:deep(input:not(input[type='checkbox'])) {
-    padding: 12px 6px;
-}
-</style>
