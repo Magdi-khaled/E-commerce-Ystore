@@ -1,5 +1,5 @@
 import axios from "axios";
-import inventoryProducts from '../../../../../assets/db/data.json';
+import inventoryProducts from '@/composables/data.js';
 
 export const actions = {
     async FetchInventory({ commit }) {

@@ -1,9 +1,57 @@
+<script setup>
+import BaseButton from '@/components/BaseButton.vue';
+import UserNavbar from '@/components/user/UserNavbar.vue';
+import UserSidebar from '@/components/user/UserSidebar.vue';
+import BaseModal from '@/components/BaseModal.vue';
+import InFooter from '@/components/InFooter.vue';
+import { computed, reactive, ref, watch } from 'vue';
+
+const clicked = ref(7);
+const modalActive = ref(false);
+const user = reactive({
+    email: 'magdikhaled23s@gmail.com',
+    password: '123412341234',
+});
+const currentPassword = ref('');
+const newPassword = ref('');
+const confirmNewPassword = ref('');
+const disabled = ref(true);
+const submitted = ref(false);
+
+watch(modalActive, (newValue) => {
+    document.body.style.overflow = newValue ? "hidden" : "auto";
+})
+const disabledOff = computed(() => {
+    if (currentPassword.value == '1234' && newPassword.value === confirmNewPassword.value && newPassword.value) {
+        disabled.value = false;
+    }
+    else disabled.value = true;
+    return disabled.value;
+})
+
+const updateShowForm = () => {
+    modalActive.value = false;
+    clearForm();
+};
+const updatePassword = () => {
+    disabled.value = true;
+    modalActive.value = false;
+    clearForm();
+};
+const clearForm = () => {
+    if (!modalActive.value) {
+        currentPassword.value = '';
+        newPassword.value = '';
+        confirmNewPassword.value = '';
+    }
+}
+</script>
 <template>
     <UserNavbar />
     <div class="h-full w-full flex border-t-2">
 
         <div class="w-3/12 hidden lg:block bg-gray-50 border-r border-gray-500">
-            <UserSidebar v-model="clicked" :clicked="clicked" />
+            <UserSidebar v-model:clicked="clicked" />
         </div>
 
         <div class="w-full lg:w-9/12 h-fit pb-12 bg-[#f2f2f2]">
@@ -36,8 +84,8 @@
             </div>
         </div>
 
-        <BaseModal @close-modal="modalActive = false" @clear="clearForm" -->
-            <!-- :modalActive="modalActive"> -->
+        <!-- <BaseModal @close-modal="modalActive = false" @clear="clearForm" :modalActive="modalActive"> -->
+        <BaseModal v-model:modalActive="modalActive" @clear="clearForm">
             <div class="flex items-center justify-between p-2">
                 <h1 class="font-bold capitalize text-xl">Change password</h1>
                 <button @click="updateShowForm">
@@ -75,67 +123,3 @@
     </div>
     <InFooter />
 </template>
-<script>
-
-import BaseButton from '../../../../components/BaseButton.vue';
-import UserNavbar from '../../../../components/user/UserNavbar.vue';
-import UserSidebar from '../../../../components/user/UserSidebar.vue';
-import BaseModal from '../../../../components/BaseModal.vue';
-import InFooter from '../../../../components/InFooter.vue';
-
-export default {
-    components: {
-        UserNavbar, BaseButton, UserSidebar, BaseModal, InFooter
-    },
-    data() {
-        return {
-            clicked: 7,
-            modalActive: false,
-            user: {
-                email: 'magdikhaled23s@gmail.com',
-                password: '123412341234',
-            },
-
-            currentPassword: '',
-            newPassword: '',
-            confirmNewPassword: '',
-            disabled: true,
-            submitted: false
-        }
-    },
-    computed: {
-        disabledOff() {
-            if (this.currentPassword == '1234' && this.newPassword === this.confirmNewPassword && this.newPassword) {
-                this.disabled = false;
-            }
-            else this.disabled = true;
-            return this.disabled;
-        },
-    },
-    watch: {
-        modalActive(newValue) {
-            // Toggle body scroll when modal is opened or closed
-            document.body.style.overflow = newValue ? "hidden" : "auto";
-        },
-    },
-    methods: {
-        updateShowForm() {
-            this.modalActive = false;
-            this.clearForm();
-        },
-        updatePassword() {
-            this.disabled = true;
-            this.modalActive = false;
-            this.clearForm();
-        },
-        clearForm() {
-            if (!this.modalActive) {
-                this.currentPassword = '';
-                this.newPassword = '';
-                this.confirmNewPassword = '';
-            }
-        }
-    }
-}
-</script>
-<style scoped></style>

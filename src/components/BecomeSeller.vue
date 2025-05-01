@@ -1,3 +1,10 @@
+<script setup>
+import { useRouter } from 'vue-router';
+import BaseButton from '@/components/BaseButton.vue';
+
+const router = useRouter();
+</script>
+
 <template>
     <div class="w-full md:w-6/12 py-4 md:py-10">
         <h1 class="whitespace-nowrap font-bold text-lg sm:text-xl md:text-2xl uppercase">
@@ -23,9 +30,3 @@
         </BaseButton>
     </div>
 </template>
-
-<script setup>
-import { useRouter } from 'vue-router';
-import BaseButton from '@/components/BaseButton.vue';
-const router = useRouter();
-</script>

@@ -1,3 +1,34 @@
+<script setup>
+import ADNavbar from '@/components/admin/ADNavbar.vue';
+import BaseButton from '@/components/BaseButton.vue';
+import InFooter from '@/components/InFooter.vue';
+import Calendar from '@/components/admin/Calender.vue';
+import ChartComponent from '@/components/admin/ChartComponent.vue';
+import { ref, onMounted, onBeforeUnmount } from 'vue';
+
+const sId = 6554437;
+const shopName = 'Xzen-Shop';
+const shopOwner = 'Magdi Khaled';
+const show = ref(true);
+const servShow = ref(true);
+
+const medium = ref(window.innerWidth < 1080);
+const updateShow = () => {
+    medium.value = window.innerWidth < 1080;
+};
+
+onMounted(() => {
+    window.addEventListener('resize', updateShow);
+});
+onBeforeUnmount(() => {
+    window.removeEventListener('resize', updateShow);
+});
+
+const toggleSide = (value) => {
+    show.value = value;
+};
+</script>
+
 <template>
     <hr>
     <div class="flex justify-end">
@@ -22,7 +53,7 @@
                     </div>
                 </div>
                 <hr class="border-t-[1px] border-t-gray-300">
-                <ul lass="list-none w-full lg:W-8/12">
+                <ul class="list-none w-full lg:W-8/12">
                     <li class="">
                         <router-link :to="{ name: 'AD-Dashboard' }"
                             class="block w-full h-full py-4 px-2 font-medium capitalize text-black hover:text-gray-600">
@@ -93,7 +124,7 @@
         </div>
 
         <section class="w-10/12 h-fit " :class="{ 'w-full': !show || medium }">
-            <ADNavigation :dashboard="true" :customClass="'w-full'" @toggleSidebar="toggleSide" :medium="medium" />
+            <ADNavbar :dashboard="true" @toggleSidebar="toggleSide" :medium="medium" />
             <div class="content bg-gray-100 flex">
                 <section class="w-full md:w-9/12" :class="{ 'w-10/12': !show }">
                     <div class="w-full flex flex-wrap justify-between p-2 sm:p-4">
@@ -176,82 +207,6 @@
     </div>
     <InFooter />
 </template>
-
-<script>
-import ADNavigation from '../../../../../components/admin/ADNavigation.vue';
-import BaseButton from '../../../../../components/BaseButton.vue';
-import InFooter from '../../../../../components/InFooter.vue';
-import Calendar from '../../../../../components/admin/Calender.vue';
-import ChartComponent from '../../../../../components/admin/ChartComponent.vue';
-
-import { ref, onMounted, onBeforeUnmount } from 'vue';
-import { mapActions, mapGetters } from 'vuex';
-
-export default {
-    components: { ADNavigation, BaseButton, Calendar, ChartComponent, InFooter },
-    data() {
-        return {
-            sId: 6554437,
-            shopName: 'Xzen-Shop',
-            shopOwner: 'Magdi Khaled',
-            show: true,
-            servShow: true,
-            shopProducts: [],
-            currentPage: 1,
-            pageSize: 20,
-            ascending: false,
-            descending: false,
-            showFilter: false,
-            mostPopular: false
-        };
-    },
-    setup() {
-        const medium = ref(window.innerWidth < 1080);
-        const updateShow = () => {
-            medium.value = window.innerWidth < 1080;
-        };
-        onMounted(() => {
-            window.addEventListener('resize', updateShow);
-        });
-        onBeforeUnmount(() => {
-            window.removeEventListener('resize', updateShow);
-        });
-        return { medium };
-    },
-    methods: {
-        ...mapActions(['fetchProducts']),
-        toggleSide(show) {
-            this.show = show;
-        },
-        initData() {
-            this.shopProducts = this.Get_Products;
-            // console.log('shopProducts:', this.shopProducts);
-        },
-        paginatedItems() {
-            const startIndex = (this.currentPage - 1) * this.pageSize;
-            const endIndex = startIndex + this.pageSize;
-            return this.Get_Products.slice(startIndex, endIndex);
-        },
-        async fetchData() {
-            try {
-                await this.fetchProducts();
-                this.initData();
-            }
-            catch (err) {
-                console.error('fetching shop products error : ', err);
-            }
-        },
-        infoRoute(id) {
-            return `/shop.co/shop/product/${id}`;
-        },
-    },
-    computed: {
-        ...mapGetters(['Get_Products']),
-
-    },
-    mounted() { }
-};
-</script>
 
 <style scoped>
 .toggle-small-side {

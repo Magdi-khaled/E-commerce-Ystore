@@ -1,8 +1,8 @@
 <script setup>
 import { useField } from 'vee-validate';
-import { defineEmits, defineProps, watch, ref } from 'vue';
+import { defineEmits, defineProps, watch } from 'vue';
 
-const emit = defineEmits(['update:modelValue', 'handleChange']);
+const emit = defineEmits(['update:modelValue']);
 const props = defineProps({
     label: String,
     name: String,
@@ -59,38 +59,18 @@ const handleFilesChange = async (event) => {
     if (!files) return;
 
     if (files.length < 3) {
-        // setErrors("At least 3 images required");
         event.target.value = "";
         emit("update:modelValue", []);
         return;
     } else if (files.length > 4) {
-        // setErrors("You can upload a maximum of 4 images only");
         event.target.value = "";
         emit("update:modelValue", []);
         return;
     }
-    setErrors(""); // Clear errors on valid input
+    setErrors("");
     const filesArray = Array.from(files).map(file => `/assets/shop/${file.name}`);
     emit("update:modelValue", filesArray);
 };
-
-function handleInput(event) {
-    let newValue = event.target.value;
-    if (props.name === 'expiry') {
-        // Remove all non-digit characters
-        newValue = newValue.replace(/\D/g, '');
-        // If more than 2 digits, insert a '/'
-        if (newValue.length > 2) {
-            newValue = newValue.slice(0, 2) + '/' + newValue.slice(2, 4);
-        }
-        // Update the element and the vee-validate field value
-        event.target.value = newValue;
-        value.value = newValue;
-        emit('update:modelValue', newValue);
-    }
-    // Emit handleChange for any additional behavior
-    emit('handleChange', event);
-}
 </script>
 
 <template>
@@ -101,38 +81,33 @@ function handleInput(event) {
             <i v-if="props.name === 'gender'" class="fa-solid fa-venus-mars pr-1"></i>
             {{ props.label }}
         </label>
-
         <!-- Textarea -->
-        <textarea v-if="props.type === 'textarea'" v-model="value" :name="props.name" :id="props.name"
-            :placeholder="props.placeholder" @blur="handleBlur"
-            class="h-[4em] sm:h-[5em] text-sm sm:text-md p-2 bg-gray-100 border-[2px] border-b-[3px] border-b-gray-600 outline-none text-gray-700" />
-
+        <textarea v-if="props.type === 'textarea'" :id="props.name" :name="props.name" :placeholder="props.placeholder"
+            autocomplete="off" class="p-3 lg:p-4 h-[7rem] text-xs lg:text-[14px] tracking-wide outline-0 border-[1px] border-gray-400 focus:border-gray-600
+        rounded-lg bg-white focus:bg-[#f8f8f8] focus:scale-[1.001] transition-all duration-200" v-model="value" />
         <!-- Select -->
         <select v-else-if="props.type === 'select'" v-model="value" :name="props.name" :id="props.name"
-            @blur="handleBlur" :multiple="props.multiple"
-            class="text-sm sm:text-md py-2 px-2 bg-gray-100 border-[2px] border-b-[3px] border-b-gray-600 outline-none text-gray-700 w-full capitalize">
+            @blur="handleBlur" :multiple="props.multiple" class="text-sm sm:text-md py-[12px] px-2 outline-0 border-[1px] border-gray-400 focus:border-gray-600
+        rounded-lg bg-white focus:bg-[#f8f8f8] focus:scale-[1.001] transition-all duration-200">
             <option value="">{{ props.optionsType }}</option>
             <option v-for="(item, index) in props.options" :key="index" :value="item" class="capitalize">
                 {{ item }}
             </option>
         </select>
-
         <!-- Single File Input -->
         <input v-else-if="props.type === 'file' && !props.multiple" :type="props.type" :name="props.name"
-            :id="props.name" @blur="validate()" @change="handleFileChange" :accept="props.accept" v-model="value"
-            class="text-sm sm:text-md py-2 px-2 bg-gray-100 border-[2px] border-b-[3px] border-b-gray-600 outline-none text-gray-700 w-full" />
-
+            :id="props.name" @blur="validate()" @change="handleFileChange" :accept="props.accept" v-model="value" class="text-sm sm:text-md py-3 px-2 outline-0 border-[1px] border-gray-400 focus:border-gray-600
+        rounded-lg bg-white focus:bg-[#f8f8f8] focus:scale-[1.001] transition-all duration-200" />
         <!-- Multiple Files Input -->
         <input v-else-if="props.type === 'file' && props.multiple" :type="props.type" :name="props.name"
             :id="props.name" @blur="validate()" @change="handleFilesChange" :accept="props.accept"
             :multiple="props.multiple" class="text-sm sm:text-md py-2 px-2 bg-gray-100 border-[2px] border-b-[3px]
             border-b-gray-600 outline-none text-gray-700 w-full" />
-
-        <!-- Default Input [text, number, email, password, range, ...etc] -->
-        <input v-else v-model="value" :type="props.type" :name="props.name" :id="props.name" :disabled="props.hide"
-            :placeholder="props.placeholder" :class="{ 'cursor-not-allowed text-[#939393df]': props.hide }"
-            :maxlength="props.maxLen" :minlength="props.minLen" @input="handleInput"
-            class="border-[2px] border-b-[3px] border-b-gray-600 text-sm sm:text-md p-2 bg-gray-100 outline-none text-gray-700 w-full" />
+        <!-- Input number, text.... -->
+        <input v-else :id="props.name" :name="props.name" :type="props.type" autocomplete="off" :disabled="props.hide"
+            @change="handleChange" v-model="value" :placeholder="props.placeholder" class="px-3 lg:px-4 py-3 lg:py-[15px] text-xs lg:text-[14px] tracking-wide outline-0 border-[1px] border-gray-400 focus:border-gray-600
+            rounded-lg focus:bg-[#f8f8f8] focus:scale-[1.001] transition-all duration-200"
+            :class="{ 'cursor-not-allowed bg-gray-200': props.hide }" />
 
         <!-- Error Message -->
         <div v-show="errorMessage" class="text-red-500 text-sm">

@@ -1,3 +1,27 @@
+<script setup>
+import dataCategories from '@/composables/shop.categories.data'
+import { ref } from 'vue';
+
+defineProps({
+    object: { type: Object, required: true },
+    show: { type: Boolean, default: false }
+});
+
+const colors = dataCategories.colorList;
+const selectedImageIndex = ref(null);
+
+const showImage = (src, index) => {
+    object.src = src;
+    selectedImageIndex.value = index;
+};
+const providedColor = (item) => {
+    const color = colors.find(v => v.color === item.color);
+    return color.value;
+};
+const handlePrice = (price, sale) => {
+    return (price * (1 - sale)).toFixed(0);
+};
+</script>
 <template>
     <section v-if="show" class="w-full h-fit px-4 sm:px-6 py-2 bg-gray-100">
         <div class="bg-white shadow-md py-2 sm:py-4">
@@ -56,9 +80,6 @@
                                 <label v-for="item in object.providedColors" class="not-import relative">
                                     <div class="w-6 sm:w-8 h-6 sm:h-8 mr-3 border-2 border-gray-600 cursor-pointer rounded"
                                         :style="{ 'background-color': `#${providedColor(item)}` }" />
-                                    <!-- <input name="selectedColors" type="radio" :value="item.color" class="appearance-none w-6 
-                                        sm:w-8 h-6 sm:h-8 mr-3 border-2 border-gray-400 cursor-pointer rounded"
-                                        :style="{ 'background-color': `#${providedColor(item)}` }"> -->
                                 </label>
                             </div>
                         </div>
@@ -82,42 +103,7 @@
         </div>
     </section>
 </template>
-<script>
-import dataCategories from '../../assets/db/shop.categories.data.json'
-export default {
-    name: 'ProductResultComponent',
-    props: {
-        object: {
-            type: Object,
-            required: true
-        },
-        show: {
-            type: Boolean,
-            default: false
-        }
-    },
-    data() {
-        return {
-            colors: dataCategories.colorList,
-            // show result
-            selectedImageIndex: null,
-        }
-    },
-    methods: {
-        showImage(src, index) {
-            this.object.src = src;
-            this.selectedImageIndex = index;
-        },
-        providedColor(item) {
-            const color = this.colors.find(v => v.color === item.color);
-            return color.value;
-        },
-        handlePrice(price, sale) {
-            return (price * (1 - sale)).toFixed(0);
-        },
-    }
-}
-</script>
+
 <style scoped>
 @import '@/assets/css/adproduct.css';
 </style>

@@ -5,7 +5,8 @@
 :root {
   /* built-in proberties */
   /* font-family: "Satoshi", sans-serif; */
-  background-color: white;
+
+  background-color: #fafafa;
 
   font-family: "Outfit", serif;
   font-optical-sizing: auto;

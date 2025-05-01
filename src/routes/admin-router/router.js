@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
-import data from '../../assets/db/data.json'
+import data from '@/composables/data.js';
+
 const router = createRouter({
     history: createWebHistory(),
     routes: [

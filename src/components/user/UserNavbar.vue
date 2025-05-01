@@ -1,3 +1,132 @@
+<script>
+import NavigatedCart from '@/components/shop/NavigatedCart.vue';
+import data from '@/composables/data.js';
+import { ref, onMounted, onBeforeUnmount } from 'vue';
+import { mapActions, mapGetters } from 'vuex';
+
+export default {
+    name: 'UserNavbar',
+    components: { NavigatedCart },
+    props: ['currentlyShop'],
+    data() {
+        return {
+            userSreachTxt: '',
+            accountDropdown: false,
+            user: {
+                name: 'Magdi Khaled',
+                address: 'Giza - El-warrak'
+            },
+            hiddenNav: false,
+            show: false,
+            cartOn: false,
+            products: data,
+            NavigationItems: [
+                { label: "Home", route: "Home" },
+                { label: "men's fashion", route: "men-fashion" },
+                { label: "women's fashion", route: "women-fashion" },
+                { label: "boys wear", route: "boys-wear" },
+                { label: "girls wear", route: "girls-wear" },
+                { label: "sports", route: "sport-wear" },
+                { label: "shoes", route: "shoes-fashion" },
+                { label: "accessories", route: "accessories" },
+                { label: "bags-luggage", route: "bags-luggage" },
+            ],
+        }
+    },
+    setup() {
+        const sm = ref(window.innerWidth < 782);
+        const updateShow = () => {
+            sm.value = window.innerWidth < 782;
+        };
+        onMounted(() => {
+            window.addEventListener('resize', updateShow);
+        });
+        onBeforeUnmount(() => {
+            window.removeEventListener('resize', updateShow);
+        });
+        return {
+            sm
+        }
+    },
+    computed: {
+        ...mapGetters(['Get_CartItems', 'Get_Wishlist']),
+        handleSearchResult() {
+            const searchedList = this.products.filter((item) =>
+                item.title.toLowerCase().toString().includes(this.userSreachTxt.toLowerCase())
+            );
+            // setTimeout(() => {  }, 1200);
+            return searchedList;
+        },
+        allv() {
+            const routeMapping = {
+                "Shop": "all fashion",
+                "women-fashion": "all women's fashion",
+                "men-fashion": "all men's fashion",
+                "bags-luggage": "all bags & luggage",
+                "shoes-fashion": "all shoes",
+                "accessories": "all accessories",
+                "sport-wear": "all sport wear",
+                "girls-wear": "all girls fashion",
+                "boys-wear": "all boys fashion",
+                "formal-wear": "all formal wear",
+            };
+            if (routeMapping[this.$route.name])
+                sessionStorage.setItem('allT', routeMapping[this.$route.name]);
+            return sessionStorage.getItem('allT');
+        },
+    },
+    watch: {
+        $route(to, from) {
+            console.log("Route changed from:", from.name);
+            console.log("Route changed to:", to.name);
+            const routeMapping = {
+                "Shop": "all fashion",
+                "women-fashion": "all women's fashion",
+                "men-fashion": "all men's fashion",
+                "bags-luggage": "all bags & luggage",
+                "shoes-fashion": "all shoes",
+                "accessories": "all accessories",
+                "sport-wear": "all sport wear",
+                "girls-wear": "all girls fashion",
+                "boys-wear": "all boys fashion",
+                "formal-wear": "all formal wear",
+            };
+            console.log('current:', to.name);
+            sessionStorage.setItem('allT', routeMapping[to.name]);
+
+            this.$nextTick(() => {
+                this.allT = sessionStorage.getItem('allT') || '';
+            }).then(() => {
+                window.location.reload();
+            });
+            // Perform any logic needed on route change
+        }
+    },
+    mounted() {
+        this.FetchWishlist();
+    },
+    methods: {
+        ...mapActions(['UserLogout', 'FetchWishlist']),
+        async uLogout() {
+            try {
+                await this.UserLogout();
+                setTimeout(() => {
+                    this.$router.push({ name: 'User-Login' });
+                }, 1500)
+            } catch (error) {
+                console.error('Logout Error : ', error);
+            }
+        },
+        scrollLeft() {
+            this.$refs.scrollContainer.scrollBy({ left: -200, behavior: "smooth" });
+        },
+        scrollRight() {
+            this.$refs.scrollContainer.scrollBy({ left: 200, behavior: "smooth" });
+        },
+    },
+}
+</script>
+
 <template>
     <nav class="flex flex-row flex-wrap items-center justify-between px-2 sm:px-6 lg:px-12 py-4 ">
         <!-- LOGO SHOP.CO -->
@@ -132,7 +261,7 @@
             </button>
         </div>
         <!-- side-shopping-cart -->
-        <NavigatedCart :showCart="cartOn" @closeCart="cartOn = false" />
+        <NavigatedCart v-model:show="cartOn" />
 
         <div v-if="sm" class="w-full relative pt-4">
             <label for="searchText" class="relative">
@@ -193,135 +322,6 @@
         </button>
     </div>
 </template>
-<script>
-import NavigatedCart from '../shop/NavigatedCart.vue';
-import db from '../../assets/db/data.json';
-import { ref, onMounted, onBeforeUnmount } from 'vue';
-import { mapActions } from 'vuex';
-import { mapGetters } from 'vuex/dist/vuex.cjs.js';
-
-export default {
-    name: 'UserNavbar',
-    components: { NavigatedCart },
-    props: ['currentlyShop'],
-    data() {
-        return {
-            userSreachTxt: '',
-            accountDropdown: false,
-            user: {
-                name: 'Magdi Khaled',
-                address: 'Giza - El-warrak'
-            },
-            hiddenNav: false,
-            show: false,
-            cartOn: false,
-            products: db,
-            NavigationItems: [
-                { label: "Home", route: "Home" },
-                { label: "men's fashion", route: "men-fashion" },
-                { label: "women's fashion", route: "women-fashion" },
-                { label: "boys wear", route: "boys-wear" },
-                { label: "girls wear", route: "girls-wear" },
-                { label: "sports", route: "sport-wear" },
-                { label: "shoes", route: "shoes-fashion" },
-                { label: "accessories", route: "accessories" },
-                { label: "bags-luggage", route: "bags-luggage" },
-            ],
-        }
-    },
-    setup() {
-        const sm = ref(window.innerWidth < 782);
-        const updateShow = () => {
-            sm.value = window.innerWidth < 782;
-        };
-        onMounted(() => {
-            window.addEventListener('resize', updateShow);
-        });
-        onBeforeUnmount(() => {
-            window.removeEventListener('resize', updateShow);
-        });
-        return {
-            sm
-        }
-    },
-    computed: {
-        ...mapGetters(['Get_CartItems', 'Get_Wishlist']),
-        handleSearchResult() {
-            const searchedList = this.products.filter((item) =>
-                item.title.toLowerCase().toString().includes(this.userSreachTxt.toLowerCase())
-            );
-            // setTimeout(() => {  }, 1200);
-            return searchedList;
-        },
-        allv() {
-            const routeMapping = {
-                "Shop": "all fashion",
-                "women-fashion": "all women's fashion",
-                "men-fashion": "all men's fashion",
-                "bags-luggage": "all bags & luggage",
-                "shoes-fashion": "all shoes",
-                "accessories": "all accessories",
-                "sport-wear": "all sport wear",
-                "girls-wear": "all girls fashion",
-                "boys-wear": "all boys fashion",
-                "formal-wear": "all formal wear",
-            };
-            if (routeMapping[this.$route.name])
-                sessionStorage.setItem('allT', routeMapping[this.$route.name]);
-            return sessionStorage.getItem('allT');
-        },
-    },
-    watch: {
-        $route(to, from) {
-            console.log("Route changed from:", from.name);
-            console.log("Route changed to:", to.name);
-            const routeMapping = {
-                "Shop": "all fashion",
-                "women-fashion": "all women's fashion",
-                "men-fashion": "all men's fashion",
-                "bags-luggage": "all bags & luggage",
-                "shoes-fashion": "all shoes",
-                "accessories": "all accessories",
-                "sport-wear": "all sport wear",
-                "girls-wear": "all girls fashion",
-                "boys-wear": "all boys fashion",
-                "formal-wear": "all formal wear",
-            };
-            console.log('current:', to.name);
-            sessionStorage.setItem('allT', routeMapping[to.name]);
-
-            this.$nextTick(() => {
-                this.allT = sessionStorage.getItem('allT') || '';
-            }).then(() => {
-                window.location.reload();
-            });
-            // Perform any logic needed on route change
-        }
-    },
-    mounted() {
-        this.FetchWishlist();
-    },
-    methods: {
-        ...mapActions(['UserLogout', 'FetchWishlist']),
-        async uLogout() {
-            try {
-                await this.UserLogout();
-                setTimeout(() => {
-                    this.$router.push({ name: 'User-Login' });
-                }, 1500)
-            } catch (error) {
-                console.error('Logout Error : ', error);
-            }
-        },
-        scrollLeft() {
-            this.$refs.scrollContainer.scrollBy({ left: -200, behavior: "smooth" });
-        },
-        scrollRight() {
-            this.$refs.scrollContainer.scrollBy({ left: 200, behavior: "smooth" });
-        },
-    },
-}
-</script>
 
 <style scoped>
 /* Hide scrollbar */

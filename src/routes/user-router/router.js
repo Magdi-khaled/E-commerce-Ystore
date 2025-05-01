@@ -6,22 +6,22 @@ const router = createRouter({
         {
             path: "/ystore/login",
             name: "User-Login",
-            component: () => import("../../views/users/auth/Login.vue"),
+            component: () => import("@/views/users/auth/Login.vue"),
         },
         {
             path: "/ystore/signup",
             name: "User-Signup",
-            component: () => import("../../views/users/auth/Signup.vue"),
+            component: () => import("@/views/users/auth/Signup.vue"),
         },
         {
             path: "/ystore/user/forget-password",
             name: "User-ForgetPassword",
-            component: () => import("../../views/users/auth/ForgetPassword.vue"),
+            component: () => import("@/views/users/auth/ForgetPassword.vue"),
         },
         {
             path: '/ystore/user/shopping-cart',
             name: 'User-Cart',
-            component: () => import('../../views/users/user/shop/Cart.vue'),
+            component: () => import('@/views/users/user/shop/Cart.vue'),
             meta: {
                 requiresTransition: true
             },
@@ -29,7 +29,7 @@ const router = createRouter({
         {
             path: '/ystore/user/wishlist',
             name: 'User-Wishlist',
-            component: () => import('../../views/users/user/shop/Wishlist.vue'),
+            component: () => import('@/views/users/user/shop/Wishlist.vue'),
             meta: {
                 requiresTransition: true
             },
@@ -37,7 +37,7 @@ const router = createRouter({
         {
             path: "/ystore/user/profile",
             name: "User-Profile",
-            component: () => import("../../views/users/user/profile/UserProfile.vue"),
+            component: () => import("@/views/users/user/profile/UserProfile.vue"),
             meta: {
                 requiresTransition: true,
                 // requiredAuth: true
@@ -46,7 +46,7 @@ const router = createRouter({
         {
             path: "/ystore/user/qr-code",
             name: "User-Qrcode",
-            component: () => import("../../views/users/user/profile/UserQrcode.vue"),
+            component: () => import("@/views/users/user/profile/UserQrcode.vue"),
             meta: {
                 requiresTransition: true,
                 // requiredAuth: true
@@ -55,7 +55,7 @@ const router = createRouter({
         {
             path: "/ystore/user/orders",
             name: "User-Orders",
-            component: () => import("../../views/users/user/profile/UserOrders.vue"),
+            component: () => import("@/views/users/user/profile/UserOrders.vue"),
             meta: {
                 requiresTransition: true,
                 // requiredAuth: true
@@ -64,7 +64,7 @@ const router = createRouter({
         {
             path: "/ystore/user/returns",
             name: "User-Returns",
-            component: () => import("../../views/users/user/profile/UserReturns.vue"),
+            component: () => import("@/views/users/user/profile/UserReturns.vue"),
             meta: {
                 requiresTransition: true,
                 // requiredAuth: true
@@ -73,7 +73,7 @@ const router = createRouter({
         {
             path: "/ystore/user/payments",
             name: "User-Payments",
-            component: () => import("../../views/users/user/profile/UserPayments.vue"),
+            component: () => import("@/views/users/user/profile/UserPayments.vue"),
             meta: {
                 requiresTransition: true,
                 // requiredAuth: true
@@ -82,7 +82,7 @@ const router = createRouter({
         {
             path: "/ystore/user/notifications",
             name: "User-Notifications",
-            component: () => import("../../views/users/user/profile/UserNotifyHistory.vue"),
+            component: () => import("@/views/users/user/profile/UserNotifyHistory.vue"),
             meta: {
                 requiresTransition: true,
                 // requiredAuth: true
@@ -91,7 +91,7 @@ const router = createRouter({
         {
             path: "/ystore/user/security-sittings",
             name: "User-SecuritySittings",
-            component: () => import("../../views/users/user/profile/UserSecuritySittings.vue"),
+            component: () => import("@/views/users/user/profile/UserSecuritySittings.vue"),
             meta: {
                 requiresTransition: true,
                 // requiredAuth: true
@@ -100,7 +100,16 @@ const router = createRouter({
         {
             path: "/ystore/user/cart/checkout",
             name: "User-Checkout",
-            component: () => import("../../views/users/user/shop/CheckOut.vue"),
+            component: () => import("@/views/users/user/shop/CartCheckOut.vue"),
+            meta: {
+                requiresTransition: true,
+                // // requiredAuth: true
+            },
+        },
+        {
+            path: "/ystore/user/product/checkout/:order",
+            name: "User-Product-Checkout",
+            component: () => import("@/views/users/user/shop/ProductCheckOut.vue"),
             meta: {
                 requiresTransition: true,
                 // // requiredAuth: true

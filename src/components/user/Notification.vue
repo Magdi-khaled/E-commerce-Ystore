@@ -1,3 +1,6 @@
+<script setup>
+defineProps({ notification: { type: Object, required: true } })
+</script>
 <template>
     <div>
         <router-link :to="`#`" class="w-full flex justify-between sm:justify-start border-2 border-white 
@@ -24,15 +27,3 @@
         <hr>
     </div>
 </template>
-<script>
-export default {
-    name: 'Notification',
-    props: {
-        notification: {
-            type: Object,
-            required: true
-        }
-    }
-}
-</script>
-<style scoped></style>

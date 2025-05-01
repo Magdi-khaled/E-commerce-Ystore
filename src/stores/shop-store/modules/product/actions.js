@@ -1,14 +1,13 @@
 import axios from "axios";
-import products from '@/composables/data.js'
+import products from '@/composables/data.js';
 export const actions = {
     async FetchProducts({ commit }) {
         try {
             // const res = await axios.get('http://localhost:3000/getproducts');
-            const data = products;
-            await commit('Set_Products', data);
+            await commit('Set_Products', products);
         }
-        catch (error) {
-            console.error("Axios Error: ", error);
+        catch (e) {
+            console.error("Axios Error: ", e);
         }
     },
     async FetchNBProduvts({ commit }) {
@@ -19,8 +18,8 @@ export const actions = {
             await commit('Set_NewProducts', newProducts);
             await commit('Set_BestSellers', bestSellers);
         }
-        catch (error) {
-            console.error("Axios Error: ", error);
+        catch (e) {
+            console.error("Axios Error: ", e);
         }
     },
 }

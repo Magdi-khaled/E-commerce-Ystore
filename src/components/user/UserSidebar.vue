@@ -1,7 +1,54 @@
-<template>
+<script setup>
+import { reactive, ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { useStore } from 'vuex';
 
+const clicked = defineModel('clicked');
+const store = useStore();
+const router = useRouter();
+
+const hoverIndex = ref(null);
+const buttons = reactive([
+    { label: "profile", icon: "fa-solid fa-user" },
+    { label: "QR code", icon: "fa-solid fa-qrcode" },
+    { label: "wishlist", icon: "fa-solid fa-heart" },
+    { label: "orders", icon: "fa-solid fa-list-dropdown" },
+    { label: "returns", icon: "fa-duotone fa-regular fa-rotate-left" },
+    { label: "payments", icon: "fa-duotone fa-solid fa-wallet" },
+    { label: "notifactions", icon: "fa-solid fa-bell" },
+    { label: "security settings", icon: "fa-solid fa-lock" },
+]);
+const user = reactive({ name: 'Magdi Khaled' })
+
+const updateClicked = (index) => {
+    const routes = [
+        'User-Profile',
+        'User-Qrcode',
+        'User-Wishlist',
+        'User-Orders',
+        'User-Returns',
+        'User-Payments',
+        'User-Notifications',
+        'User-SecuritySittings'
+    ];
+
+    router.push({ name: routes[index] });
+    clicked.value = index;
+};
+const uLogout = async () => {
+    try {
+        await store.dispatch('UserLogout');
+        setTimeout(() => {
+            router.push({ name: 'User-Login' });
+        }, 1500)
+    } catch (error) {
+        console.error('Logout Error : ', error);
+    }
+};
+</script>
+
+<template>
     <aside class="font-bold pl-12 pt-6">
-        <!-- <div class="h-fit hidden lg:block bg-white font-bold mt-8 mb-20 pl-8 md:pl-16"> -->
         <h1 class="text-lg"> Hala {{ user.name.split(' ')[0] }}!</h1>
         <p class="text-gray-500 text-sm"> magdikhaled23s@gmail.com</p>
         <hr class="my-4 w-11/12 bg-black">
@@ -27,63 +74,3 @@
         </div>
     </aside>
 </template>
-<script>
-import { mapActions } from 'vuex';
-export default {
-    name: 'UserSidebar',
-    props: ['clicked'],
-    data() {
-        return {
-            hoverIndex: null,
-            buttons: [
-                { label: "profile", icon: "fa-solid fa-user" },
-                { label: "QR code", icon: "fa-solid fa-qrcode" },
-                { label: "wishlist", icon: "fa-solid fa-heart" },
-                { label: "orders", icon: "fa-solid fa-list-dropdown" },
-                { label: "returns", icon: "fa-duotone fa-regular fa-rotate-left" },
-                { label: "payments", icon: "fa-duotone fa-solid fa-wallet" },
-                { label: "notifactions", icon: "fa-solid fa-bell" },
-                { label: "security settings", icon: "fa-solid fa-lock" },
-            ],
-            user: {
-                name: 'Magdi Khaled'
-            }
-        }
-    },
-    computed: {
-        value: {
-            get() {
-                return this.modelValue;
-            },
-            set(newValue) {
-                this.$emit('update:modelValue', newValue);
-            },
-        },
-    },
-    methods: {
-        ...mapActions(['UserLogout']),
-        updateClicked(index) {
-            if (index === 0) this.$router.push({ name: 'User-Profile' });
-            else if (index === 1) this.$router.push({ name: 'User-Qrcode' });
-            else if (index === 2) this.$router.push({ name: 'User-Wishlist' });
-            else if (index === 3) this.$router.push({ name: 'User-Orders' });
-            else if (index === 4) this.$router.push({ name: 'User-Returns' });
-            else if (index === 5) this.$router.push({ name: 'User-Payments' });
-            else if (index === 6) this.$router.push({ name: 'User-Notifications' });
-            else if (index === 7) this.$router.push({ name: 'User-SecuritySittings' });
-            this.value = index;
-        },
-        async uLogout() {
-            try {
-                await this.UserLogout();
-                setTimeout(() => {
-                    this.$router.push({ name: 'User-Login' });
-                }, 1500)
-            } catch (error) {
-                console.error('Logout Error : ', error);
-            }
-        },
-    },
-}
-</script>
-<style scoped></style>

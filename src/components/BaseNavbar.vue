@@ -1,3 +1,47 @@
+<script setup>
+import { ref, onMounted, onBeforeUnmount, computed, watch } from 'vue';
+import NavigatedCart from '@/components/shop/NavigatedCart.vue';
+import BaseButton from '@/components/BaseButton.vue';
+import data from '@/composables/data.js';
+import { routeMapping2, StoreLinks } from '@/composables/useUtils.js';
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
+
+const dropStoreCategories = ref(false);
+const dropCategories = ref(false);
+const toggleNavigation = ref(false);
+const searchText = ref('');
+const cartOn = ref(false);
+const showSideNav = ref(window.innerWidth > 1150);
+const handleSearchBar = ref(window.innerWidth <= 592);
+
+const updateShow = () => {
+    showSideNav.value = window.innerWidth > 1150;
+    handleSearchBar.value = window.innerWidth <= 592;
+};
+const handleNavigation = computed(() => {
+    if (window.innerWidth <= 1150) showSideNav.value = false;
+    else showSideNav.value = true;
+    return showSideNav.value;
+});
+const handleSearchResult = computed(() => {
+    const searchedList = data.filter((item) =>
+        item.title.toLowerCase().toString().includes(searchText.value.toLowerCase())
+    );
+    return searchedList;
+});
+watch(() => route.name, (newRoute) => {
+    if (routeMapping2[newRoute]) sessionStorage.setItem("allT", routeMapping2[newRoute]);
+});
+onMounted(() => {
+    window.addEventListener('resize', updateShow);
+});
+onBeforeUnmount(() => {
+    window.removeEventListener('resize', updateShow);
+});
+</script>
+
 <template>
     <!-- SALE FIRST SIGN UP -->
     <div class="bg-black py-1 flex items-center justify-start px-2 md:px-0 sm:justify-center">
@@ -93,7 +137,7 @@
                 <button @click="cartOn = true" class="w-4/12 pr-4 text-center hover:opacity-70" title="cart">
                     <i class="fa-solid fa-cart-shopping text-md sm:text-xl"></i>
                 </button>
-                <NavigatedCart :showCart="cartOn" @closeCart="cartOn = false" />
+                <NavigatedCart v-model:show="cartOn" />
                 <!-- sign in -->
                 <BaseButton @click="this.$router.push({ name: 'User-Login' })"
                     class="py-[5px] px-[6px] whitespace-nowrap rounded-sm text-sm sm:text-md">sign in
@@ -190,110 +234,7 @@
     <hr>
 </template>
 
-<script>
-import { ref, onMounted, onBeforeUnmount } from 'vue';
-import NavigatedCart from '../components/shop/NavigatedCart.vue';
-import BaseButton from '../components/BaseButton.vue';
-import data from '../assets/db/data.json';
 
-export default {
-    name: 'BaseNavbar',
-    components: { NavigatedCart, BaseButton },
-    data() {
-        return {
-            dropStoreCategories: false,
-            dropCategories: false,
-            toggleNavigation: false,
-            searchText: '',
-            cartOn: false,
-            products: data,
-            userToken: localStorage.getItem('token'),
-            StoreLinks: [
-                { name: 'men-fashion', label: 'men\'s fashion' },
-                { name: 'women-fashion', label: 'women\'s fashion' },
-                { name: 'boys-wear', label: 'boys wear' },
-                { name: 'girls-wear', label: 'girls wear' },
-                { name: 'sport-wear', label: 'sport wear' },
-                { name: 'bags-luggage', label: 'bags & luggage' },
-                { name: 'shoes-fashion', label: 'shoes' },
-                { name: 'formal-wear', label: 'formal wear' }
-            ]
-        }
-    },
-    computed: {
-        handleNavigation() {
-            if (window.innerWidth <= 1150) this.showSideNav = false;
-            else this.showSideNav = true;
-            return this.showSideNav;
-        },
-        handleSearchResult() {
-            const searchedList = data.filter((item) =>
-                item.title.toLowerCase().toString().includes(this.searchText.toLowerCase())
-            );
-            console.log('searching...');
-            setTimeout(() => {
-
-            }, 1200);
-            return searchedList;
-        },
-        allv() {
-            const routeMapping = {
-                "Shop": "all fashion",
-                "women-fashion": "all women's fashion",
-                "men-fashion": "all men's fashion",
-                "bags-luggage": "all bags & luggage",
-                "shoes-fashion": "all shoes",
-                "accessories": "all accessories",
-                "sport-wear": "all sport wear",
-                "girls-wear": "all girls fashion",
-                "boys-wear": "all boys fashion",
-                "formal-wear": "all formal wear",
-            };
-            if (routeMapping[this.$route.name])
-                sessionStorage.setItem('allT', routeMapping[this.$route.name]);
-            return sessionStorage.getItem('allT');
-        },
-    },
-    watch: {
-        $route(to, from) {
-            console.log("Route changed from:", from.name);
-            console.log("Route changed to:", to.name);
-            const routeMapping = {
-                "Shop": "all fashion",
-                "women-fashion": "all women's fashion",
-                "men-fashion": "all men's fashion",
-                "bags-luggage": "all bags & luggage",
-                "shoes-fashion": "all shoes",
-                "accessories": "all accessories",
-                "sport-wear": "all sport wear",
-                "girls-wear": "all girls fashion",
-                "boys-wear": "all boys fashion",
-                "formal-wear": "all formal wear",
-            };
-            console.log('current:', to.name);
-            sessionStorage.setItem('allT', routeMapping[to.name]);
-            // Perform any logic needed on route change
-        }
-    },
-    setup() {
-        const showSideNav = ref(window.innerWidth > 1150);
-        const handleSearchBar = ref(window.innerWidth <= 592);
-
-        const updateShow = () => {
-            showSideNav.value = window.innerWidth > 1150;
-            handleSearchBar.value = window.innerWidth <= 592;
-        };
-        onMounted(() => {
-            window.addEventListener('resize', updateShow);
-        });
-        onBeforeUnmount(() => {
-            window.removeEventListener('resize', updateShow);
-        });
-        return { showSideNav, handleSearchBar };
-    },
-
-}
-</script>
 <style scoped>
-@import url('../assets/css/shop/nav-bar.style.css');
+@import '@/assets/css/shop/header.css';
 </style>

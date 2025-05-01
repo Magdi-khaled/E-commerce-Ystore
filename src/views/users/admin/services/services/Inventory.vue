@@ -1,14 +1,69 @@
+<script setup>
+import ADNavbar from '@/components/admin/ADNavbar.vue';
+import BaseButton from '@/components/BaseButton.vue';
+import BaseModal from '@/components/BaseModal.vue';
+import ProductComponent from '@/components/shop/ProductComponent.vue';
+import InFooter from '@/components/InFooter.vue';
+import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
+import { computed, onMounted, ref } from 'vue';
+
+const store = useStore();
+const router = useRouter();
+
+const inventory = ref([]);
+const currentPage = ref(1);
+const pageSize = ref(18);
+const modalActive = ref(false);
+const showFilter = ref(false);
+const showOptions = ref({});
+const totalPages = computed(() => Math.ceil(inventory.value.length / pageSize.value));
+const paginatedItems = computed(() => {
+    const startIndex = (currentPage.value - 1) * pageSize.value;
+    const endIndex = startIndex + pageSize.value;
+    return store.getters['Get_Inventory'].slice(startIndex, endIndex);
+});
+
+onMounted(() => fetchData());
+
+const initData = () => {
+    inventory.value = store.getters['Get_Inventory'];
+    inventory.value.forEach(v => { showOptions.value[v._id] = false; });
+};
+const fetchData = async () => {
+    try {
+        await store.dispatch('FetchInventory');
+        initData();
+    }
+    catch (err) {
+        console.error('Detching Invetory Error : ', err);
+    }
+};
+const prevPage = () => {
+    if (currentPage.value > 1) {
+        currentPage.value--;
+    }
+};
+const nextPage = () => {
+    if (currentPage.value < totalPages.value) {
+        currentPage.value++;
+    }
+};
+const changePage = (page) => {
+    currentPage.value = page;
+};
+</script>
 <template>
     <hr>
     <div class="w-full h-fit">
-        <ADNavigation />
+        <ADNavbar />
         <section class="bg-gray-100 flex">
             <div class="w-full flex flex-wrap justify-between p-2 sm:p-6">
                 <div class="w-full flex flex-row sm:flex-row-reverse flex-wrap justify-between items-center">
                     <div class="w-full sm:w-fit mt-2 sm:mt-0 flex justify-end">
                         <BaseButton
                             class="text text-sm sm:text-md rounded px-4 sm:px-6 py-[8px] sm:py-[10px] whitespace-nowrap justify-end"
-                            @click="this.$router.push({ name: 'AD-Dashboard' })">
+                            @click="router.push({ name: 'AD-Dashboard' })">
                             back to dashboard <i class="fa-duotone fa-regular fa-chevrons-right pl-2"></i>
                         </BaseButton>
                     </div>
@@ -52,7 +107,7 @@
                                     </button>
                                 </ul>
                             </div>
-                            <BaseModal :modalActive="modalActive" class="">
+                            <BaseModal v-model:modalActive="modalActive">
                                 <p class="p-2 text-xl w-full font-semibold">You are sure about deleting this product?
                                 </p>
                                 <div class="flex justify-end items-end gap-2 h-[5em] ">
@@ -89,74 +144,7 @@
     <InFooter />
 </template>
 
-<script>
-import ADNavigation from '../../../../../components/admin/ADNavigation.vue';
-import BaseButton from '../../../../../components/BaseButton.vue';
-import BaseModal from '../../../../../components/BaseModal.vue';
-import ProductComponent from '../../../../../components/shop/ProductComponent.vue';
-import InFooter from '../../../../../components/InFooter.vue';
-import { mapActions, mapGetters } from 'vuex';
 
-export default {
-    components: { ADNavigation, BaseButton, BaseModal, ProductComponent, InFooter },
-    data() {
-        return {
-            inventory: [],
-            currentPage: 1,
-            pageSize: 18,
-            modalActive: false,
-            showFilter: false,
-            showOptions: {},
-        };
-    },
-    created() {
-        this.fetchData();
-    },
-    computed: {
-        ...mapGetters(['Get_Inventory']),
-        totalPages() {
-            return Math.ceil(this.inventory.length / this.pageSize);
-        },
-        paginatedItems() {
-            const startIndex = (this.currentPage - 1) * this.pageSize;
-            const endIndex = startIndex + this.pageSize;
-            return this.Get_Inventory.slice(startIndex, endIndex);
-        },
-    },
-    methods: {
-        ...mapActions(['FetchInventory']),
-        initData() {
-            this.inventory = this.Get_Inventory;
-            this.inventory.forEach(v => { this.showOptions[v._id] = false; });
-        },
-        async fetchData() {
-            try {
-                await this.FetchInventory();
-                this.initData();
-            }
-            catch (err) {
-                console.error('Detching Invetory Error : ', err);
-            }
-        },
-        infoRoute(id) {
-            return `/shop.co/shop/product/${id}`;
-        },
-        prevPage() {
-            if (this.currentPage > 1) {
-                this.currentPage--;
-            }
-        },
-        nextPage() {
-            if (this.currentPage < this.totalPages) {
-                this.currentPage++;
-            }
-        },
-        changePage(page) {
-            this.currentPage = page;
-        }
-    }
-};
-</script>
 
 <style scoped>
 .toggle-small-side {

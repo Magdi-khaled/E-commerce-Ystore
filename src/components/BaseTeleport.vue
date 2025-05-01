@@ -1,3 +1,9 @@
+<script setup>
+defineProps({
+    show: { type: Boolean, required: true },
+    type: { type: String, required: true }
+});
+</script>
 <template>
     <Teleport to='body'>
         <div :class="{
@@ -10,22 +16,6 @@
         </div>
     </Teleport>
 </template>
-<script>
-
-export default {
-    name: 'BaseTeleport',
-    props: {
-        show: {
-            type: Boolean,
-            required: true
-        },
-        type: {
-            type: String,
-            required: true
-        }
-    }
-}
-</script>
 <style scoped>
 div {
     opacity: 0;

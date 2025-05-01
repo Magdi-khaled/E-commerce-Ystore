@@ -1,16 +1,90 @@
+<script setup>
+import ADNavbar from '@/components/admin/ADNavbar.vue';
+import BaseButton from '@/components/BaseButton.vue';
+import Field from '@/components/form/Field.vue';
+import BaseTeleport from '@/components/BaseTeleport.vue';
+import ADFooter from '@/components/InFooter.vue';
+import { computed, reactive, ref } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+
+const route = useRoute();
+const router = useRouter();
+
+const success = ref(false)
+const failed = ref(false)
+const seller = reactive({
+    name: 'Magdi Khaled',
+    email: 'magdikhaled23s@gmail.com',
+    phone: '+02 01122368948',
+    address: 'Egypt, Giza, Al Jizah',
+    bankAccount: {
+        name: 'Magdi Khaled Kelany Hassouna',
+        accountNumber: '5842 3456 8201 0091',
+        bankName: 'Egyptian Arab Land Bank',
+    }
+});
+const shop = reactive({
+    id: route.params.sId,
+    name: route.params.shopName,
+    address: 'Egypt, Cairo, Nasr City',
+    hotline: '19611 / +201065390754',
+    rate: `${4.4}/5`,
+    stock: 156,
+    balance: 5635.0
+});
+const hideChangeInfo = ref(true);
+const hideChangePassword = ref(true);
+const currentPassword = ref('');
+const newPassword = ref('');
+const confirmNewPassword = ref('');
+
+const hashCardNumber = computed(() => {
+    let hashedCard = seller.bankAccount.accountNumber;
+    hashedCard = hashedCard.split(' ')[0] + ' **** **** **' + hashedCard.split(' ')[3].split('').slice(2).join('');
+    return hashedCard;
+});
+
+const updateInfo = () => {
+    console.log(seller.name);
+    console.log(seller.address);
+    console.log(seller.phone);
+    success.value = true;
+    setTimeout(() => { success.value = false }, 2000)
+};
+const updatePassword = () => {
+    if (!currentPassword.value) {
+        console.log("Current password is incorrect");
+        failed.value = true;
+        setTimeout(() => { failed.value = false }, 2000);
+        return;
+    }
+    if (newPassword.value !== confirmNewPassword.value) {
+        console.log("New passwords do not match");
+        failed.value = true;
+        setTimeout(() => { failed.value = false }, 2000);
+        return;
+    }
+    console.log(currentPassword.value, newPassword.value, confirmNewPassword.value);
+    success.value = true;
+    setTimeout(() => { success.value = false }, 2000);
+};
+const handleChangeInfo = () => {
+    hideChangeInfo.value = false;
+};
+const handleChangePassword = () => {
+    hideChangePassword.value = false;
+};
+</script>
 <template>
-    <ADNavigation />
+    <ADNavbar />
     <BaseTeleport :show="success" :type="'success'">Information Updated Successfully</BaseTeleport>
     <BaseTeleport :show="failed" :type="'error'">
-        <!-- <button @click="failed = false">
-            <i class="fa-regular fa-xmark font-semibold hover:text-gray-500 transition duraion-200"></i>
-        </button> -->
         Wrong input data
     </BaseTeleport>
     <section class="bg-gray-100 p-2 sm:p-6">
         <div class="flex justify-end">
             <BaseButton class="text-sm sm:text-md px-2 sm:px-6 py-[6px] sm:py-[10px]"
-                @click="this.$router.push({ name: 'AD-Dashboard' })">
+                @click="router.push({ name: 'AD-Dashboard' })">
                 back to dashboard <i class="fa-duotone fa-regular fa-chevrons-right pl-2"></i>
             </BaseButton>
         </div>
@@ -27,7 +101,7 @@
                 </div>
                 <div class="w-full mt-4 flex justify-end">
                     <BaseButton @click="!hideChangeInfo && updateInfo()"
-                        class="w-5/12 sm:w-2/12 py-[8px] text-sm sm:text-md" :disabled="hideChangeInfo">
+                        class="w-5/12 sm:w-2/12 py-[8px] text-sm sm:text-md" :disabled="!hideChangeInfo">
                         confirm
                     </BaseButton>
                 </div>
@@ -94,85 +168,3 @@
     </section>
     <ADFooter />
 </template>
-
-<script>
-import ADNavigation from '../../../../../components/admin/ADNavigation.vue';
-import BaseButton from '../../../../../components/BaseButton.vue';
-import Field from '../../../../../components/form/Field.vue';
-import BaseTeleport from '../../../../../components/BaseTeleport.vue';
-import ADFooter from '../../../../../components/InFooter.vue';
-
-export default {
-    components: { ADNavigation, Field, BaseTeleport, BaseButton, ADFooter },
-    data() {
-        return {
-            success: false,
-            failed: false,
-            seller: {
-                name: 'Magdi Khaled',
-                email: 'magdikhaled23s@gmail.com',
-                phone: '+02 01122368948',
-                address: 'Egypt, Giza, Al Jizah',
-                bankAccount: {
-                    name: 'Magdi Khaled Kelany Hassouna',
-                    accountNumber: '5842 3456 8201 0091',
-                    bankName: 'Egyptian Arab Land Bank',
-                }
-            },
-            shop: {
-                id: this.$route.params.sId,
-                name: this.$route.params.shopName,
-                address: 'Egypt, Cairo, Nasr City',
-                hotline: '19611 / +201065390754',
-                rate: `${4.4}/5`,
-                stock: 156,
-                balance: 5635.0
-            },
-            hideChangeInfo: true,
-            hideChangePassword: true,
-            currentPassword: '',
-            newPassword: '',
-            confirmNewPassword: '',
-        }
-    },
-    computed: {
-        hashCardNumber() {
-            let hashedCard = this.seller.bankAccount.accountNumber;
-            hashedCard = hashedCard.split(' ')[0] + ' **** **** **' + hashedCard.split(' ')[3].split('').slice(2).join('');
-            return hashedCard;
-        }
-    },
-    methods: {
-        updateInfo() {
-            console.log(this.seller.name);
-            console.log(this.seller.address);
-            console.log(this.seller.phone);
-            this.success = true;
-            setTimeout(() => { this.success = false }, 2000)
-        },
-        updatePassword() {
-            if (!this.currentPassword) {
-                console.log("Current password is incorrect");
-                this.failed = true;
-                setTimeout(() => { this.failed = false }, 2000);
-                return;
-            }
-            if (this.newPassword !== this.confirmNewPassword) {
-                console.log("New passwords do not match");
-                this.failed = true;
-                setTimeout(() => { this.failed = false }, 2000);
-                return;
-            }
-            console.log(this.currentPassword, this.newPassword, this.confirmNewPassword);
-            this.success = true;
-            setTimeout(() => { this.success = false }, 2000);
-        },
-        handleChangeInfo() {
-            this.hideChangeInfo = false;
-        },
-        handleChangePassword() {
-            this.hideChangePassword = false;  // Allow the button to be enabled
-        }
-    }
-}
-</script>

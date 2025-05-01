@@ -1,10 +1,45 @@
-<template>
+<script setup>
+import UserNavbar from '@/components/user/UserNavbar.vue';
+import UserSidebar from '@/components/user/UserSidebar.vue';
+import OrderCard from '@/components/user/OrderComponent.vue';
+import InFooter from '@/components/InFooter.vue';
+import { reactive, ref } from 'vue';
 
+const clicked = ref(3);
+const currentDate = ref(new Date());
+const orderhistory = ref(new Date().getFullYear());
+const user = reactive({
+    email: 'magdikhaled23s@gmail.com',
+    password: '123412341234',
+    fname: 'magdi',
+    lname: 'khaled',
+    gender: 'Male',
+    phone: '+0201065390754',
+    address: 'Giza - El Warrak',
+    birthdate: '2002-02-23',
+    nationality: 'Egypt',
+    orders: [
+        {
+            orderId: '886542412',
+            title: 'Vertical T-shirt Order',
+            message: `order is delivered to you successfully.`,
+            date: new Date(),
+        }, {
+            orderId: '8454232122',
+            title: 'Vertical T-shirt Order',
+            message: `order is delivered to you successfully.`,
+            date: new Date(),
+        },
+    ]
+});
+</script>
+
+<template>
     <UserNavbar />
     <div class="h-full w-full flex border-t-2">
 
         <div class="w-3/12 hidden lg:block bg-gray-50 border-r border-gray-500">
-            <UserSidebar v-model="clicked" :clicked="clicked" />
+            <UserSidebar v-model:clicked="clicked" />
         </div>
         <div class="w-full lg:w-9/12 h-fit pb-12 bg-[#f2f2f2]">
             <div class="p-6 md:p-12">
@@ -48,49 +83,3 @@
     </div>
     <InFooter />
 </template>
-<script>
-
-import UserNavbar from '../../../../components/user/UserNavbar.vue';
-import UserSidebar from '../../../../components/user/UserSidebar.vue';
-import OrderCard from '../../../../components/user/OrderComponent.vue';
-import InFooter from '../../../../components/InFooter.vue';
-
-export default {
-    components: {
-        UserNavbar, UserSidebar, OrderCard, InFooter
-    },
-    data() {
-        return {
-            clicked: 3,
-            currentDate: new Date(),
-            orderhistory: new Date().getFullYear(),
-            user: {
-                email: 'magdikhaled23s@gmail.com',
-                password: '123412341234',
-                fname: 'magdi',
-                lname: 'khaled',
-                gender: 'Male',
-                phone: '+0201065390754',
-                address: 'Giza - El Warrak',
-                birthdate: '2002-02-23',
-                nationality: 'Egypt',
-                orders: [
-                    {
-                        orderId: '886542412',
-                        title: 'Vertical T-shirt Order',
-                        message: `order is delivered to you successfully.`,
-                        date: new Date(),
-                    }, {
-                        orderId: '8454232122',
-                        title: 'Vertical T-shirt Order',
-                        message: `order is delivered to you successfully.`,
-                        date: new Date(),
-                    },
-                ]
-            },
-        }
-    }
-
-}
-</script>
-<style scoped></style>

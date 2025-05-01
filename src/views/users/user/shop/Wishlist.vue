@@ -1,3 +1,30 @@
+<script setup>
+import UserNavbar from '@/components/user/UserNavbar.vue';
+import ProductComponent from '@/components/shop/ProductComponent.vue';
+import ProductOptions from '@/components/shop/ProductOptions.vue';
+import BaseButton from '@/components/BaseButton.vue';
+import BaseTeleport from '@/components/BaseTeleport.vue';
+import IFoorer from '@/components/InFooter.vue';
+import { ref, onMounted, computed } from 'vue';
+import { useStore } from 'vuex';
+
+const store = useStore();
+const pageSize = ref(15);
+const unwish = ref(false);
+const wishlist = computed(() => store.getters.Get_Wishlist);
+
+const fetchData = async () => {
+    try {
+        await store.dispatch('FetchWishlist');
+    } catch (error) {
+        console.error('Fetch Wishlist Error:', error);
+    }
+};
+onMounted(() => {
+    fetchData();
+})
+</script>
+
 <template>
     <UserNavbar />
     <BaseTeleport :show="unwish" :type="'message'">
@@ -30,38 +57,7 @@
                     <router-link :to="{ name: 'Product', params: { id: item._id } }">
                         <ProductComponent :product="item" />
                     </router-link>
-                    <!-- small screen -->
-                    <transition name="fade">
-                        <button v-if="smallWished" @mouseover="wished = item._id" @mouseleave="wished = null"
-                            @click="addToWishlist(item)"
-                            class="absolute z-10 font-extrabold text-md sm:text-2xl top-2 right-2 opacity-[1] flex flex-col transition-all duration-150"
-                            title="Add To Wishlist">
-                            <i class="text-gray-900" :class="{
-                                'fa-regular fa-heart': wished !== item._id,
-                                'fa-solid fa-heart': wished === item._id
-                            }"></i>
-                        </button>
-                    </transition>
-                    <!-- x-large screen -->
-                    <transition name="fade">
-                        <button v-if="(hovereditemId === item._id && !smallWished) || isWished(item)"
-                            @mouseover="wished = item._id" @mouseleave="wished = null" @click="addToWishlist(item)"
-                            class="absolute z-10 font-extrabold text-sm sm:text-[15px] p-[2px]
-                                    opacity-[1] border border-black rounded-full top-2 right-[3%] flex flex-col transition-all duration-150"
-                            title="Add To Wishlist">
-                            <i class="text-gray-900" :class="{
-                                'fa-regular fa-heart': wished !== item._id && !isWished(item),
-                                'fa-solid fa-heart': wished === item._id || isWished(item)
-                            }"></i>
-                        </button>
-                    </transition>
-                    <transition name="fade">
-                        <button @click="addToCart(item)" class="absolute z-10 font-extrabold 
-                                text-md sm:text-xl bottom-[77%] sm:bottom-4 right-[4%] sm:right-0  opacity-[1] flex flex-col
-                                transition-all duration-150" title="Add To Cart">
-                            <i class="fa-solid fa-cart-plus text-gray-900 hover:text-gray-500"></i>
-                        </button>
-                    </transition>
+                    <ProductOptions :product="item" />
                 </div>
             </div>
 
@@ -73,78 +69,7 @@
     </div>
     <IFoorer />
 </template>
-<script>
-import { mapActions, mapGetters } from 'vuex';
-import { inject } from 'vue';
-import UserNavbar from '../../../../components/user/UserNavbar.vue';
-import ProductComponent from '../../../../components/shop/ProductComponent.vue';
-import BaseButton from '../../../../components/BaseButton.vue';
-import BaseTeleport from '../../../../components/BaseTeleport.vue';
-import IFoorer from '../../../../components/InFooter.vue';
 
-
-export default {
-    components: { UserNavbar, BaseButton, BaseTeleport, ProductComponent, IFoorer },
-    data() {
-        return {
-            user: localStorage.getItem('user'),
-            pageSize: 15,
-            hoveredProductId: null,
-            unwish: false
-        }
-    },
-    mounted() {
-        this.fetchData();
-    },
-    computed: {
-        ...mapGetters(['Get_Wishlist']),
-        wishlist() {
-            return this.Get_Wishlist;
-        }
-    },
-    methods: {
-        ...mapActions(['FetchWishlist', 'AddItemToCart', 'AddToWishlist', 'RemoveWishItem']),
-        async fetchData() {
-            try {
-                await this.FetchWishlist();
-            } catch (error) {
-                console.error('Fetch Wishlist Error:', error);
-            }
-        },
-        async addToCart(cartItem) {
-            try {
-                await this.AddItemToCart(cartItem);
-                this.show = true;
-                setTimeout(() => { this.show = false }, 1500);
-            }
-            catch (err) {
-                console.error('Add to Cart : ', err);
-            }
-        },
-        async addToWishlist(wishItem) {
-            try {
-                const exist = await this.AddToWishlist(wishItem);
-                if (exist) {
-                    this.unwish = true;
-                    setTimeout(() => {
-                        this.unwish = false;
-                    }, 1500);
-                    return;
-                }
-            }
-            catch (err) {
-                console.error('Add to Wishlist : ', err);
-            }
-        },
-        isWished(product) {
-            const existed = this.Get_Wishlist.find(v => v._id === product._id);
-            if (existed) return true
-            else return false
-        },
-    },
-
-}
-</script>
 <style scoped>
 .fade-enter-active,
 .fade-leave-active {

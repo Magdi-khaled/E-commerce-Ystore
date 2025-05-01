@@ -1,5 +1,5 @@
 <template>
-    <footer class="profile-footer flex items-center justify-between w-full px-2 sm:px-6 py-4">
+    <footer class="profile-footer flex items-center justify-between w-full px-2 sm:px-6 py-3">
         <p class="text-gray-500 text-sm">
             © 2024 ystore. All rights reserved
         </p>
@@ -13,10 +13,3 @@
         </div>
     </footer>
 </template>
-<script>
-export default {
-    name: 'InFooter',
-
-}
-</script>
-<style scoped></style>

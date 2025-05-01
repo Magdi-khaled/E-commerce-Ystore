@@ -1,9 +1,17 @@
+<script setup>
+import UserNavbar from '@/components/user/UserNavbar.vue';
+import UserSidebar from '@/components/user/UserSidebar.vue';
+import InFooter from '@/components/InFooter.vue';
+import { ref } from 'vue';
+
+const clicked = ref(1);
+</script>
 <template>
     <UserNavbar />
 
     <div class="h-full w-full flex border-t-2">
         <div class="w-3/12 hidden lg:block bg-gray-50 border-r border-gray-500">
-            <UserSidebar v-model="clicked" :clicked="clicked" />
+            <UserSidebar v-model:clicked="clicked" />
         </div>
         <div class="w-full lg:w-9/12 h-fit bg-[#f2f2f2]">
             <div class="p-6 md:p-12">
@@ -26,20 +34,3 @@
 
     <InFooter />
 </template>
-<script>
-import UserNavbar from '../../../../components/user/UserNavbar.vue';
-import UserSidebar from '../../../../components/user/UserSidebar.vue';
-import InFooter from '../../../../components/InFooter.vue';
-export default {
-    components: {
-        UserNavbar, UserSidebar, InFooter
-    },
-    data() {
-        return {
-            clicked: 1,
-        }
-    }
-
-}
-</script>
-<style scoped></style>

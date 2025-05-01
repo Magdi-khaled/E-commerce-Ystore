@@ -1,8 +1,18 @@
+<script setup>
+const modalActive = defineModel('modalActive', { required: true });
+const emit = defineEmits(['clear']);
+
+const closeModal = () => {
+    modalActive.value = !modalActive.value;
+    emit('clear')
+};
+</script>
 <template>
     <Teleport to='body'>
         <Transition name="modal-outer">
             <div v-show="modalActive" class="fixed inset-0 flex items-center justify-center bg-[#00000065] z-50"
-                @click="$emit('close-modal'), $emit('clear')">
+                @click="closeModal">
+                <!-- @click="$emit('close-modal'), $emit('clear')"> -->
                 <Transition class="modal-inner">
                     <div v-if="modalActive" class="base-modal p-1 bg-white border-2 border-gray-300 rounded relative"
                         @click.stop>
@@ -13,17 +23,7 @@
         </Transition>
     </Teleport>
 </template>
-<script>
-export default {
-    name: 'BaseModal',
-    props: {
-        modalActive: {
-            type: Boolean,
-            required: true
-        }
-    },
-}
-</script>
+
 <style scoped>
 .modal-outer-enter-active,
 .modal-outer-leave-active {

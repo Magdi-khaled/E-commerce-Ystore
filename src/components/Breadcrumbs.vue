@@ -1,43 +1,28 @@
+<script setup>
+import { ref, watch, onMounted } from 'vue';
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
+const breadcrumbList = ref([]);
+
+const updateList = (breadcrumbs) => {
+    breadcrumbList.value = breadcrumbs;
+};
+onMounted(() => {
+    updateList(route.meta.breadcrumb);
+});
+// watch(() => route.fullPath, () => {
+//     updateList(route.meta.breadcrumbs);
+// });
+</script>
+
 <template>
-    <p class="pt-4 text-gray-500 capitalize bg-white text-sm">
-        <span v-for="(breadcrumb, index) in breadcrumbList" :key="index" class="hover:underline">
-            <router-link :to="breadcrumb.link">
+    <ul class="pt-4 text-gray-500 capitalize bg-white text-sm flex gap-1">
+        <li v-for="(breadcrumb, index) in breadcrumbList" :key="index">
+            <router-link :to="breadcrumb.link" class="hover:underline">
                 {{ breadcrumb.name }}
             </router-link>
-            <span v-if="index < breadcrumbList.length - 1"> <i class="fa-solid fa-chevron-right text-xs px-2"></i>
-            </span>
-        </span>
-    </p>
+            <span v-if="index < breadcrumbList.length - 1"> / </span>
+        </li>
+    </ul>
 </template>
-
-<script>
-
-export default {
-    name: 'Breadcrumbs',
-    props: {
-        breadcrumbs: {
-            type: Array,
-            required: true
-        }
-    },
-    data() {
-        return {
-            breadcrumbList: []
-        }
-    },
-    async mounted() {
-        await this.updateList();
-    },
-    watch: {
-        '$route'() {
-            this.updateList();
-        }
-    },
-    methods: {
-        updateList() {
-            this.breadcrumbList = this.breadcrumbs;
-        }
-    }
-}
-</script>
-<style scoped></style>

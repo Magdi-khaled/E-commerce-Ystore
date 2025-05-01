@@ -1,4 +1,5 @@
 <script setup>
+import BaseButton from '@/components/BaseButton.vue';
 import UserNavbar from '@/components/user/UserNavbar.vue';
 import BaseNavbar from '@/components/BaseNavbar.vue';
 import BaseFooter from '@/components/BaseFooter.vue';
@@ -13,13 +14,13 @@ import data from '@/composables/data.js';
 
 import { onMounted, computed } from 'vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
-import { Navigation, Mousewheel, Scrollbar } from 'swiper/modules';
+import { Navigation, Scrollbar } from 'swiper/modules';
 import { useStore } from 'vuex';
 
 const user = localStorage.getItem('user');
 const store = useStore();
-const modules = [Navigation, Mousewheel, Scrollbar];
-// Computed Properties
+const modules = [Navigation, Scrollbar];
+
 const newProducts = computed(() => store.getters.Get_NewProducts);
 const bestSellers = computed(() => store.getters.Get_bestSellers);
 const reviews = computed(() => [
@@ -40,9 +41,7 @@ const fetchData = async () => {
     }
 };
 
-onMounted(() => {
-    fetchData();
-});
+onMounted(() => fetchData());
 </script>
 
 <template>
@@ -78,9 +77,7 @@ onMounted(() => {
                     568: { slidesPerView: 3, spaceBetween: 25 },
                     778: { slidesPerView: 3.5, spaceBetween: 25 },
                     1096: { slidesPerView: 4.5, spaceBetween: 30 }
-                }" navigation pagination
-                    :mousewheel="mouseWheelResponsive ? { forceToAxis: true, passive: true } : false"
-                    :autoplay="{ delay: 1500 }">
+                }" navigation pagination :autoplay="{ delay: 1500 }">
                     <swiper-slide v-for="product in newProducts" class="mt-4 mr-4 rounded-sm product relative">
                         <router-link :to="{ name: 'Product', params: { id: product._id } }">
                             <ProductComponent :product="product" />
@@ -88,10 +85,10 @@ onMounted(() => {
                     </swiper-slide>
                 </swiper>
                 <div class="w-full text-center my-6">
-                    <button @click="this.$router.push({ name: 'Shop' })" class="w-full sm:w-2/12 py-2 border-b-2 border-l-2 rounded-sm capitalize
-                        hover:bg-black hover:text-white transition duration-300">
-                        view all <i class="fa-solid fa-chevrons-right text-sm pl-2"></i>
-                    </button>
+                    <BaseButton @click="this.$router.push({ name: 'Shop' })"
+                        class="w-full sm:w-3/12 text-[16px] font-bold">
+                        view all <i class="fa-solid fa-share text-sm pl-2"></i>
+                    </BaseButton>
                 </div>
             </div>
         </section>
@@ -114,9 +111,7 @@ onMounted(() => {
                     568: { slidesPerView: 3, spaceBetween: 25 },
                     778: { slidesPerView: 3.5, spaceBetween: 25 },
                     1096: { slidesPerView: 4.5, spaceBetween: 30 }
-                }" navigation pagination
-                    :mousewheel="mouseWheelResponsive ? { forceToAxis: true, passive: true } : false"
-                    :autoplay="{ delay: 1500 }">
+                }" navigation pagination :autoplay="{ delay: 1500 }">
                     <swiper-slide v-for="product in bestSellers" class="mt-4 mr-4 rounded-sm product relative">
                         <router-link :to="{ name: 'Product', params: { id: product._id } }">
                             <ProductComponent :product="product" />
@@ -124,10 +119,10 @@ onMounted(() => {
                     </swiper-slide>
                 </swiper>
                 <div class="w-full text-center my-6">
-                    <button @click="this.$router.push({ name: 'Shop' })" class="w-full sm:w-2/12 py-2 border-b-2 border-l-2 rounded-sm capitalize
-                        hover:bg-black hover:text-white transition duration-300">
-                        view all <i class="fa-solid fa-chevrons-right text-sm pl-2"></i>
-                    </button>
+                    <BaseButton @click="this.$router.push({ name: 'Shop' })"
+                        class="w-full sm:w-3/12 text-[16px] font-bold">
+                        view all <i class="fa-solid fa-share text-sm pl-2"></i>
+                    </BaseButton>
                 </div>
             </div>
         </section>
@@ -160,8 +155,7 @@ onMounted(() => {
                     568: { slidesPerView: 2, spaceBetween: 15 },
                     768: { slidesPerView: 2.5, spaceBetween: 15 },
                     1024: { slidesPerView: 3.2, spaceBetween: 15 },
-                }" navigation :pagination="{ clickable: true }" :mousewheel="{ scorllable: true }"
-                    :scrollbar="{ draggable: false }">
+                }" navigation :pagination="{ clickable: true }" :scrollbar="{ draggable: false }">
                     <swiper-slide v-for="review in reviews" class="feedback-card cursor-pointer">
                         <BaseCard :card="review" />
                     </swiper-slide>

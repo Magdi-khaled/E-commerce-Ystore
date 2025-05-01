@@ -1,3 +1,52 @@
+<script setup>
+import UserNavbar from '@/components/user/UserNavbar.vue';
+import BaseNavbar from '@/components/BaseNavbar.vue';
+import BaseButton from '@/components/BaseButton.vue';
+import BaseFooter from '@/components/BaseFooter.vue';
+import CheckoutComponent from '@/components/shop/CheckoutComponent.vue';
+import { useStore } from 'vuex';
+import { handleQuantity, handlePrice } from '@/composables/useUtils';
+import { computed, onMounted, ref } from 'vue';
+
+const store = useStore();
+const user = ref(localStorage.getItem('user'));
+const show = ref(false);
+
+const cartItems = computed(() => store.getters['Get_CartItems']);
+const subTotal = computed(() => {
+    let total = 0;
+    cartItems.value.forEach(item => {
+        total += handlePrice(item.price, item.sale) * item.orderQuantity;
+    });
+    return total;
+});
+const discount = computed(() => {
+    let discount = 0;
+    cartItems.value.forEach(item => discount += (item.sale / 100) * item.price * item.orderQuantity);
+    return discount;
+});
+
+onMounted(() => fetchData());
+
+const fetchData = async () => {
+    try {
+        await store.dispatch('FetchCartItems');
+    }
+    catch (error) {
+        console.error('Fetching Cart Error: ', error);
+    }
+};
+const removeCartItem = async (id) => {
+    try {
+        await store.dispatch('RemoveCartItem', id);
+        show.value = true;
+        setTimeout(() => { show.value = false }, 1500);
+    }
+    catch (e) {
+        console.error('Remove Item Error: ', e);
+    }
+};
+</script>
 <template>
     <UserNavbar v-if="user === 'customer'" />
     <BaseNavbar v-else />
@@ -31,7 +80,7 @@
                     <div class="w-3/12 h-auto m-2 sm:m-3">
                         <router-link :to="{ name: 'Product', params: { id: item._id } }">
                             <img class="w-full sm:w-11/12 h-[7em] sm:h-[8em] md:h-[10em] rounded border-2 border-gray-400"
-                                :src="item.src" alt="cart-product">
+                                :src="item.image" alt="cart-product">
                         </router-link>
                     </div>
                     <div class="w-[65%] sm:w-[70%] py-4 flex flex-col justify-between">
@@ -76,73 +125,3 @@
     </div>
     <BaseFooter />
 </template>
-<script>
-import { mapActions, mapGetters } from 'vuex';
-import BaseNavbar from '../../../../components/BaseNavbar.vue';
-import UserNavbar from '../../../../components/user/UserNavbar.vue';
-import BaseButton from '../../../../components/BaseButton.vue';
-import CheckoutComponent from '../../../../components/shop/CheckoutComponent.vue';
-import BaseFooter from '../../../../components/BaseFooter.vue';
-import { inject } from 'vue';
-export default {
-    components: { BaseNavbar, UserNavbar, BaseButton, CheckoutComponent, BaseFooter },
-    data() {
-        return {
-            user: localStorage.getItem('user'),
-        }
-    },
-    computed: {
-        ...mapGetters(['Get_CartItems']),
-        cartItems() {
-            return this.Get_CartItems;
-        },
-        subTotal() {
-            var total = 0;
-            this.cartItems.forEach(item => {
-                total += this.handlePrice(item.price, item.sale) * item.orderQuantity;
-            });
-            return total;
-        },
-        discount() {
-            var discount = 0;
-            this.cartItems.forEach(item => {
-                discount += (item.sale / 100) * item.price * item.orderQuantity;
-            }); // 0.12 * 1200 * 1
-            return discount;
-        }
-    },
-    setup() {
-        const handlePrice = inject('handlePrice');
-        const handleQuantity = inject('handleQuantity');
-        return { handlePrice, handleQuantity }
-    },
-    created() {
-        this.fetchData();
-    },
-    methods: {
-        ...mapActions(['FetchCartItems', 'RemoveCartItem']),
-        async fetchData() {
-            try {
-                await this.FetchCartItems();
-                this.initData();
-            }
-            catch (error) {
-                console.error('Fetching Cart Error: ', error);
-            }
-        },
-        async removeCartItem(id) {
-            try {
-                await this.RemoveCartItem(id);
-                this.show = true;
-                setTimeout(() => { this.show = false }, 1500);
-            }
-            catch (error) {
-                console.error('Remove Item Error: ', error);
-            }
-        },
-        initData() {
-            this.cartItems = this.Get_CartItems;
-        },
-    }
-}
-</script>

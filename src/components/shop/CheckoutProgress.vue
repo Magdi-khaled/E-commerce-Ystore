@@ -1,6 +1,14 @@
+<script setup>
+defineProps({
+    progress: {
+        type: Number,
+        required: true
+    }
+});
+</script>
 <template>
     <div
-        class="w-8/12 mx-8 sm:mx-36 h-2 text-sm sm:text-md font-medium capitalize bg-gray-300 grid grid-cols-4 relative">
+        class="w-8/12 mx-8 sm:mx-36 h-2 text-sm sm:text-md font-medium capitalize bg-gray-300 grid grid-cols-4 relative transition-all duration-500">
         <div class="bg-black h-2 w-0 absolute top-0 left-[2%] z-10"
             :class="{ 'w-[50%]': progress === 50, 'w-[100%]': progress === 100 }">
         </div>
@@ -22,19 +30,3 @@
         </div>
     </div>
 </template>
-<script>
-export default {
-    name: 'CheckoutProgress',
-    props: {
-        progress: {
-            type: Number,
-            required: true
-        }
-    }
-}
-</script>
-<style scoped>
-div {
-    transition: all 0.5s linear;
-}
-</style>

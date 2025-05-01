@@ -1,3 +1,6 @@
+<script setup>
+defineProps(['orders', 'type']);
+</script>
 <template>
     <div class="mb-36 sm:mb-44">
         <div v-for="(item, index) in orders" :key="index"
@@ -35,11 +38,3 @@
         </div>
     </div>
 </template>
-<script>
-export default {
-    name: 'OrderComponent',
-    props: ['orders', 'type'],
-
-}
-</script>
-<style scoped></style>

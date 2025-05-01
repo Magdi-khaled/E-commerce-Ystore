@@ -53,18 +53,6 @@
   );
 }
 
-/* .colors input[value=""]:first-child::before {
-  content: "";
-  position: absolute;
-  background-color: black;
-  border-radius: 15px;
-  width: 4px;
-  height: 100%;
-  transform: rotateZ(-45deg);
-  left: 43%;
-  border: 1px solid rgba(0, 0, 0, 0.497);
-} */
-
 .fa-check {
   color: #fff;
   left: -11%;
@@ -91,4 +79,15 @@
     scroll-behavior: unset;
     top: 8%;
   }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  opacity: 1;
+  transition: opacity 0.3s cubic-bezier(0.52, 0.02, 0.19, 1.02);
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }

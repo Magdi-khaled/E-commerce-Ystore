@@ -1,10 +1,35 @@
-<template>
+<script setup>
+import UserNavbar from '@/components/user/UserNavbar.vue';
+import UserSidebar from '@/components/user/UserSidebar.vue';
+import Notification from '@/components/user/Notification.vue';
+import InFooter from '@/components/InFooter.vue';
+import { reactive, ref } from 'vue';
 
+const clicked = ref(6);
+const user = reactive({
+    notifications: [
+        {
+            title: 'Vertical T-shirt Order',
+            message: `The delivery on way to you br at location at time so, our delivery can connect
+                            with you.so, please check your location and time again and connect with
+                                        delivery in details`,
+            date: new Date(),
+        },
+        {
+            title: 'Vertical T-shirt Order',
+            message: `The delivery on way to you br at location at time so, our delivery can connect
+                            with you.so, please check your location and time again and connect with
+                                        delivery in details`,
+            date: new Date(),
+        },
+    ],
+});
+</script>
+<template>
     <UserNavbar />
     <div class="h-full w-full flex">
-
         <div class="w-3/12 hidden lg:block bg-gray-50 border-r border-gray-500">
-            <UserSidebar v-model="clicked" :clicked="clicked" />
+            <UserSidebar v-model:clicked="clicked" />
         </div>
 
         <div class="w-full lg:w-9/12 h-fit pb-12 bg-[#f2f2f2]">
@@ -40,39 +65,3 @@
     </div>
     <InFooter />
 </template>
-<script>
-import UserNavbar from '../../../../components/user/UserNavbar.vue';
-import UserSidebar from '../../../../components/user/UserSidebar.vue';
-import Notification from '../../../../components/user/Notification.vue';
-import InFooter from '../../../../components/InFooter.vue';
-export default {
-    components: {
-        UserNavbar, UserSidebar, Notification, InFooter
-    },
-    data() {
-        return {
-            clicked: 6,
-            user: {
-                notifications: [
-                    {
-                        title: 'Vertical T-shirt Order',
-                        message: `The delivery on way to you br at location at time so, our delivery can connect
-                            with you.so, please check your location and time again and connect with
-                                        delivery in details`,
-                        date: new Date(),
-                    },
-                    {
-                        title: 'Vertical T-shirt Order',
-                        message: `The delivery on way to you br at location at time so, our delivery can connect
-                            with you.so, please check your location and time again and connect with
-                                        delivery in details`,
-                        date: new Date(),
-                    },
-                ],
-            },
-        }
-    }
-
-}
-</script>
-<style scoped></style>

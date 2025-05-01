@@ -1,30 +1,15 @@
 <script setup>
 import { ref, computed } from 'vue';
 
-// Define Props
 const props = defineProps({
-    currentPage: {
-        type: Number,
-        required: true,
-    },
-    totalPages: {
-        type: Number,
-        required: true,
-    },
-    nextPage: {
-        type: Function,
-        required: true,
-    },
-    prevPage: {
-        type: Function,
-        required: true,
-    }
+    currentPage: { type: Number, required: true, },
+    totalPages: { type: Number, required: true, },
+    nextPage: { type: Function, required: true, },
+    prevPage: { type: Function, required: true, }
 });
 
-// Define Emits
 const emit = defineEmits(['page-changed']);
 
-// Reactive State
 const maxVisible = ref(3);
 
 const visiblePages = computed(() => {
@@ -47,13 +32,11 @@ const visiblePages = computed(() => {
     return pages;
 });
 
-
 computed({
     get: () => props.currentPage,
     set: (val) => changePage(val)
 });
 
-// Methods
 const changePage = (page) => {
     if (page === '...' || page === 0 || page === props.totalPages) return;
     emit('page-changed', page);
@@ -64,8 +47,8 @@ const changePage = (page) => {
     <div class="pagination mt-12 mb-4 flex justify-center items-center gap-2">
         <!-- Prev Button -->
         <button @click="prevPage" :disabled="currentPage === 1"
-            class="prev-btn bg-black text-gray-200 py-2 sm:py-3 px-3 sm:px-4 text-md sm:text-lg hover:bg-gray-600 transition duration-150"
-            :class="{ 'cursor-default hover:bg-black': currentPage === 1 }">
+            class="prev-btn peer-disabled:bg-red bg-black text-gray-200 py-2 sm:py-3 px-3 sm:px-4 text-md sm:text-lg hover:bg-gray-600 transition duration-150"
+            :class="{ 'bg-gray-400 pointer-events-none': currentPage === 1 }">
             <i class="fa-solid fa-angle-left"></i>
         </button>
 
@@ -84,17 +67,9 @@ const changePage = (page) => {
         <!-- Next Button -->
         <button @click="nextPage" :disabled="currentPage === totalPages"
             class="next-btn bg-black text-gray-200 py-2 sm:py-3 px-3 sm:px-4 text-md sm:text-lg hover:bg-gray-600 transition duration-150"
-            :class="{ 'cursor-default hover:bg-black': currentPage === totalPages }">
+            :class="{ 'bg-gray-400 pointer-events-none': currentPage === totalPages }">
             <i class="fa-solid fa-angle-right "></i>
         </button>
     </div>
 
 </template>
-
-
-<style scoped>
-button[disabled] {
-    cursor: default;
-    opacity: 0.5;
-}
-</style>
