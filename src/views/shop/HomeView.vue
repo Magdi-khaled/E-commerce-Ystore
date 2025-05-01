@@ -85,8 +85,7 @@ onMounted(() => fetchData());
                     </swiper-slide>
                 </swiper>
                 <div class="w-full text-center my-6">
-                    <BaseButton @click="this.$router.push({ name: 'Shop' })"
-                        class="w-full sm:w-3/12 text-[16px] font-bold">
+                    <BaseButton @click="router.push({ name: 'Shop' })" class="w-full sm:w-3/12 text-[16px] font-bold">
                         view all <i class="fa-solid fa-share text-sm pl-2"></i>
                     </BaseButton>
                 </div>
@@ -119,8 +118,7 @@ onMounted(() => fetchData());
                     </swiper-slide>
                 </swiper>
                 <div class="w-full text-center my-6">
-                    <BaseButton @click="this.$router.push({ name: 'Shop' })"
-                        class="w-full sm:w-3/12 text-[16px] font-bold">
+                    <BaseButton @click="router.push({ name: 'Shop' })" class="w-full sm:w-3/12 text-[16px] font-bold">
                         view all <i class="fa-solid fa-share text-sm pl-2"></i>
                     </BaseButton>
                 </div>
