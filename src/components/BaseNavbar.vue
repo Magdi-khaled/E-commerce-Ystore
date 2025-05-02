@@ -7,7 +7,7 @@ import { routeMapping2, StoreLinks } from '@/composables/useUtils.js';
 import { useRoute, useRouter } from 'vue-router';
 
 const route = useRoute();
-const router = useRoute();
+const router = useRouter();
 
 const dropStoreCategories = ref(false);
 const dropCategories = ref(false);
