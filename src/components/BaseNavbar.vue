@@ -209,15 +209,15 @@ onBeforeUnmount(() => {
     </Teleport>
 
     <!-- Small Search  -->
-    <div v-if="handleSearchBar" class="w-full py-2 px-4 relative">
-        <label for="searchText" class="relative border-2">
-            <i class="fa-regular fa-magnifying-glass absolute left-[10px] top-[5%] text-sm text-gray-400"></i>
-            <input name="searchText" v-model="searchText" @change="handleSearchResult" type="text"
+    <div v-if="handleSearchBar" class="w-full py-2 px-4">
+        <label for="searchText" class="relative">
+            <input name="searchText" v-model="searchText" @input="handleSearchResult" type="text"
                 placeholder="What are you looking for?"
-                class="w-full p-2 pl-8 bg-[#f2f2f2] outline-none rounded-sm text-sm sm:text-md focus:bg-white focus:border-[1px]">
+                class="w-full p-2 pl-8 bg-[#f2f2f2] outline-none border-[2px] rounded-sm text-sm sm:text-md focus:bg-white">
+            <i class="fa-regular fa-magnifying-glass absolute left-[10px] top-[5%] text-sm text-gray-400"></i>
 
             <div v-if="handleSearchResult.length && searchText"
-                class="w-full absolute z-50 bg-white max-h-[15em] overflow-y-auto border-2 border-t-0 rounded-b-sm">
+                class="bg-[#FAFAFA] w-full absolute z-50 max-h-[15rem] overflow-y-auto border-2 border-t-0 rounded-b-sm">
                 <ul class="mb-4">
                     <h1 class="px-4 py-2 text-gray-500 capitalize text-sm">matching keywords</h1>
                     <li v-for="item in handleSearchResult"

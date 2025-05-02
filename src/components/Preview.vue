@@ -8,7 +8,7 @@ const br1 = ref(window.innerWidth > 642);
 
 <template>
     <div class="py-8 px-4 lg:px-14 w-full">
-        <p class=" w-full md:w-3/12 lg:w-[8.9%] py-5 sm:py-8 text-gray-200 text-sm md:text-lg font-medium  ">
+        <p class=" w-full md:w-3/12 lg:w-[12%] py-5 sm:py-8 text-gray-200 text-sm md:text-lg font-medium  ">
             Browse through our diverse range of meticulously crafted garments,
             <br v-if="br1">
             designed to bring out your individuality and cater to your sense of style.

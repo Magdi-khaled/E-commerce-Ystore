@@ -22,7 +22,7 @@ const router = useRouter();
         </div>
         <hr class="w-full md:w-10/12 my-3 sm:my-6" />
         <BaseButton @click="router.push({ name: 'AD-Dashboard' })" class="whitespace-nowrap text-start 
-        w-full sm:w-6/12 md:w-8/12 px-6 rounded-sm border-t-0 border-r-0 border-gray-300 flex justify-between">
+        w-full sm:w-6/12 md:w-7/12 px-6 flex justify-between">
             <p>join YSTORE sellers community now</p>
             <div>
                 <i class="fa-light fa-users pl-2"></i><i class="fa-solid fa-chevrons-right text-sm pl-2"></i>

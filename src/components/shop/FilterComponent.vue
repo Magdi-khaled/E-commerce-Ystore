@@ -91,7 +91,7 @@ onMounted(() => {
 
 <template>
     <Transition class="fade">
-        <div class="hidden md:block w-3/12 bg-white h-fit rounded-md" :style="show ? FilterStyle : {}">
+        <div class="hidden md:block w-3/12 h-fit rounded-md" :style="show ? FilterStyle : {}">
             <div v-if="show" class="flex justify-between border-b-2 pb-4 text-xl">
                 <h1 class="capitalize font-semibold">filters</h1>
                 <button @click="toggleFilter = false">

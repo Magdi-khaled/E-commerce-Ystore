@@ -36,7 +36,7 @@ const cartTotal = computed(() => props.subTotal - props.discount + props.deliver
         <hr class="my-4">
         <div class="text-black text-sm sm:text-md font-bold flex justify-between">
             <p>total</p>
-            <p class="font-bold"><span class="text-xs">EGP </span>{{ cartTotal }}</p>
+            <p class="font-bold"><span class="text-xs">EGP </span>{{ Number(cartTotal).toFixed(2) }}</p>
         </div>
         <div v-if="!checkout" class="promo-code flex justify-between mt-4">
             <label for="promoCode" class="relative text-sm sm:text-md w-8/12">

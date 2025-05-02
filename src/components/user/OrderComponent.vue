@@ -16,7 +16,7 @@ defineProps(['orders', 'type']);
                 <div class="w-full my-4 flex">
                     <div class="w-40 sm:w-36">
                         <img class="h-[8em] sm:h-[10em] w-full border-2 border-gray-400"
-                            src="../../../public/assets/shop/product18.webp" alt="">
+                            src="../../../public/assets/shop/product16.webp" alt="">
                     </div>
                     <div class="pl-2 sm:pl-4">
                         <h1 class="text-gray-900 text-md sm:text-xl font-bold whitespace-nowrap">

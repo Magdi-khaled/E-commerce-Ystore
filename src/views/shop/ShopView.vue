@@ -74,9 +74,9 @@ onBeforeUnmount(() => {
     <UserNavbar v-if="user === 'customer'" :currentlyShop="true" />
     <BaseNavbar v-else />
 
-    <div class="bg-gray-100">
+    <div>
         <Breadcrumbs class="mt-2 px-3 md:px-4 pt-[3px] pb-4" />
-        <section class="px-3 md:px-6 pb-4 m-auto bg-white">
+        <section class="px-3 md:px-6 pb-4 m-auto ">
             <div class="flex gap-4">
 
                 <FilterComponent class="w-[25%] md:w-[20%]" :show="toggleFilter" v-model:toggleFilter="toggleFilter" />

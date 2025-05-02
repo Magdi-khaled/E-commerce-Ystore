@@ -17,7 +17,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <ul class="pt-4 text-gray-500 capitalize bg-white text-sm flex gap-1">
+    <ul class="pt-4 text-gray-500 capitalize text-sm flex gap-1">
         <li v-for="(breadcrumb, index) in breadcrumbList" :key="index">
             <router-link :to="breadcrumb.link" class="hover:underline">
                 {{ breadcrumb.name }}

@@ -1108,6 +1108,8 @@
     ],
     "filterStyle": {
         "display": "block",
+        "padding": "1rem",
+        "border": "2px solid #e0e0e0",
         "position": "fixed",
         "marginTop": "5.5rem",
         "zIndex": "110",

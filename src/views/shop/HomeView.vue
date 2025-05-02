@@ -13,14 +13,14 @@ import Fashion from '@/components/Fashion.vue';
 import data from '@/composables/data.js';
 
 import { onMounted, computed } from 'vue';
-import { useRouter } from 'vue-router';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Navigation, Scrollbar } from 'swiper/modules';
+import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 
-const user = localStorage.getItem('user');
 const store = useStore();
 const router = useRouter();
+const user = localStorage.getItem('user');
 const modules = [Navigation, Scrollbar];
 
 const newProducts = computed(() => store.getters.Get_NewProducts);
@@ -128,7 +128,7 @@ onMounted(() => fetchData());
         </section>
 
         <!-- Fashion -->
-        <section data-aos="fade-up" class="styles w-full py-6 px-2 md:px-8 lg:px-14 bg-white">
+        <section data-aos="fade-up" class="styles w-full py-6 px-2 md:px-8 lg:px-14">
             <Fashion />
         </section>
 
@@ -137,8 +137,8 @@ onMounted(() => fetchData());
             class="become-seller my-4 md:my-8 px-8 lg:px-16 flex flex-wrap justify-between border-y-2 border-y-gray-300 ">
             <BecomeSeller />
             <div class="w-full md:w-6/12 flex justify-center items-center px-0 md:px-6 py-4">
-                <img class="w-full h-[16em] lg:h-[20em] rounded border-2 border-gray-300 bg-gray-50 shadow-sm"
-                    loading="lazy" src="@/assets/media/shop/preview/fashion shop-pana2.svg" alt="">
+                <img class="w-full h-[16em] lg:h-[20em] rounded border-2 border-gray-300 shadow-sm" loading="lazy"
+                    src="@/assets/media/shop/preview/fashion shop-pana2.svg" alt="">
             </div>
         </section>
 

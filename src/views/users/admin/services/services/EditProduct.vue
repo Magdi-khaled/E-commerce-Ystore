@@ -152,7 +152,7 @@ onBeforeUnmount(() => {
                             </div>
                         </div>
                     </div>
-                    <!-- submit -->product
+                    <!-- submit -->
                     <div class="w-full flex flex-row-reverse gap-2 sm:gap-4 mt-2 text-sm sm:text-md">
                         <BaseButton @click="editProduct" class="w-5/12 sm:w-4/12 md:w-2/12  py-[6px] sm:py-[10px]">
                             update product</BaseButton>
