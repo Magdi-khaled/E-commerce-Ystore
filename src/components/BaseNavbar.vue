@@ -4,9 +4,10 @@ import NavigatedCart from '@/components/shop/NavigatedCart.vue';
 import BaseButton from '@/components/BaseButton.vue';
 import data from '@/composables/data.js';
 import { routeMapping2, StoreLinks } from '@/composables/useUtils.js';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 
 const route = useRoute();
+const router = useRoute();
 
 const dropStoreCategories = ref(false);
 const dropCategories = ref(false);
@@ -139,7 +140,7 @@ onBeforeUnmount(() => {
                 </button>
                 <NavigatedCart v-model:show="cartOn" />
                 <!-- sign in -->
-                <BaseButton @click="this.$router.push({ name: 'User-Login' })"
+                <BaseButton @click="router.push({ name: 'User-Login' })"
                     class="py-[5px] px-[6px] whitespace-nowrap rounded-sm text-sm sm:text-md">sign in
                 </BaseButton>
             </div>
